@@ -12,3 +12,4 @@ end
 include_recipe 'linux_devbox::java_dev'
 include_recipe 'linux_devbox::docker'
 include_recipe 'linux_devbox::dev_tools'
+include_recipe 'linux_devbox::compile_vim'
