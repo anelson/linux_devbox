@@ -14,7 +14,9 @@ package ['build-essential',
  'zsh',
  'tmux',
  'curl',
- 'linux-image-extra-virtual']
+ 'linux-image-extra-virtual',
+ 'tree'
+]
 
 # Install python 2 and 3 and their respecive pips
 python_runtime '2' do

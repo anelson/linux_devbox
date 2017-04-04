@@ -15,4 +15,10 @@ bin
 .direnv/
 .envrc
 .ruby-version
-cookbooks/
+
+# Don't include the vendored cookbooks in source control
+cookbooks/*
+berks-cookbooks/*
+nodes/*
+
+

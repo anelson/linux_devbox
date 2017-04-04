@@ -19,7 +19,10 @@ suites:
   - name: default
     run_list:
       - recipe[linux_devbox::default]
+      - recipe[linux_devbox::setup_user]
     verifier:
       inspec_tests:
         - test/smoke/default
+        - test/smoke/setup_user
     attributes:
+

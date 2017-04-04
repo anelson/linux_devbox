@@ -9,8 +9,6 @@ apt_update 'update' do
 	action :periodic
 end
 
-# include_recipe 'linux_devbox::setup_user'
 include_recipe 'linux_devbox::java_dev'
 include_recipe 'linux_devbox::docker'
 include_recipe 'linux_devbox::dev_tools'
-# include_recipe 'linux_devbox::homeshick'
