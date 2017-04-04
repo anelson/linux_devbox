@@ -9,3 +9,7 @@ describe command 'java -version' do
 	its('stderr') { should match /openjdk version "1.8.0/}
 end
 
+describe package('sbt') do
+	it { should be_installed }
+end
+
