@@ -20,3 +20,7 @@ version '0.1.0'
 
 # Use the docker cookbook because docker installs are complicated
 depends 'docker', '~> 2.15.2'
+
+# Do various things with Python
+depends 'poise-python', '~> 1.5.1'
+
