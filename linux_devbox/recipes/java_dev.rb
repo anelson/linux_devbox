@@ -4,7 +4,8 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
-package 'openjdk-8-jdk'
+# Install java using the 'java' recipe
+include_recipe 'java::default'
 
 # Add the SBT repo and install from it
 apt_repository 'sbt' do 
@@ -17,3 +18,5 @@ apt_repository 'sbt' do
 end
 
 package 'sbt'
+
+include_recipe 'idea::default'

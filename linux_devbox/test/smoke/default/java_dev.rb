@@ -13,3 +13,14 @@ describe package('sbt') do
 	it { should be_installed }
 end
 
+# There should be an sbt launcher script on the path
+describe command('sbt') do 
+	it { should exist }
+end
+
+# Can't actually run IDEA since it doesn't have a headless mode
+# just make sure it's in the path and call it good
+describe file('/opt/ideaIU/idea/bin/idea.sh') do 
+	it { should exist }
+end
+
