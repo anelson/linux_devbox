@@ -21,3 +21,7 @@ end
 describe command 'pip2 --version' do
 	its('stdout') { should match /python 2/}
 end
+
+describe pip('awscli') do 
+	it { should be_installed }
+end
