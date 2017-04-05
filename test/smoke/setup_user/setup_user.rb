@@ -9,3 +9,4 @@ describe user('fuckstick') do
 	it { should exist }
   skip 'This is not  implemented yet.'
 end
+

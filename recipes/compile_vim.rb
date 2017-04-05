@@ -87,6 +87,7 @@ bash 'build-and-install-vim' do
 	# don't let the ubuntu auto update mechanism clobber this by forcing updates of the
 	# existing vim packages down our throats
 	notifies :lock, 'package[lock-vim]', :immediately
+	notifies :install, 'python_package[install-ensime-packages]', :immediately
 end
 
 package 'lock-vim' do 
@@ -94,3 +95,9 @@ package 'lock-vim' do
 	action :nothing
 end
 
+# the ensime vim plugin, which I like to use, needs Python 2 pip packages
+python_runtime '2'
+python_package 'install-ensime-packages' do
+	package_name ['sexpdata', 'websocket-client']
+	action :nothing
+end

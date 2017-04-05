@@ -29,3 +29,10 @@ describe file '/usr/share/applications/vim.desktop' do
 	it { should be_readable }
 end
 
+describe pip('sexpdata') do 
+	it { should be_installed }
+end
+
+describe pip('websocket-client') do 
+	it { should be_installed }
+end
