@@ -12,5 +12,20 @@ describe command 'vim --version' do
 	its('stdout') { should match /\+python/}
 end
 
+describe command 'vi' do 
+	it { should exist }
+end
 
+describe command '/usr/bin/gvim' do 
+	it { should exist }
+end
+
+describe command '/usr/bin/vim' do 
+	it { should exist }
+end
+
+describe file '/usr/share/applications/vim.desktop' do 
+	it { should be_file }
+	it { should be_readable }
+end
 

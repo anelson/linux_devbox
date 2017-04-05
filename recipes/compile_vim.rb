@@ -10,11 +10,13 @@
 remote_file "#{Chef::Config[:file_cache_path]}/vim_source.tar.bz2" do 
 	source node['linux_devbox']['vim_tarball']
 	action :create
+	retries 3
 
-	not_if %Q{ vim --version | head -1 | grep 'Vi IMproved' }
+	not_if %Q{ vim --version | head -1 | grep 'Vi IMproved 8' }
 
 	# If this file is downloaded, then and only then trigger the build process
 	notifies :install,"package[install-deps]",:immediately
+	notifies :run, "bash[build-and-install-vim]", :immediately
 end
 
 package 'install-deps' do 
@@ -41,13 +43,13 @@ package 'install-deps' do
 	]
 
 	action :nothing
-	notifies :run, "bash[build-and-install-vim]", :immediately
 end
 
 bash 'build-and-install-vim' do 
 	cwd Chef::Config[:file_cache_path]
 
 	code <<-EOH
+		set -oe
 		tar xvjf vim_source.tar.bz2
 		cd vim80
 		make distclean
@@ -62,19 +64,33 @@ bash 'build-and-install-vim' do
             --enable-perlinterp=yes \
             --enable-luainterp=yes \
             "--with-compiled-by=Adam for your vim'ing pleasure" \
-            --enable-gui=gtk3 
-			--enable-cscope
+            --enable-gui=gtk3 \
+			--enable-cscope \
 			--prefix=/usr
 		make VIMRUNTIMEDIR=/usr/share/vim/vim80
 
-		sudo checkinstall
+		# force-overwrite is needed because there is an existing vim-common package
+		# which interfers with the installation of the freedesktop shortcut
+		sudo checkinstall --dpkgflags=--force-overwrite
 
 		sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
 		sudo update-alternatives --set editor /usr/bin/vim
 		sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
 		sudo update-alternatives --set vi /usr/bin/vim	
+
+		cd ..
+		rm -rf vim80
 	 	EOH
 
+	action :nothing
+
+	# don't let the ubuntu auto update mechanism clobber this by forcing updates of the
+	# existing vim packages down our throats
+	notifies :lock, 'package[lock-vim]', :immediately
+end
+
+package 'lock-vim' do 
+	package_name ['vim', 'vim-tiny', 'vim-common']
 	action :nothing
 end
 
