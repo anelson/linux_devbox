@@ -11,9 +11,11 @@ package ['build-essential',
  'nodejs',
  'ruby',
  'ruby-dev',
+ 'libev-dev',
  'zsh',
  'tmux',
  'curl',
+ 'dos2unix',
  'linux-image-extra-virtual',
  'tree'
 ]
