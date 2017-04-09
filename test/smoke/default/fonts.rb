@@ -8,3 +8,7 @@
 describe command 'fc-list FontAwesome' do
 	its('stdout') { should match /opentype\/FontAwesome/ }
 end
+
+describe command 'fc-list SourceCodePro' do
+	its('stdout') { should match /opentype\/SourceCodePro-Regular/ }
+end
