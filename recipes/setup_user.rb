@@ -68,7 +68,7 @@ directory 'dotfiles_dir' do
 end
 
 git 'dotfiles' do 
-	repository 'git://github.com/anelson/dotfiles.git'
+	repository 'https://github.com/anelson/dotfiles.git'
 	destination dotfiles_dir
 	action :sync
 
