@@ -28,3 +28,5 @@ depends 'poise-python', '~> 1.5.1'
 depends 'idea', '~> 0.6.0'
 
 depends 'java', '~> 1.48.0'
+
+depends 'ark', '~> 3.0.0'
