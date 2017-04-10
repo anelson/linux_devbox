@@ -12,11 +12,13 @@ package ['build-essential',
  'ruby',
  'ruby-dev',
  'libev-dev',
+ 'libstartup-notification0-dev',
  'zsh',
  'tmux',
  'curl',
  'dos2unix',
  'linux-image-extra-virtual',
+ 'open-vm-tools', 'open-vm-tools-desktop',
  'tree'
 ]
 

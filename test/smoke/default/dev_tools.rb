@@ -5,7 +5,6 @@
 # The Inspec reference, with examples and extensive documentation, can be
 # found at http://inspec.io/docs/reference/resources/
 
-
 describe package('git') do
 	it { should be_installed }
 end
@@ -16,6 +15,10 @@ end
 
 describe command 'pip --version' do
 	its('stdout') { should match /python 3/}
+end
+
+describe command 'vmware-user-suid-wrapper' do
+	it { should exist }
 end
 
 describe command 'pip2 --version' do
