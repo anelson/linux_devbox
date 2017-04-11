@@ -19,7 +19,8 @@ package ['build-essential',
  'dos2unix',
  'linux-image-extra-virtual',
  'open-vm-tools', 'open-vm-tools-desktop',
- 'tree'
+ 'tree',
+ 'jq'
 ]
 
 # Install python 2 and 3 and their respecive pips
@@ -34,21 +35,21 @@ python_runtime '3' do
 end
 
 # Install the AWS CLI using python 3
-python_package 'awscli' do 
+python_package 'awscli' do
 	action :upgrade
 end
 
 # Download and install the git-lfs package manually
-# As of now it's not on any convenient repo 
+# As of now it's not on any convenient repo
 git_lfs_path = Chef::Config['file_cache_path'] + '/git-lfs.deb'
 
-remote_file git_lfs_path do 
+remote_file git_lfs_path do
 	source 'https://packagecloud.io/github/git-lfs/packages/debian/jessie/git-lfs_2.0.2_amd64.deb/download'
 	mode '0700'
 	action :create_if_missing
 end
 
-dpkg_package 'git-lfs' do 
-	source git_lfs_path 
+dpkg_package 'git-lfs' do
+	source git_lfs_path
 	action :install
 end

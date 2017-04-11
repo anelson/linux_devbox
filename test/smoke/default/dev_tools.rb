@@ -21,10 +21,14 @@ describe command 'vmware-user-suid-wrapper' do
 	it { should exist }
 end
 
+describe command 'jq' do
+  it { should exist }
+end
+
 describe command 'pip2 --version' do
 	its('stdout') { should match /python 2/}
 end
 
-describe pip('awscli') do 
+describe pip('awscli') do
 	it { should be_installed }
 end
