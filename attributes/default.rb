@@ -16,3 +16,6 @@ default['linux_devbox']['fontawesome_url'] = "https://github.com/FortAwesome/Fon
 default['linux_devbox']['fontawesome_path_in_tarball'] = "Font-Awesome-4.7.0/fonts/FontAwesome.otf"
 default['linux_devbox']['sourcecodepro_url'] = "https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.tar.gz"
 default['linux_devbox']['sourcecodepro_path_in_tarball'] = "source-code-pro-2.030R-ro-1.050R-it/OTF"
+
+default['linux_devbox']['termite_git_repo'] = 'https://github.com/thestinger/termite.git'
+default['linux_devbox']['termite_version'] = 'v12'
