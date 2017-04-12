@@ -32,3 +32,7 @@ end
 describe pip('awscli') do
 	it { should be_installed }
 end
+
+describe command 'sysctl fs.inotify.max_user_watches' do
+  its('stdout') { should match /1000000/ }
+end

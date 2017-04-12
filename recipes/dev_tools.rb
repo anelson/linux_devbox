@@ -53,3 +53,17 @@ dpkg_package 'git-lfs' do
 	source git_lfs_path
 	action :install
 end
+
+# Tools like IntelliJ IDEA, GitKraken, and probably others
+# need lots of room in the inotify limit
+file '/etc/sysctl.d/60-idea.conf' do
+	content "fs.inotify.max_user_watches = 1000000"
+	user 'root'
+	group 'root'
+	mode '0644'
+end
+
+bash 'sysctl' do
+	code 'sysctl -p --system'
+	user 'root'
+end
