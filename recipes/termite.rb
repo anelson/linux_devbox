@@ -47,5 +47,6 @@ git "#{Chef::Config[:file_cache_path]}/termite-build" do
    code <<-EOH
      make
      make install
+     ln -s /usr/local/share/terminfo/x/xterm-termite /lib/terminfo/x/xterm-termite
      EOH
 end

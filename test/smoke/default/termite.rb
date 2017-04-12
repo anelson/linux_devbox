@@ -8,3 +8,8 @@
 describe command('termite') do
   it { should exist }
 end
+
+describe file('/lib/terminfo/x/xterm-termite') do
+  it { should exist }
+end
+
