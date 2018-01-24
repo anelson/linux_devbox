@@ -20,7 +20,8 @@ package ['build-essential',
  'linux-image-extra-virtual',
  'open-vm-tools', 'open-vm-tools-desktop',
  'tree',
- 'jq'
+ 'jq',
+ 'silversearcher-ag'
 ]
 
 # Install python 2 and 3 and their respecive pips

@@ -29,4 +29,9 @@ A few elements of this cookbook are concerned with setting up the user's environ
     $ sudo chef-client -z -o linux_devbox::setup_user
 
 
+# Fonts setup
+
+For best results the terminal and vim configs I like require the powerline patched fonts.  There's usually a package called something like `powerline-fonts` for this.  Please install it.
+
+
 
