@@ -2,19 +2,17 @@
 
 Cookbook for setting up a Linux development box.
 
+Right now this assumes an arch linux system but my tastes change frequently.
+
+# Prerequisites
+
+Arch should be installed, and basics like disk encryption, boot loaders, network configs should be done.  A non-privileged user should be created with sudo privileges, and the running of the Ansible playbooks should be done by that user.
+
 # Initial setup
 
-To start with, clone this repo somewhere.  `cd` into the repo directory and run `berks` to download the dependent cookbooks and put them in the `cookbooks/` directory.  There's a `.gitignore` rule to ensure this vendored `cookbooks` dir doesn't get checked in:
-
-    $ berks vendor cookbooks
-
-This will create or update the `cookbooks/` directory, filling it with all of the dependencies, _as well as a copy of this cookbook_.  That's an important detail.  After this, when `chef-client` runs in local mode it will see a `cookbooks/` directory and assume that directory contains the repository of cookbooks to run in local mode.  If you change the files in this cookbook that are under source control, those changes won't be picked up by `chef-client` until you re-run `berks vendor cookbooks`.  This can be very confusing if you're not ready for it.
+To start with, clone this repo somewhere.
 
 # Tests
-
-If you are feeling fastidious, verify the tests are passing first:
-
-    $ kitchen test
 
 # System setup
 
