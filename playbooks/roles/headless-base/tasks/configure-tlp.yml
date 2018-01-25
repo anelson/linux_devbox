@@ -10,7 +10,7 @@
 
 - name: mask rfkill
   systemd:
-      state: masked
+      masked: yes
       name: "{{ item }}"
   with_items:
       - systemd-rfkill.service

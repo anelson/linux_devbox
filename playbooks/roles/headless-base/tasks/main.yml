@@ -6,6 +6,7 @@
   aur: 
     name: "{{ item }}"
     use: yaourt
+    skip_installed: yes
   become: yes
   become_user: "{{ aur_builder_user }}"
   with_items:

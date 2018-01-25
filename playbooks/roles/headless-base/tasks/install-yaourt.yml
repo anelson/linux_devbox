@@ -1,15 +1,20 @@
 ---
 # yaourt is a pacman front-end https://wiki.archlinux.org/index.php/Yaourt
-- name: "add archlinuxfr repository to pacman"
-  lineinfile:
-    dest: "/etc/pacman.conf"
-    state: "present"
-    line: "{{ item }}"
-  with_items:
-    - "[archlinuxfr]"
-    - "SigLevel = Never"
-    - "Server = http://repo.archlinux.fr/$arch"
-- name: "install yaourt"
-  pacman:
-    name: "yaourt"
-    state: "present"
+# the 'aur' module has a simple internal implementation for building AUR packages
+# such as 'yaourt' to bootstrap
+- aur: name=yaourt use=internal skip_installed=true
+  become: yes
+  become_user: "{{ aur_builder_user }}"
+#- name: "add archlinuxfr repository to pacman"
+  #lineinfile:
+    #dest: "/etc/pacman.conf"
+    #state: "present"
+    #line: "{{ item }}"
+  #with_items:
+    #- "[archlinuxfr]"
+    #- "SigLevel = Never"
+    #- "Server = http://repo.archlinux.fr/$arch"
+#- name: "install yaourt"
+  #pacman:
+    #name: "yaourt"
+    #state: "present"

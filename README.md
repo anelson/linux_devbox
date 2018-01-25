@@ -12,6 +12,11 @@ Arch should be installed, and basics like disk encryption, boot loaders, network
 
 To start with, clone this repo somewhere.
 
+# Running
+
+Ansible normally assumes it can SSH into the target host using SSH keys.  If instead you want to run it on the local host, run it (as a non-privileged user with sudo permissions) as:
+    $ ansible-playbook -c local --inventory localhost, --ask-become-pass devbox.yml
+
 # Tests
 
 # System setup

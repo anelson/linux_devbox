@@ -1,8 +1,10 @@
 ---
 # Make a user specifically for installing AUR packages
-- user: "name={{ aur_builder_user }} group=wheel"
-- copy:
-    path: /etc/sudoers.d/aur_builder-allow-to-sudo-pacman
-    content: "{{ aur_builder_user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+- name: "Create AUR builder user {{ aur_builder_user }}"
+  user: "name={{ aur_builder_user }} group=wheel"
+- name: Configure AUR builder user sudo access
+  template:
+    dest: /etc/sudoers.d/aur-builder-allow-to-sudo-pacman
+    src: aur-builder-sudoer
     validate: /usr/sbin/visudo -cf %s
 

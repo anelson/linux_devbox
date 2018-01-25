@@ -3,9 +3,9 @@
 utility_packages:
     - btrfs-progs
     - gnupg
-    - ag # SilverSearcher
+    - the_silver_searcher
     - ripgrep # supposedly even faster than ag
-    - fzw # file finder
+    - fzf # file finder
     - tmux
     - tmuxp
     - zsh
@@ -16,6 +16,12 @@ dev_packages:
     - neovim
     - base-devel
     - git
+    - python
+    - python-pip
+    - python-setuptools
+    - python2
+    - python2-pip
+    - python2-setuptools
 
 # packages that apply specifically to laptops
 laptop_packages:
@@ -23,3 +29,11 @@ laptop_packages:
     - powertop
     - ethtool #for disable WoL
     - tlp
+
+# packages that should be installed via pip instead of arch
+# note that pip packages are installed for the user only to avoid
+# conflicts with the system packages.
+pip_packages:
+    pip2:
+    pip3:
+        - tmuxp

@@ -1,0 +1,2 @@
+{{ aur_builder_user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman
+
