@@ -1,0 +1,17 @@
+---
+- name: start tlp services
+  systemd:
+    state: started
+    enabled: True
+    name: "{{ item }}"
+  with_items:
+    - tlp.service
+    - tlp-sleep.service
+
+- name: mask rfkill
+  systemd:
+      state: masked
+      name: "{{ item }}"
+  with_items:
+      - systemd-rfkill.service
+      - systemd-rfkill.socket

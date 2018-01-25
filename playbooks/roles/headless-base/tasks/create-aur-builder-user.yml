@@ -1,0 +1,8 @@
+---
+# Make a user specifically for installing AUR packages
+- user: "name={{ aur_builder_user }} group=wheel"
+- copy:
+    path: /etc/sudoers.d/aur_builder-allow-to-sudo-pacman
+    content: "{{ aur_builder_user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    validate: /usr/sbin/visudo -cf %s
+

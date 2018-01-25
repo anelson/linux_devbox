@@ -1,0 +1,17 @@
+---
+- import_tasks: create-aur-builder-user.yml
+- import_tasks: configure-pacman.yml
+- import_tasks: install-yaourt.yml
+- name: install base system packages that don't require X
+  aur: 
+    name: "{{ item }}"
+    use: yaourt
+  become: yes
+  become_user: "{{ aur_builder_user }}"
+  with_items:
+      - "{{ utility_packages }}"
+      - "{{ dev_packages }}"
+      - "{{ laptop_packages }}"
+
+- import_tasks: configure-tlp.yml
+
