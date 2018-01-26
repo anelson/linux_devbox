@@ -1,0 +1,21 @@
+---
+# vars file for roles/gui-base
+xorg_packages:
+  - xorg
+  - xorg-xrdb
+  - compton
+  - xf86-video-intel
+  - xrandr
+  - i3-wm
+
+wayland_packages:
+  - wayland
+  - xorg-server-xwayland
+  - sway
+
+gui_packages:
+  - gdm
+  - firefox
+  - google-chrome
+  - terminator
+  - rofi
