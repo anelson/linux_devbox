@@ -15,9 +15,11 @@ To start with, clone this repo somewhere.
 # Running
 
 Ansible normally assumes it can SSH into the target host using SSH keys.  If instead you want to run it on the local host, run it (as a non-privileged user with sudo permissions) as:
-    $ ansible-playbook -c local --inventory localhost, --ask-become-pass devbox.yml
+    $ ansible-playbook -c local --inventory localhost, --ask-become-pass playbooks/devbox.yml
 
-# Tests
+# Notes
+
+In general, you should _never_ use `pip` or `gem` to install system packages.  Installing them as user packages into your home directory is fine, but if you ever find yourself typing `sudo pip...` or `sudo gem...`, slap yourself on the wrist and see if there's an Arch official or AUR package for what you're trying to install.  In almost all cases, you don't mean to install systemwide but for a specific user account or perhaps even a specific project.  Always prefer that.
 
 # System setup
 

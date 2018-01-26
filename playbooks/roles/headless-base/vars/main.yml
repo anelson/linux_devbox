@@ -44,6 +44,7 @@ laptop_packages:
 console_font_packages:
     - terminus-font
     - adobe-source-code-pro-fonts
+    - powerline-fonts
 
 # packages that should be installed via pip instead of arch
 # note that pip packages are installed for the user only to avoid
