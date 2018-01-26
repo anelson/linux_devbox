@@ -11,6 +11,7 @@
   become_user: "{{ aur_builder_user }}"
   with_items:
       - "{{ utility_packages }}"
+      - "{{ console_font_packages }}"
       - "{{ dev_packages }}"
       - "{{ laptop_packages }}"
 

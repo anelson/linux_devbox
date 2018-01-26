@@ -11,6 +11,12 @@ utility_packages:
     - zsh
     - bash-completion
     - networkmanager
+    - wget
+    - curl
+    - p7zip
+    - unzip
+    - unrar
+    - pass
 
 dev_packages:
     - neovim
@@ -22,6 +28,11 @@ dev_packages:
     - python2
     - python2-pip
     - python2-setuptools
+    - jdk8-openjdk
+    - jdk9-openjdk
+    - scala
+    - ruby
+    - aws-cli
 
 # packages that apply specifically to laptops
 laptop_packages:
@@ -29,6 +40,10 @@ laptop_packages:
     - powertop
     - ethtool #for disable WoL
     - tlp
+
+console_font_packages:
+    - terminus-font
+    - adobe-source-code-pro-fonts
 
 # packages that should be installed via pip instead of arch
 # note that pip packages are installed for the user only to avoid
