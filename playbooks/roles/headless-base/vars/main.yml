@@ -17,6 +17,10 @@ utility_packages:
     - unzip
     - unrar
     - pass
+    - bluez
+    - bluez-utils
+    - pulseaudio
+    - pulseaudio-bluetooth
 
 dev_packages:
     - neovim
@@ -46,10 +50,3 @@ console_font_packages:
     - adobe-source-code-pro-fonts
     - powerline-fonts
 
-# packages that should be installed via pip instead of arch
-# note that pip packages are installed for the user only to avoid
-# conflicts with the system packages.
-pip_packages:
-    pip2:
-    pip3:
-        - tmuxp

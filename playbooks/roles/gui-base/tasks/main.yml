@@ -1,2 +1,13 @@
 ---
 # tasks file for roles/gui-base
+- name: install base system packages that require X or Wayland
+  aur: 
+    name: "{{ item }}"
+    use: yaourt
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_builder_user }}"
+  with_items:
+      - "{{ xorg_packages }}"
+      - "{{ wayland_packages }}"
+      - "{{ gui_packages }}"

@@ -1,0 +1,7 @@
+---
+# Assuming the bluetooth packages are already installed
+- name: Configuring bluetooth service
+  systemd:
+    name: bluetooth.service
+    state: started
+    enabled: yes
