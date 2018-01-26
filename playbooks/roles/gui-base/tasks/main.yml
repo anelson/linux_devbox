@@ -11,3 +11,4 @@
       - "{{ xorg_packages }}"
       - "{{ wayland_packages }}"
       - "{{ gui_packages }}"
+      - "{{ wine_packages }}"

@@ -25,3 +25,34 @@ gui_packages:
   - network-manager-applet
   - networkmanager-dmenu-git
   - blueberry
+  - qemu
+  - virt-manager
+
+wine_packages:
+  - wine
+  - wine_gecko
+  - wine-mono
+  - lib32-mesa
+  - mesa
+  - lib32-libpulse
+  - libpulse
+  - lib32-openal
+  - openal
+  - lib32-libxml2
+  - libxml2
+  - lib32-mpg123
+  - mpg123
+  - lib32-lcms2
+  - lcms2
+  - lib32-giflib
+  - giflib
+  - lib32-libpng
+  - libpng
+  - lib32-gnutls
+  - gnutls
+  - lib32-libcups
+  - libcups
+  - winetricks
+  - lib32-libxrandr
+  - lib32-libxinerama
+  - samba
