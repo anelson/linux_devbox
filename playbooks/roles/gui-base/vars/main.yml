@@ -5,7 +5,10 @@ xorg_packages:
   - xorg-xrdb
   - compton
   - xf86-video-intel
-  - i3
+  - i3-wm
+  - i3lock
+  - i3status
+  - i3blocks
 
 wayland_packages:
   - wayland
@@ -19,5 +22,6 @@ gui_packages:
   - terminator
   - rofi
   #- spotify-stable # TODO: re-enable if the authors ever fix the PGP key error in the package
-  - nm-dmenu
+  - network-manager-applet
+  - networkmanager-dmenu-git
   - blueberry
