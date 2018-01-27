@@ -21,6 +21,7 @@ utility_packages:
     - bluez-utils
     - pulseaudio
     - pulseaudio-bluetooth
+    - elinks
 
 dev_packages:
     - neovim
