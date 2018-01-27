@@ -1,0 +1,13 @@
+---
+# tasks file for roles/vmware
+- name: install VMWare-related packages
+  aur: 
+    name: "{{ item }}"
+    use: yaourt
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_builder_user }}"
+  with_items:
+      - "{{ vmware_packages }}"
+
+- import_tasks: configure-vmware.yml
