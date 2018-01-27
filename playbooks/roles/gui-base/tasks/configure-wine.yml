@@ -1,5 +1,5 @@
 ---
 - name: Restart binfmt service to pick up wine binfmt
-  system:
+  systemd:
     name: systemd-binfmt.service
     state: restarted
