@@ -12,3 +12,5 @@
       - "{{ wayland_packages }}"
       - "{{ gui_packages }}"
       - "{{ wine_packages }}"
+
+- import_tasks: configure-wine.yml
