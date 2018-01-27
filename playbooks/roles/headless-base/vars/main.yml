@@ -45,6 +45,7 @@ laptop_packages:
     - powertop
     - ethtool #for disable WoL
     - tlp
+    - systemd-boot-pacman-hook # make sure the systemd-boot binaries on /boot are in sync with the latest systemd
 
 console_font_packages:
     - terminus-font
