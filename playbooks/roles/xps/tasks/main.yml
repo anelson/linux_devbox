@@ -25,3 +25,6 @@
     state: present
   notify: Rebuild initramfs
 
+# Dell makes firmware updates available via the fwupd tool
+# so it's handy to have that installed
+- aur: name=fwupd skip_installed=yes
