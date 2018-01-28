@@ -7,8 +7,21 @@
     regexp: '^MODULES=\((?:intel_agp i915 )?(.*)$'
     backrefs: yes
     state: present
-  register: modules_added
+  notify: Rebuild initramfs
 
-- name: Rebuild initramfs
-  shell: "mkinitcpio -p linux"
-  when: "modules_added|changed"
+# The 'keyboard' hook needs to come before the 'autodetect' hook
+# otherwise external keyboards and the thunderbolt dock may not
+# work when entering the boot password
+# 
+# This according to the arch wiki
+- name: Ensure keyboard hook is not subject to autodetect
+  lineinfile:
+    # if the regex doesn't match, then nothing is changed.  so write a regex
+    # that will match only if 'keyboard' is after 'autodetect' because it should be before
+    dest: /etc/mkinitcpio.conf
+    line: 'HOOKS=\1keyboard autodetect \2\3'
+    regexp: '^HOOKS=(.*)autodetect (.*)keyboard (.*)$'
+    backrefs: yes
+    state: present
+  notify: Rebuild initramfs
+
