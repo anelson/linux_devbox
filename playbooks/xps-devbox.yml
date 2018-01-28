@@ -1,0 +1,14 @@
+---
+# special case of devbox.yml which is intended to be used on an XPS 13 or 15 laptop
+#
+# Tested only on:
+# * XPS 15 9550
+# * XPS 13 9370
+#
+# Probably works on other models too
+- hosts: all
+  become: True
+  roles:
+      - gui-base
+      - vmware
+      - xps
