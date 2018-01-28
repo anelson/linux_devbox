@@ -4,7 +4,7 @@
 - name: Ensure base-devel is installed
   pacman:
       name: base-devel
-      state: latest
+      state: present
 
 # Even base-devel isn't enough; also need package-query from AUR
 - name: Ensure package-query is installed

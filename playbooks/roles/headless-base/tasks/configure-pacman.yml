@@ -25,6 +25,3 @@
     insertafter: "^\\[multilib\\]"
     regexp: "Include = /etc/pacman.d/mirrorlist"
 
-- name: "update cache"
-  pacman: update_cache=yes
-
