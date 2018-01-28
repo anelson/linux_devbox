@@ -5,7 +5,7 @@
 - name: install linux-headers
   pacman:
     name: linux-headers
-    state: latest
+    state: present
 
 - name: install VMWare-related packages
   shell: " env LC_ALL=C yaourt --m-arg --skippgpcheck -S --noconfirm --needed {{ item }}"
