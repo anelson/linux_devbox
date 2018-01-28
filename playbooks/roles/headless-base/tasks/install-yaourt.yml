@@ -8,7 +8,7 @@
 
 # Even base-devel isn't enough; also need package-query from AUR
 - name: Ensure package-query is installed
-  aur: name=package-query use=internal skipp_installed=true
+  aur: name=package-query use=internal skip_installed=true
   become: yes
   become_user: "{{ aur_builder_user }}"
 
