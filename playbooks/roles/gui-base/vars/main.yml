@@ -20,6 +20,7 @@ gui_packages:
   - firefox
   - google-chrome
   - terminator
+  - dmenu
   - rofi
   #- spotify-stable # TODO: re-enable if the authors ever fix the PGP key error in the package
   - network-manager-applet
