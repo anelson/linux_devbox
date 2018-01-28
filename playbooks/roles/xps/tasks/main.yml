@@ -3,7 +3,7 @@
 - name: Add intel graphics modules to initramfs
   lineinfile:
     dest: /etc/mkinitcpio.conf
-    line: 'MODULES=\(intel_agp i915 \1'
+    line: 'MODULES=(intel_agp i915 \1'
     regexp: '^MODULES=\((?:intel_agp i915 )?(.*)$'
     backrefs: yes
     state: present
