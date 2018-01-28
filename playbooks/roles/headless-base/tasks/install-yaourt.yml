@@ -6,14 +6,14 @@
       name: base-devel
       state: latest
 
+- shell: trust extract-compat
+  become: yes
+
 # Even base-devel isn't enough; also need package-query from AUR
 - name: Ensure package-query is installed
   aur: name=package-query use=internal skip_installed=true
   become: yes
   become_user: "{{ aur_builder_user }}"
-
-- shell: trust extract-compat
-  become: yes
 
 # the 'aur' module has a simple internal implementation for building AUR packages
 # such as 'yaourt' to bootstrap
