@@ -1,5 +1,11 @@
 ---
 # yaourt is a pacman front-end https://wiki.archlinux.org/index.php/Yaourt
+# the 'aur' module doesn't work right unless the binutils package is installed
+- name: Ensure binutils are installed
+  pacman:
+      name: binutils
+      state: latest
+
 # the 'aur' module has a simple internal implementation for building AUR packages
 # such as 'yaourt' to bootstrap
 - aur: name=yaourt use=internal skip_installed=true
