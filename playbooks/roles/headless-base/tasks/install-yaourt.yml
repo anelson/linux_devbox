@@ -12,6 +12,9 @@
   become: yes
   become_user: "{{ aur_builder_user }}"
 
+- shell: trust extract-compat
+  become: yes
+
 # the 'aur' module has a simple internal implementation for building AUR packages
 # such as 'yaourt' to bootstrap
 - aur: name=yaourt use=internal skip_installed=true
