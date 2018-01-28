@@ -8,8 +8,8 @@
 - name: Add console fonts to initramfs
   lineinfile:
     dest: /etc/mkinitcpio.conf
-    line: 'HOOKS="\1 consolefont \2"'
-    regexp: '^HOOKS="(.*keymap)(?: consolefont)? (.*)"$'
+    line: 'HOOKS=\1 consolefont \2'
+    regexp: '^HOOKS=(.*keymap)(?: consolefont)? (.*)$'
     backrefs: yes
     state: present
   register: hook_added
