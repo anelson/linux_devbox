@@ -17,4 +17,5 @@
 
 - import_tasks: configure-tlp.yml
 - import_tasks: configure-bluetooth.yml
+- import_tasks: configure-consolefonts.yml
 
