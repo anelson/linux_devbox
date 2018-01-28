@@ -6,6 +6,12 @@
       name: base-devel
       state: latest
 
+# Even base-devel isn't enough; also need package-query from AUR
+- name: Ensure package-query is installed
+  aur: name=package-query use=internal skipp_installed=true
+  become: yes
+  become_user: "{{ aur_builder_user }}"
+
 # the 'aur' module has a simple internal implementation for building AUR packages
 # such as 'yaourt' to bootstrap
 - aur: name=yaourt use=internal skip_installed=true
