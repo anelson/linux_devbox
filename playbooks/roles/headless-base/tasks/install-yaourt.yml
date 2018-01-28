@@ -6,8 +6,10 @@
       name: base-devel
       state: latest
 
-- shell: trust extract-compat
+- name: Ensure cower is installed
+  aur: name=cower use=internal skip_installed=true
   become: yes
+  become_user: "{{ aur_builder_user }}"
 
 # Even base-devel isn't enough; also need package-query from AUR
 - name: Ensure package-query is installed
