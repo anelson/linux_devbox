@@ -28,3 +28,13 @@
 # Dell makes firmware updates available via the fwupd tool
 # so it's handy to have that installed
 - aur: name=fwupd skip_installed=yes
+
+# Configure systemd to use hybrid-sleep
+- file: path=/etc/systemd/logind.conf.d state=directory
+
+- name: Configure sleep and hibernation
+  copy:
+    src: files/handle-power-events.conf
+    dest: /etc/systemd/logind.conf.d/handle-power-events.conf
+
+
