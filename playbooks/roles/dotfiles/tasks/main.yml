@@ -6,12 +6,12 @@
 - name: Check out homeshick repo
   git:
     repo: "{{ dotfiles.homeshick_repo_url }}"
-    dest: "{{ ansible_env.HOME }}/.homeshick/repos/homeshick"
+    dest: "{{ ansible_env.HOME }}/.homesick/repos/homeshick"
 
 - name: Check out my personal dotfiles repo
   git:
     repo: "{{ dotfiles.dotfiles_repo_url }}"
-    dest: "{{ ansible_env.HOME }}/.homeshick/repos/{{ dotfiles.dotfiles_castle_name }}"
+    dest: "{{ ansible_env.HOME }}/.homesick/repos/{{ dotfiles.dotfiles_castle_name }}"
 
 - name: Link dotfiles repo into home directory
   shell: >
