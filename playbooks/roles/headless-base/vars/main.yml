@@ -25,6 +25,8 @@ utility_packages:
 
 dev_packages:
     - neovim
+    - python-neovim
+    - python2-neovim
     - base-devel
     - git
     - python

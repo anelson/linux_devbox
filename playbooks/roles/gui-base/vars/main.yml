@@ -9,6 +9,8 @@ xorg_packages:
   - i3lock
   - i3status
   - i3blocks
+  - xclip
+  - xsel
 
 wayland_packages:
   - wayland
