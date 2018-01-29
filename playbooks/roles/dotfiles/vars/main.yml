@@ -1,0 +1,7 @@
+---
+# vars file for roles/dotfiles
+dotfiles:
+  homeshick_repo_url: https://github.com/andsens/homeshick
+  dotfiles_repo_url: https://github.com/anelson/dotfiles
+  dotfiles_castle_name: dotfiles
+
