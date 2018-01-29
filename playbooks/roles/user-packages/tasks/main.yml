@@ -1,0 +1,13 @@
+---
+# tasks file for roles/user-packages
+- name: Installing user-level pip packages for Python 2
+  pip:
+    executable: pip2
+    extra_args: --user
+    name: "{{ pip2_packages }}"
+
+- name: Installing user-level pip packages for Python 3
+  pip:
+    executable: pip
+    extra_args: --user
+    name: "{{ pip3_packages }}"

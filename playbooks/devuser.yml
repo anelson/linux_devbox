@@ -6,3 +6,4 @@
   roles:
       - dotfiles
       - oh-my-zsh
+      - user-packages

@@ -1,0 +1,10 @@
+---
+# vars file for roles/user-packages
+pip2_packages:
+  - sexpdata # for ensime vim
+  - websocket-client # also for ensime vim
+
+pip3_packages:
+  - awscli
+
+
