@@ -37,4 +37,7 @@
     src: files/handle-power-events.conf
     dest: /etc/systemd/logind.conf.d/handle-power-events.conf
 
-
+- name: Configure xorg power management for the screen
+  copy:
+    src: files/xorg-power-config.conf
+    dest: /etc/X11/xorg.conf.d/10-monitor.conf
