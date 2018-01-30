@@ -39,6 +39,8 @@ dev_packages:
     - jdk9-openjdk
     - scala
     - ruby
+      # dependencies for youcompleteme viM plugin
+    - [ boost, boost-libs, clang, mono, ncurses5-compat-libs, nodejs, rust, cargo, cmake, make, go, npm ]
 
 # packages that apply specifically to laptops
 laptop_packages:
