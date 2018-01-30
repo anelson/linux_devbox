@@ -1,0 +1,32 @@
+---
+# The URL of the current IntelliJ download artifacts
+# I can't find a good way to script this you'll have to manually
+# update it from time to time.
+#
+
+# The local (to the user) directory to install to.
+# Since the XDG base directories spec uses ~/.local/share for user data
+# and PIP uses ~/.local/bin for user installed packages, it seems
+# a reasonable decision to continue with this pattern and indeall
+# IDEA here
+local_directory: "{{ '~/.local' | expanduser }}"
+
+# At thie time of this writing the URL of the download page is
+# https://www.jetbrains.com/idea/download/index.html#section=linux
+# The code below makes teh following assumptions about the download URL:
+#
+# * It ends with the actual name of the downloaded tarbal
+# * It has a .tar.gz extension
+# * The contents are in fact a gzip'd tarball
+# * The root directory inside the archive is some not useful  path like ideaIU-178.2323
+#   and thus is stripped when the archive is extracted
+idea_download_url: https://download.jetbrains.com/idea/ideaIU-2017.3.4.tar.gz
+idea_download_path: "{{ local_directory }}/share"
+idea_tarball_filename: "{{ idea_download_url | basename }}"
+idea_tarball_path: "{{ idea_download_path }}/{{ idea_tarball_filename }}"
+# note the 'splitext | first' removes the extension portion of the file name
+# since the file name ends in '.tar.gz' we must do this twice to strip both names
+idea_versioned_install_directory: "{{ idea_download_path }}/{{ idea_tarball_filename | splitext | first | splitext | first}}"
+idea_unversioned_install_directory: "{{ idea_download_path }}/idea"
+idea_unversioned_bin_path: "{{ idea_unversioned_install_directory }}/bin/idea.sh"
+idea_bin_symlink_path: "{{ local_directory }}/bin/idea.sh"

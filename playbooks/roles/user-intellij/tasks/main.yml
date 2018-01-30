@@ -1,0 +1,56 @@
+---
+- name: Check if IDEA is already installed
+  stat:
+    path: "{{ idea_unversioned_install_directory }}"
+  register: idea_symlink
+- set_fact:
+    idea_installed: "{{ idea_symlink.stat.exists and idea_symlink.stat.lnk_target is defined and idea_symlink.stat.lnk_target == idea_versioned_install_directory }}"
+- debug:
+    msg: 
+      - "idea_installed: {{ idea_installed }}"
+      - "idea_versioned_install_directory: {{ idea_versioned_install_directory }}"
+      - "idea_unversioned_install_directory: {{ idea_unversioned_install_directory }}"
+
+- name: Prepare download directory
+  file:
+    path: "{{ idea_download_path }}"
+    state: directory
+  when:  not idea_installed
+
+- name: Prepare install directory
+  file:
+    path: "{{ idea_versioned_install_directory }}"
+    state: directory
+  when:  not idea_installed
+
+- name: Download latest IntelliJ IDEA binary
+  get_url:
+    dest: "{{ idea_tarball_path }}"
+    url: "{{ idea_download_url }}"
+  when:  not idea_installed
+
+- name: Extract IntelliJ binary
+  unarchive:
+    src: "{{ idea_tarball_path }}"
+    dest: "{{ idea_versioned_install_directory }}/"
+    remote_src: yes
+    creates: "{{ idea_versioned_install_directory }}/bin/idea.sh"
+    extra_opts: [ "--strip-components=1" ] # don't use the top level directory name in the tarball because it's not predictable
+  when:  not idea_installed
+
+- name: Create symlink to install directory
+  file:
+    src: "{{ idea_versioned_install_directory }}"
+    dest: "{{ idea_unversioned_install_directory }}"
+    state: link
+
+- name: Prepare local bin directory
+  file:
+    path: "{{ local_directory }}/bin"
+    state: directory
+
+- name: Symlink idea script
+  file:
+    src: "{{ idea_unversioned_install_directory }}/bin/idea.sh"
+    dest: "{{ local_directory}}/bin/idea.sh"
+    state: link

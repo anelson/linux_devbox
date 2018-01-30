@@ -1,5 +1,7 @@
 ---
-- name: Use zsh as the login shell
-  user:
-    name: "{{ lookup('env', 'USER') }}"
-    shell: /bin/zsh
+# This seems not to work without a password so it'll have to be
+# a manual step for now
+#- name: Use zsh as the login shell
+  #user:
+    #name: "{{ lookup('env', 'USER') }}"
+    #shell: /bin/zsh
