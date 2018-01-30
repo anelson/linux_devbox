@@ -11,15 +11,16 @@ Arch should be installed, and basics like disk encryption, boot loaders, network
 Some reminders about the setup process:
 
 * Start with the [ install guide ](https://wiki.archlinux.org/index.php/Installation_guide) which covers things in some detail
-* If this is a HiDPI system the console fonts are painfully small.  Run this command to temporarily fix: `setfont lat2-32 -m 8859-2`
+* If this is a HiDPI system the console fonts are painfully small.  Run this command to temporarily fix: `setfont latarcyrheb-sun32 -m 8859-2`
 * Setting up wifi is not straightfoward:
   * `iw dev` to see the list of wireless devices.  This obviously assumes the LiveCD kernel includes support for your card.
   * `iw dev (interface) scan | less` to scan for APs where `(interface)` is the device name from the previous step
   *  `wpa_supplicant -B -i interface -c <(wpa_passphrase MYSSID passphrase)` to connect to a WPA-secured AP.  Note the shell trickery used here, so weird characters in `passphrase` will need to be quoted or use herestrings.  There's a [wiki page about WPA](https://wiki.archlinux.org/index.php/WPA_supplicant#Connecting_with_wpa_passphrase) with more details.
   * Get a DHCP lease with `dhcpcd (interface)`.  Note that is D-H-C-P-C-D, I always mess it up and type D-H-C-P-D which won't work.
   * Sync the system clock with `timedatectl set-ntp true`
+* Pro-tip: You can use `Alt-RightArrow` to switch to another virtual TTY and use `elinks` to view this guide in a text-based web browser for easy reference as you switch back and forth between it and the install console.  Use `g` to go to a URL and vi navigation keys to move around.
 * Disk partitioning is tricky because we will use LUKS to encrypt the disk and LVM on top
-  * Use `gdisk` for partioning the GPT disk we always use
+  * Use `gdisk` for partioning the GPT disk we always use.  Use `lsblk` to see the block devices available
   * In case you forget the approach we use is [LVM on LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS ) for the root partition.
   * Read that page for more details and the latest thinking, but in summary:
     * `cryptsetup luksFormat --type luks2 /dev/(block device)`
@@ -31,7 +32,8 @@ Some reminders about the setup process:
     * `mkfs.ext4 /dev/mapper/MyVol-root` to format the root partition EXT4.  `btrfs` as the root volume isn't ready for prime time.
     * `mount /dev/mapper/MyVol-root /mnt` to mount.  If you made other partitions mount them under `mnt` as appropriate.
     * If there isn't already a UEFI boot partition created and initialized you need to do that also.  Read the guide.  Assuming it already exists:
-    * `mkdir /mnt/boot` && `mount /dev/(EFI partition) /mnt/boot`
+      * `mkdir /mnt/boot` && `mount /dev/(EFI partition) /mnt/boot`
+    * If it doesn't already exist, make sure you format it as FAT32 with `mkfs.fat -F32 /dev/(whatever)`
     * `fallocate -l 32G /mnt/swapfile` to allocate a swapfile on the root filesystem
     * `chmod 600 /mnt/swapfile` for security
     * `mkswap /mnt/swapfile` to initialize
@@ -42,16 +44,19 @@ Some reminders about the setup process:
   *  `genfstab -U /mnt >> /mnt/etc/fstab` to generate an `/etc/fstab` file to preserve the current mount config.
 * `arch-chroot /mnt` to chroot into the new system and begin setting it up
   * Set the time zone with `ln -sf /usr/share/zoneinfo/Region/City /etc/localtime`.  Eastern is usually `US/NewYork` or some such.
-  * Set the system clock to UTC.  This is a Linux convention not Windows to be careful if you dual boot.  `hwclock --systohc`
+  * Set the system clock to UTC.  This is a Linux convention not Windows so be careful if you dual boot.  `hwclock --systohc`
+  * Ensure the system clock is synchronized with `timedatectl set-ntp true`
   * Edit `/etc/locale.gen` and uncomment the locales to use.  I only ever use `en_US.UTF-8` but maybe `es_ES.UTF-8` and `ru-RU.UTF-8` might come in handy.
   * Run `locale-gen` to generate those locales
   * Edit `/etc/locale.conf` to set `LANG=en_US.UTF-8` to make sure US English is the default locale.
   * I never have to edit the keyboard layout since US English is the default, but that's in `/etc/vconsole.conf`
   * Choose a hostname and put it in `/etc/hostname`
   * Populate `/etc/hosts` accordingly with that new hostname:
-        127.0.0.1	localhost
-        ::1		localhost
-        127.0.1.1	myhostname.localdomain	myhostname
+
+            127.0.0.1	localhost
+            ::1		localhost
+            127.0.1.1	myhostname.localdomain	myhostname
+
   * You'll need the wireless utilities you used in the LiveCD when you reboot in order to get the new system on the network.  `pacman -S iw wpa_supplicant networkmanager dialog` at the least.  I don't have to manually install firmware but that will depend upon the system.
   * `pacman -S intel-ucode` to install the latest Intel microcode updates
   * Now it's time to configure the boot loader.  I use `systemd-boot`:
@@ -60,29 +65,104 @@ Some reminders about the setup process:
     * edit `/boot/loader/loader.conf` to adjust the default entry to boot and the timeout.  Normally the default entry is `arch`
     * Created or edit `/boot/loader/entries/arch.conf` to configure how arch is booted.  In particular some changes are needed to support the encrypted filesystem.  There's a sample at `/usr/share/systemd/bootctl/arch.conf` to use as a starting point:
     * Here's an example config:
-        title Arch Linux Encrypted LVM
-        linux /vmlinuz-linux
-        initrd /intel-ucode.img /initramfs-linux.img
-        options cryptdevice=UUID=device-UUID:cryptolvm root=/dev/mapper/MyVol-root  quiet rw
-     Note the `device-UUID` is the UUID of the encrypted physical block device.  The command to get this is `blkid -s UUID -o value /dev/(partition)`
+
+            title Arch Linux Encrypted LVM
+            linux /vmlinuz-linux
+            initrd /intel-ucode.img
+            initrd /initramfs-linux.img
+            options cryptdevice=UUID=device-UUID:cryptolvm root=/dev/mapper/MyVol-root  quiet rw
+
+     Note the `device-UUID` is the UUID of the encrypted physical block device.  The command to get this is `blkid -s UUID -o value /dev/(partition)`.  A fun trick in `vi` when editing this file if you want to insert this UUID is to put the cursor where you want the ID inserted and run an Ex command `:r ! blkid -S ....` filling out the entire `blkid` command listed earlier.
      Note also the `/intel-ucode.img` use this only on Intel systems and only if the `intel_ucode` package is installed.
     * For the XPS 13 add some options to configure the Intel graphics: `modeset=1 enable_rc6=1 enable_fbc=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=1`
-  * Add `keyboard`, `encrypt`, and `lvm2` hooks to `/etc/mkinitcpio.conf`
+  * Add `keyboard`, `encrypt`, and `lvm2` hooks to `/etc/mkinitcpio.conf`.  Be advised order is important
   * For XPS systems: Add `intel_agp` followed by `i915` modules to `/etc/mkinitcpio.conf`
   * Regenerate the `initramfs` with `mkinitcpio -p linux`
   * `passwd` to set a root password
   * Create an unprivileged user that can use `sudo` with `useradd -m -G wheel sumd00d`
+  * Set a password for that user with `passwd sumd00d`
+  * Install the sudo package with `pacman -S sudo`
   * Run `visudo` and uncomment the line that allows all `sudo` commands for members of `wheel`
   * Exit the chroot with `exit` and then `reboot` to boot into the live system.
 
+## Suspend/Hibernate for laptops
+
+On laptops some additional configuration is needed to support hibernating to disk.
+
+The [Arch wiki](https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate) as usual is the definitive source of information.  Some summary items based on my prefered config:
+
+* I use a swap file not a swap partition, therefore the instructions for a swap file apply
+* When using a swap file, the `resume` kernel parameter specifies the /device/ where the swap file is located, /not/ the swap file itself.
+* You need to specify the physical offset on the device where the swap file lives.  `filefrag -v /swapfile` will show this.  You want the physical offset of the first extent.
+* Use the following kernel parameters:
+  * `resume=/dev/mapper/MyVol-root`
+  * `resume_offset=swapfileoffset` where /swapfileoffset/ is the starting offset of the swapfile on the device
+* Update `/etc/mkinitcpio.conf` to add a `resume` hook. _IMPORTANT_: Put the `resume` hook /after/ `lvm2`
+
+
 # Initial setup
 
-To start with, clone this repo somewhere.  If this is a fresh system you may need `sudo pacman -S git ansible` to ensure you have Git and Ansible installed.
+To start with, clone this repo somewhere.
+
+    $ git clone https://github.com/anelson/linux_devbox .
+    $ cd linux_devbox
+    $ git submodule update --recursive --init
+
+If this is a fresh system also make sure you have the minimal dependencies that are required to run ansible:
+
+    $ sudo pacman -S git ansible python
 
 # Running
 
+## Install dependencies
+
+The ansible playbooks depend on some roles in Ansible Galaxy which need to be installed.  Install them once with
+
+    $ ansible-galaxy install -r requirements.yml
+
+run from the `playbooks/` directory.
+
+## System-wide setup
+
+There are two setup scripts, `playbooks/devbox.yml` is for a generic system, and `playbooks/xps-devbox.yml` is specific to the XPS 13/15 laptops and adds some additional configuration specific to those models.
+
+_NB_: In this repo there is a `playbooks` directory containing the playbooks.  You must `cd` into this directory before running `ansible-playbook`, because the `ansible.cfg` file must be in the current directory and must be relative to the `library` subdirectory due to a bug in Ansible module discovery logic as of version 2.4.
+
 Ansible normally assumes it can SSH into the target host using SSH keys.  If instead you want to run it on the local host, run it (as a non-privileged user with sudo permissions) as:
-    $ ansible-playbook -c local --inventory localhost, --ask-become-pass playbooks/devbox.yml
+
+    $ cd playbooks
+    $ ansible-playbook -c local --inventory localhost, --ask-become-pass devbox.yml
+
+    OR for XPS systems...
+
+    $ ansible-playbook -c local --inventory localhost, --ask-become-pass xps-devbox.yml
+
+After running this the first time, reboot the system.  It should come up with GDM and prompt you to log in.  `i3` will be an option, and `sway` also.  For now I'm sticking to Xorg so the Wayland-based configs are not tested as of now.
+
+## User-specific setup
+
+Once the system-wide setup is completed, there's another playbook that runs as the non-privileged user you set up at install time, and configures that user's home directory the way I like.  That runs the same way:
+
+    $ ansible-playbook -c local --inventory localhost,  devuser.yml
+
+As with the system setup, there's also an XPS variant `playbooks/xps-devuser.yml` that also configures some HiDPI settings that I can't figure out how to set at the system level.
+
+# Manual Setup Steps
+
+Unfortunately there are some steps that it't not practical or possible to automate, or that I haven't figured out yet.  They are recoreded here so I don't forget to do them:
+
+* The ansible scripts take care of installing `tmux` and pulling in the custom `.tmux.conf` I use, and `.tmux.conf` will automatically install `tpm`, the tmux plugin manager.  However it's not obvious how to make it install the missing plugins automatically.  To do that, start a `tmux` session and press `Ctrl-A` and then `I`.  That will force tpm to install the missing plugins.  
+* The vim plugin `YouCompleteMe` is a real pain in the ass.  Start `vim` once to download the plugin, then:
+      
+      $ cd ~/.vim/plugged/YouCompleteMe
+      $ ./install.py --all
+  
+  This will configure YCM with all possible completion options, probably including some languages you don't need.  It's easier to pay this price once than to mess with it later.  Note you may have to repeat this if YCM is updated sometime in the future.  It's not ideal I know
+* Firefox and Chrome configs are not easily automated.  Log into them using the respective login accounts and they will automatically configure the appropriate extensions and settings.
+* VMWare Workstation is installed automatically but the Windows VM to use for work email and such is not.  You'll have to build that manually.  I know it sucks.  A few reminders:
+  * Install Office 2016
+  * Install [ShutUp 10](https://www.oo-software.com/en/shutup10)
+
 
 # Notes
 
