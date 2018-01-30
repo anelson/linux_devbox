@@ -4,8 +4,8 @@
 - hosts: all
   become: false
   roles:
-      #- user-base
-      #- dotfiles
-      #- oh-my-zsh
-      #- user-packages
+      - user-base
+      - dotfiles
+      - oh-my-zsh
+      - user-packages
       - user-intellij
