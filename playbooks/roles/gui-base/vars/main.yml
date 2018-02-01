@@ -25,6 +25,8 @@ gui_packages:
   - dmenu
   - rofi
   #- spotify-stable # TODO: re-enable if the authors ever fix the PGP key error in the package
+  - playerctl
+  - pavucontrol
   - network-manager-applet
   - networkmanager-dmenu-git
   - blueberry
