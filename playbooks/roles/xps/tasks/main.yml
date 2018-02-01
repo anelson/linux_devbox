@@ -41,3 +41,9 @@
   copy:
     src: files/xorg-power-config.conf
     dest: /etc/X11/xorg.conf.d/10-monitor.conf
+
+- name: Configure libinput to use sane defaults for the touch pad
+  copy:
+    src: files/xorg-touchpad.conf
+    dest: /etc/X11/xorg.conf.d/30-touchpad.conf
+
