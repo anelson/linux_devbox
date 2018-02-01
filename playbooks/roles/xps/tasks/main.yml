@@ -47,3 +47,8 @@
     src: files/xorg-touchpad.conf
     dest: /etc/X11/xorg.conf.d/30-touchpad.conf
 
+- name: Set system wide env vars for HiDPI support in GUI toolkits
+  copy:
+    src: files/gtk-hidpi-env-vars.sh
+    dest: /etc/profile.d/gtk-hidpi-env-vars.sh
+
