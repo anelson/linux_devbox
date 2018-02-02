@@ -11,6 +11,9 @@ xorg_packages:
   - i3blocks
   - xclip
   - xsel
+  - feh
+  - imagemagick # used by feh to support SVG
+  - arandr
 
 wayland_packages:
   - wayland
@@ -22,6 +25,8 @@ gui_packages:
   - firefox
   - google-chrome
   - terminator
+  - alacritty-git
+  - w3m
   - dmenu
   - rofi
   #- spotify-stable # TODO: re-enable if the authors ever fix the PGP key error in the package
@@ -32,6 +37,7 @@ gui_packages:
   - blueberry
   - qemu
   - virt-manager
+  - dunst
 
 wine_packages:
   - wine

@@ -21,12 +21,15 @@ utility_packages:
     - bluez-utils
     - pulseaudio
     - pulseaudio-bluetooth
+    - pamixer
     - elinks
+    - libnotify
 
 dev_packages:
     - neovim
     - python-neovim
     - python2-neovim
+    - ranger
     - base-devel
     - git
     - python
