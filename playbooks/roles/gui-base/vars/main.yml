@@ -6,14 +6,16 @@ xorg_packages:
   - compton
   - xf86-video-intel
   - i3-wm
-  - i3lock
   - i3status
   - i3blocks
+  #- i3lock 
+  - i3lock-fancy-git # variant that does blurring and font customization
   - xclip
   - xsel
   - feh
   - imagemagick # used by feh to support SVG
   - arandr
+  - scrot
 
 wayland_packages:
   - wayland
@@ -38,6 +40,7 @@ gui_packages:
   - qemu
   - virt-manager
   - dunst
+  - xss-lock
 
 wine_packages:
   - wine
