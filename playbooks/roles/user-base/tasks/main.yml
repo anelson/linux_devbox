@@ -5,3 +5,12 @@
   #user:
     #name: "{{ lookup('env', 'USER') }}"
     #shell: /bin/zsh
+- file:
+    path: "{{ wallpapers_path }}"
+    state: directory
+
+- name: Download some wallpapers I like
+  get_url:
+    dest: "{{ wallpapers_path }}/"
+    url: "{{ item }}"
+  with_items: "{{ wallpaepr_urls }}"

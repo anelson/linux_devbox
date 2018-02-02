@@ -1,2 +1,9 @@
 ---
 # vars file for roles/user-base
+wallpapers_path: "{{ '~/.wallpaper' | expanduser }}"
+wallpaepr_urls:
+  - https://sources.archlinux.org/other/artwork/archlinux-logo-light-scalable.svg
+  - https://sources.archlinux.org/other/artwork/archlinux-logo-dark-scalable.svg
+  - https://raw.githubusercontent.com/b-b-x/.dotfiles/master/wallpaper.jpg
+
+
