@@ -5,7 +5,7 @@ xorg_packages:
   - xorg-xrdb
   - compton
   - xf86-video-intel
-  - i3-wm
+  - i3-gaps
   - i3status
   - i3blocks
   #- i3lock 
@@ -41,6 +41,16 @@ gui_packages:
   - virt-manager
   - dunst
   - xss-lock
+  - lxappearance
+  - redshift
+
+theme_packages:
+  - arc-gtk-theme
+  - adapta-gtk-theme
+  - gnome-icon-theme
+  - gnome-icon-theme-extras
+  - moka-icon-theme
+  - arc-icon-theme
 
 wine_packages:
   - wine
@@ -71,5 +81,4 @@ wine_packages:
   - lib32-libxinerama
   - samba
   - pygtk #technically this is a CrossOver dependency
-  - lxappearance
 

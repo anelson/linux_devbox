@@ -11,6 +11,7 @@
       - "{{ xorg_packages }}"
       - "{{ wayland_packages }}"
       - "{{ gui_packages }}"
+      - "{{ theme_packages }}"
       - "{{ wine_packages }}"
 
 - import_tasks: configure-gdm.yml
