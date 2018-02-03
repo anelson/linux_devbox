@@ -32,6 +32,7 @@ dev_packages:
     - ranger
     - base-devel
     - git
+    - git-lfs
     - python
     - python-pip
     - python-setuptools
