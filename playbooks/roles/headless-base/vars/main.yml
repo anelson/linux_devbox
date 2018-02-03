@@ -57,5 +57,7 @@ laptop_packages:
 console_font_packages:
     - terminus-font
     - adobe-source-code-pro-fonts
+    - system-san-francisco-font-git
+    - ttf-font-awesome-4
     - powerline-fonts
 
