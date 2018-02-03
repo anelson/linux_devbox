@@ -52,3 +52,10 @@
     src: files/gtk-hidpi-env-vars.sh
     dest: /etc/profile.d/gtk-hidpi-env-vars.sh
 
+- name: Install XPS packages
+  aur:
+    name: "{{ item }}"
+    skip_installed: yes
+  with_items:
+    - "i7z"
+
