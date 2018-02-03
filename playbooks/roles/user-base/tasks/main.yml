@@ -9,8 +9,7 @@
     path: "{{ wallpapers_path }}"
     state: directory
 
-- name: Download some wallpapers I like
-  get_url:
+- name: Copy the wallpapers I like
+  copy:
     dest: "{{ wallpapers_path }}/"
-    url: "{{ item }}"
-  with_items: "{{ wallpaepr_urls }}"
+    src: files/wallpapers/
