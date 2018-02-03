@@ -71,4 +71,5 @@ wine_packages:
   - lib32-libxinerama
   - samba
   - pygtk #technically this is a CrossOver dependency
+  - lxappearance
 
