@@ -102,15 +102,16 @@ The [Arch wiki](https://wiki.archlinux.org/index.php/Power_management/Suspend_an
 
 # Initial setup
 
-To start with, clone this repo somewhere.
+If this is a fresh system also make sure you have the minimal dependencies that are required to run ansible:
+
+    $ sudo pacman -S git git-lfs ansible python
+
+To start with, clone this repo somewhere. *IMPORTANT*: make sure you remember to run the `git submodule` and `git lfs` steps also or the playbook won't work!
 
     $ git clone https://github.com/anelson/linux_devbox .
     $ cd linux_devbox
     $ git submodule update --recursive --init
-
-If this is a fresh system also make sure you have the minimal dependencies that are required to run ansible:
-
-    $ sudo pacman -S git ansible python
+    $ git lfs pull
 
 # Running
 
