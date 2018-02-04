@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+# wraps the spotify executable and fixes the very tiny text due to lack of HiDPI support
+spotify --force-device-scale-factor=2.0
+

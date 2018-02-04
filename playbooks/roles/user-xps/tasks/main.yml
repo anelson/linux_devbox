@@ -1,0 +1,7 @@
+---
+# tasks file for roles/user-xps.yml
+- name: setup wrapper script for spotify
+  copy:
+    dest: "{{ '~/.local/bin' | expanduser}}/spotify-hidpi"
+    src: files/spotify-shell-script
+    mode: u=rwx,g=rw,o=r
