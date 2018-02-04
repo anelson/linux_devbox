@@ -12,6 +12,7 @@
   git:
     repo: "{{ dotfiles.dotfiles_repo_url }}"
     dest: "{{ ansible_env.HOME }}/.homesick/repos/{{ dotfiles.dotfiles_castle_name }}"
+    update: no
 
 - name: Link dotfiles repo into home directory
   shell: >
