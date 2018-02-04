@@ -8,7 +8,6 @@ xorg_packages:
   - i3-gaps
   - i3status
   - i3blocks
-  #- i3lock 
   - i3lock-fancy-git # variant that does blurring and font customization
   - xclip
   - xsel
@@ -24,6 +23,7 @@ wayland_packages:
 
 gui_packages:
   - gdm
+  - [ gnome-keyring, libsecret, seahorse ] # things like skype require this or they won't remember credentials
   - firefox
   - google-chrome
   - terminator
