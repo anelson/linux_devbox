@@ -82,3 +82,8 @@ wine_packages:
   - samba
   - pygtk #technically this is a CrossOver dependency
 
+snapd_packages:
+    - skype
+    - spotify
+    - slack
+    - anbox-installer
