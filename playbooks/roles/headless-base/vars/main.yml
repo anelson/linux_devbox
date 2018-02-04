@@ -25,6 +25,7 @@ utility_packages:
     - elinks
     - libnotify
     - gtop
+    - snapd
 
 dev_packages:
     - neovim
@@ -46,6 +47,7 @@ dev_packages:
     - ruby
       # dependencies for youcompleteme viM plugin
     - [ boost, boost-libs, clang, mono, ncurses5-compat-libs, nodejs, rust, cargo, cmake, make, go, npm ]
+    - docker
 
 # packages that apply specifically to laptops
 laptop_packages:
@@ -64,4 +66,3 @@ console_font_packages:
     - system-san-francisco-font-git
     - ttf-font-awesome-4
     - powerline-fonts
-

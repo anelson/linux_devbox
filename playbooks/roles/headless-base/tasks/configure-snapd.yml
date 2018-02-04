@@ -1,0 +1,10 @@
+---
+- name: start snapd service
+  systemd:
+    state: started
+    enabled: True
+    name: "{{ item }}"
+  with_items:
+    - snapd.service
+
+
