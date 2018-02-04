@@ -31,7 +31,6 @@ gui_packages:
   - w3m
   - dmenu
   - rofi
-  #- spotify-stable # TODO: re-enable if the authors ever fix the PGP key error in the package
   - playerctl
   - pavucontrol
   - network-manager-applet
@@ -43,6 +42,7 @@ gui_packages:
   - xss-lock
   - lxappearance
   - redshift
+  - [ polybar, siji-git, ttf-unifont, libmpdclient, alsa-lib, i3ipc-glib-git, jsoncpp ] # polybar has several important but optional dependencies
 
 theme_packages:
   - arc-gtk-theme
