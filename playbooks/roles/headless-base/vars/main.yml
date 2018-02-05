@@ -2,6 +2,7 @@
 # vars file for roles/headless-base
 utility_packages:
     - btrfs-progs
+    - dosfstools
     - gnupg
     - the_silver_searcher
     - ripgrep # supposedly even faster than ag
