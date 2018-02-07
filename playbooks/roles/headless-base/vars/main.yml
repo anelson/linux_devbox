@@ -53,6 +53,7 @@ dev_packages:
 # packages that apply specifically to laptops
 laptop_packages:
     - wpa_supplicant
+    - acpi
     - powertop
     - ethtool #for disable WoL
     - tlp

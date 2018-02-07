@@ -31,6 +31,7 @@ gui_packages:
   - w3m
   - dmenu
   - rofi
+  - conky
   - playerctl
   - pavucontrol
   - network-manager-applet
@@ -43,6 +44,7 @@ gui_packages:
   - lxappearance
   - redshift
   - [ polybar, siji-git, ttf-unifont, libmpdclient, alsa-lib, i3ipc-glib-git, jsoncpp ] # polybar has several important but optional dependencies
+  - tk # for i8kutils
 
 theme_packages:
   - arc-gtk-theme

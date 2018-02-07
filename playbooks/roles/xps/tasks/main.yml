@@ -57,5 +57,17 @@
     name: "{{ item }}"
     skip_installed: yes
   with_items:
-    - "i7z"
+    - "i7z"      # i7 CPU counters (probably not that useful after all)
+    - "i8kutils" # fan speed control
 
+  # as of this writing, the new 9370 and 9560 aren't explicitly supported
+  # tell this module to ignore that
+  #
+  # This and other tidbits of insight into fan control on XPS systems, including
+  # using i8utils to take over control of the fans from the BIOS,
+  # see https://daenney.github.io/2017/11/11/arch-linux-xps-13-9360.html
+- name: Fix the modprobe.d config
+  lineinfile:
+    path: /etc/modprobe.d/dell-smm-hwmon.conf
+    regexp: ^options dell-smm-hwmon
+    line: options dell-smm-hwmon restricted=0 ignore_dmi=1
