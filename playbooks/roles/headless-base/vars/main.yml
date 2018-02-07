@@ -56,6 +56,7 @@ laptop_packages:
     - acpi
     - powertop
     - ethtool #for disable WoL
+    - smartmontools
     - tlp
     - systemd-boot-pacman-hook # make sure the systemd-boot binaries on /boot are in sync with the latest systemd
     - lm_sensors

@@ -15,6 +15,7 @@
       - "{{ dev_packages }}"
       - "{{ laptop_packages }}"
 
+- import_tasks: configure-lm-sensors.yml
 - import_tasks: configure-tlp.yml
 - import_tasks: configure-bluetooth.yml
 - import_tasks: configure-docker.yml
