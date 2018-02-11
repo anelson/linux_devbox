@@ -27,6 +27,7 @@ utility_packages:
     - libnotify
     - gtop
     - snapd
+    - openssh
 
 dev_packages:
     - neovim
@@ -45,6 +46,7 @@ dev_packages:
     - jdk8-openjdk
     - jdk9-openjdk
     - scala
+    - sbt
     - ruby
       # dependencies for youcompleteme viM plugin
     - [ boost, boost-libs, clang, mono, ncurses5-compat-libs, nodejs, rust, cargo, cmake, make, go, npm ]
@@ -57,11 +59,13 @@ laptop_packages:
     - powertop
     - ethtool #for disable WoL
     - smartmontools
+    - x86_energy_perf_policy # tlp uses this
     - tlp
     - systemd-boot-pacman-hook # make sure the systemd-boot binaries on /boot are in sync with the latest systemd
     - lm_sensors
     - cpupower # monitor and tweak CPU speed settings
     - thermald # monitor CPU temperature
+    - mons # shell script for dealing with multiple monitors
 
 console_font_packages:
     - terminus-font

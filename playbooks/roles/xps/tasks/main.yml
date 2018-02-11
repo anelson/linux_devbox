@@ -59,6 +59,7 @@
   with_items:
     - "i7z"      # i7 CPU counters (probably not that useful after all)
     - "i8kutils" # fan speed control
+    - libva-intel-driver # video playback acceleration for Intel integrated GPUs
 
   # as of this writing, the new 9370 and 9560 aren't explicitly supported
   # tell this module to ignore that
