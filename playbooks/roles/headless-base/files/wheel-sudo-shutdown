@@ -1,0 +1,7 @@
+# Allow members of wheel to shutdown the system without a password
+
+%wheel ALL=(ALL) NOPASSWD: /sbin/shutdown
+%wheel ALL=(ALL) NOPASSWD: /sbin/systemctl poweroff
+%wheel ALL=(ALL) NOPASSWD: /sbin/reboot
+%wheel ALL=(ALL) NOPASSWD: /sbin/systemctl reboot
+

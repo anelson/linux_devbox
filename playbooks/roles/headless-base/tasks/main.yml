@@ -15,6 +15,12 @@
       - "{{ dev_packages }}"
       - "{{ laptop_packages }}"
 
+- name: enable members of wheel to reboot without a password
+  copy:
+    src: files/wheel-sudo-shutdown
+    dest: /etc/sudoers.d/wheel-sudo-shutdown
+    validate: /usr/sbin/visudo -cf %s
+
 - import_tasks: configure-lm-sensors.yml
 - import_tasks: configure-tlp.yml
 - import_tasks: configure-bluetooth.yml
