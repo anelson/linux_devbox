@@ -7,9 +7,10 @@ utility_packages:
     - the_silver_searcher
     - ripgrep # supposedly even faster than ag
     - fzf # file finder
+    - fd # like ripgrep but only for listing files not searching their contents
     - tmux
     - tmuxp
-    - zsh
+    - [ zsh, zsh-syntax-highlighting, antigen-git ]
     - bash-completion
     - networkmanager
     - wget
