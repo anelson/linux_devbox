@@ -13,3 +13,11 @@
   copy:
     dest: "{{ wallpapers_path }}/"
     src: files/wallpapers/
+
+- name: Ensure rust programming language tools are installed
+  shell: |
+    curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --default-toolchain stable -y
+    source "{{ '~/.cargo/env' | expanduser }}"
+    rustup component add rust-src
+
+  creates: "{{ '~/.cargo/env' | expanduser }}"
