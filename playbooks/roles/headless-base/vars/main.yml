@@ -49,6 +49,9 @@ dev_packages:
     - scala
     - sbt
     - ruby
+    - flatbuffers
+    - go
+    - mono
       # dependencies for youcompleteme viM plugin
     - [ boost, boost-libs, clang, mono, ncurses5-compat-libs, nodejs, rust, cargo, cmake, make, go, npm ]
     - docker
