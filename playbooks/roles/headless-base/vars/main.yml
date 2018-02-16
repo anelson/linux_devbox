@@ -29,6 +29,7 @@ utility_packages:
     - gtop
     - snapd
     - openssh
+    - [ libu2f-host, yubikey-personalization, libusb, pcsclite ] # related to working with yubikeys
 
 dev_packages:
     - neovim
@@ -55,6 +56,7 @@ dev_packages:
       # dependencies for youcompleteme viM plugin
     - [ boost, boost-libs, clang, mono, ncurses5-compat-libs, nodejs, rust, cargo, cmake, make, go, npm ]
     - docker
+    - swig
 
 # packages that apply specifically to laptops
 laptop_packages:
