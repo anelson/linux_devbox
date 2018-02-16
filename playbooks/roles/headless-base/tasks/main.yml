@@ -21,6 +21,12 @@
     dest: /etc/sudoers.d/wheel-sudo-shutdown
     validate: /usr/sbin/visudo -cf %s
 
+- name: enable and start the smartcard service to support yubikeys
+  systemd:
+    name: pcscd.service
+    enabled: yes
+    state: started
+
 - import_tasks: configure-lm-sensors.yml
 - import_tasks: configure-tlp.yml
 - import_tasks: configure-bluetooth.yml
