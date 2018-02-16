@@ -6,5 +6,6 @@ pip2_packages:
 
 pip3_packages:
   - awscli
+  - yubikey-manager
 
 
