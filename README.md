@@ -169,6 +169,8 @@ Unfortunately there are some steps that it't not practical or possible to automa
   * Install the IdeaVim plugin.  The config file is part of the `dotfiles` repo, you'll find it on your system at `~/.ideavimrc`.  Point the IdeaVim plugin there and restart.
   * Install the Scala and Ruby plugins
   * Configure the fonts.  The HiDPI screen might need bigger fonts, or JetBrains may have fixed HiDPI support as of the version you're running, you just don't know until you try.
+* Dropbox is installed by Ansible but it must be configured manually.  Run `dropbox` to start the GUI. The Arch Wiki
+  [Dropbox](https://wiki.archlinux.org/index.php/Dropbox) page has more details
 * VMWare Workstation is installed automatically but the Windows VM to use for work email and such is not.  You'll have to build that manually.  I know it sucks.  A few reminders:
   * Install Office 2016
   * Install [ShutUp 10](https://www.oo-software.com/en/shutup10)
