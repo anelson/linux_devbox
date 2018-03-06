@@ -30,6 +30,7 @@ utility_packages:
     - snapd
     - openssh
     - [ libu2f-host, yubikey-personalization, libusb, pcsclite ] # related to working with yubikeys
+    - jq
 
 dev_packages:
     - neovim
