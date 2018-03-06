@@ -50,6 +50,8 @@ gui_packages:
   - glxinfo
   - [ dropbox, dropbox-cli ]
   - nautilus
+  - rdesktop 
+  - freerdp
 
 theme_packages:
   - arc-gtk-theme
