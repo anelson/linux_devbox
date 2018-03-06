@@ -49,6 +49,7 @@ gui_packages:
   - tk # for i8kutils
   - glxinfo
   - [ dropbox, dropbox-cli ]
+  - nautilus
 
 theme_packages:
   - arc-gtk-theme
