@@ -52,6 +52,7 @@ gui_packages:
   - nautilus
   - rdesktop 
   - freerdp
+  - [ intellij-idea-ultimate-edition, intellij-idea-ultimate-edition-jre ]
 
 theme_packages:
   - arc-gtk-theme

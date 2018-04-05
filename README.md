@@ -174,6 +174,8 @@ Unfortunately there are some steps that it't not practical or possible to automa
 * VMWare Workstation is installed automatically but the Windows VM to use for work email and such is not.  You'll have to build that manually.  I know it sucks.  A few reminders:
   * Install Office 2016
   * Install [ShutUp 10](https://www.oo-software.com/en/shutup10)
+* Create a symlink from `~/Dropbox/Documents/vimwiki` to `~/vimwiki` so the VimWiki data is always synchornized with
+  Dropbox
 
 
 # Notes
