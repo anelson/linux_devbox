@@ -59,6 +59,22 @@ dev_packages:
     - docker
     - swig
 
+pentest_packages:
+    - wireshark-gtk
+    - hydra
+    - nmap
+    - amap
+    - zaproxy
+    - burpsuite
+    - metasploit
+    - skipfish
+    - sqlmap
+    - tcpdump
+    - johnny
+    - sslstrip
+    - nasm
+    - geany
+
 # packages that apply specifically to laptops
 laptop_packages:
     - wpa_supplicant

@@ -2,6 +2,7 @@
 - import_tasks: create-aur-builder-user.yml
 - import_tasks: configure-pacman.yml
 - import_tasks: install-yaourt.yml
+- import_tasks: configure-blackarch.yml
 - name: install base system packages that don't require X
   aur: 
     name: "{{ item }}"
@@ -13,6 +14,7 @@
       - "{{ utility_packages }}"
       - "{{ console_font_packages }}"
       - "{{ dev_packages }}"
+      - "{{ pentest_packages }}"
       - "{{ laptop_packages }}"
 
 - name: enable members of wheel to reboot without a password
