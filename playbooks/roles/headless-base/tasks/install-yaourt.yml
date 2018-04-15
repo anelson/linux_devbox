@@ -17,16 +17,10 @@
 - aur: name=yaourt use=internal skip_installed=true
   become: yes
   become_user: "{{ aur_builder_user }}"
-#- name: "add archlinuxfr repository to pacman"
-  #lineinfile:
-    #dest: "/etc/pacman.conf"
-    #state: "present"
-    #line: "{{ item }}"
-  #with_items:
-    #- "[archlinuxfr]"
-    #- "SigLevel = Never"
-    #- "Server = http://repo.archlinux.fr/$arch"
-#- name: "install yaourt"
-  #pacman:
-    #name: "yaourt"
-    #state: "present"
+
+# 'yaourt' is now inactive as of 2018-04 so also install aurman and start to transition to that
+# This transition will take some time and require changes, since yaourt operates on both AUR and the official 
+# repositories, but aurman only operateson AUR, so pacman must be used to install official packages
+- aur: name=aurman use=internal skip_installed=true
+  become: yes
+  become_user: "{{ aur_builder_user }}"
