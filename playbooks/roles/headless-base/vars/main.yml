@@ -58,8 +58,17 @@ dev_packages:
     - [ boost, boost-libs, clang, mono, ncurses5-compat-libs, nodejs, rust, cargo, cmake, make, go, npm ]
     - docker
     - swig
+    - intel-opencl-runtime
 
 pentest_packages:
+    - aircrack-ng
+    - wifite
+    - reaver
+    - bully
+    - pixiewps
+    - cowpatty
+    - pyrit
+    - [ hashcat, hashcat-utils ]
     - wireshark-gtk
     - hydra
     - nmap
