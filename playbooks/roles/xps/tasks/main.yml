@@ -72,3 +72,9 @@
     path: /etc/modprobe.d/dell-smm-hwmon.conf
     regexp: ^options dell-smm-hwmon
     line: options dell-smm-hwmon restricted=0 ignore_dmi=1
+
+- name: configure fwupd so it will work properly when the ESP is mounted somewhere it doesn't expect
+  lineinfile:
+    dest: /etc/fwupd/uefi.conf
+    regexp: '#OverrideESPMountPoint='
+    line: 'OverrideESPMountPoint=/boot'
