@@ -29,6 +29,31 @@
 # so it's handy to have that installed
 - aur: name=fwupd skip_installed=yes
 
+# Perform one-time copy of fwupdate stuff into ESP
+# See details at https://wiki.archlinux.org/index.php/Fwupd#Setup_for_UEFI_BIOS_upgrade
+# Sadly as of this writing ansible copy of remote-to-remote doesn't support recursion
+# Seems like a painfully glaring ommission to me
+- name: copy fwupdate firmware files to ESP
+  command: cp --recursive --update /usr/lib/fwupdate/EFI /boot
+
+# Use pacman hooks to keep the fwupdate stuff up to date
+- name: ensure pacman hooks directory exists
+  file: 
+    path: /etc/pacman.d/hooks
+    state: directory
+
+- name: configure pacman hook for fwupdate
+  file:
+    src: /usr/share/doc/fwupdate/esp-as-boot.hook
+    dest: /etc/pacman.d/hooks/fwupdate-efi-copy.hook
+    state: link
+
+- name: configure fwupd so it will work properly when the ESP is mounted somewhere it doesn't expect
+  lineinfile:
+    dest: /etc/fwupd/uefi.conf
+    regexp: '#OverrideESPMountPoint='
+    line: 'OverrideESPMountPoint=/boot'
+
 # Configure systemd to use hybrid-sleep
 - file: path=/etc/systemd/logind.conf.d state=directory
 
@@ -73,8 +98,3 @@
     regexp: ^options dell-smm-hwmon
     line: options dell-smm-hwmon restricted=0 ignore_dmi=1
 
-- name: configure fwupd so it will work properly when the ESP is mounted somewhere it doesn't expect
-  lineinfile:
-    dest: /etc/fwupd/uefi.conf
-    regexp: '#OverrideESPMountPoint='
-    line: 'OverrideESPMountPoint=/boot'
