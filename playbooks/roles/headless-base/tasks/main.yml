@@ -35,5 +35,6 @@
 - import_tasks: configure-docker.yml
 - import_tasks: configure-snapd.yml
 - import_tasks: configure-consolefonts.yml
+- import_tasks: configure-vboxusers.yml
 
 
