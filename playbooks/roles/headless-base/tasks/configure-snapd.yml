@@ -7,4 +7,9 @@
   with_items:
     - snapd.service
 
+- name: create symlink to /snap to support classic confinement
+  file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    state: link
 
