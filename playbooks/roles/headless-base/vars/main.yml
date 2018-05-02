@@ -31,6 +31,7 @@ utility_packages:
     - openssh
     - [ libu2f-host, yubikey-personalization, libusb, pcsclite ] # related to working with yubikeys
     - jq
+    - fio
 
 dev_packages:
     - neovim
@@ -105,4 +106,3 @@ console_font_packages:
     - system-san-francisco-font-git
     - ttf-font-awesome-4
     - powerline-fonts
-
