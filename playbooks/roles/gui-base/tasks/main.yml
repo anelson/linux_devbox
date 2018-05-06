@@ -17,6 +17,7 @@
 - import_tasks: configure-gdm.yml
 - import_tasks: configure-wine.yml
 - import_tasks: configure-vboxusers.yml
+- import_tasks: configure-fontconfig.yml
 
 - name: install snap packages
   command: snap install {{ item }} --classic
