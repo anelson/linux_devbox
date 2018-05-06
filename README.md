@@ -187,6 +187,11 @@ Unfortunately there are some steps that it't not practical or possible to automa
 * Create a symlink from `~/Dropbox/Documents/vimwiki` to `~/vimwiki` so the VimWiki data is always synchornized with
   Dropbox
 * Installing the VirtualBox extensions is possible with an AUR package, but it breaks often and since this can be downloaded and upgraded from within VirtualBox, I have opted to use that flow.  So you need to install the extensions from withint he VirtualBox GUI after the initial setup
+* I use Chromium (not Chrome) to connect to the web interface for Todoist and Evernote.  For each of those I use the
+  'Add to desktop' feature to make a desktop link and a separate browser state for each of those.  It's not the same as
+  native but it's the best that's available.  Each time you do this the window classes will be different, so the
+  `i3/config` file will need to be updated accoringly.  Chromium generates some dynamic and strange window class so it
+  is not predicable.
 
 # Setting up vWorkspace
 
