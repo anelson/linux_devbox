@@ -24,4 +24,6 @@
     line: "Include = /etc/pacman.d/mirrorlist"
     insertafter: "^\\[multilib\\]"
     regexp: "Include = /etc/pacman.d/mirrorlist"
-
+- name: "sync the package repositories"
+  pacman:
+    update_cache: yes

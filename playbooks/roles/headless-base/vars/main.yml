@@ -1,5 +1,8 @@
 ---
 # vars file for roles/headless-base
+packages_with_annoying_pgp_problem:
+    - ncurses5-compat-libs
+
 utility_packages:
     - btrfs-progs
     - dosfstools
@@ -32,6 +35,7 @@ utility_packages:
     - [ libu2f-host, yubikey-personalization, libusb, pcsclite ] # related to working with yubikeys
     - jq
     - fio
+    - bc
 
 dev_packages:
     - neovim
@@ -63,27 +67,8 @@ dev_packages:
 
 pentest_packages:
     - aircrack-ng
-    - wifite
-    - reaver
-    - bully
-    - pixiewps
-    - cowpatty
-    - pyrit
-    - [ hashcat, hashcat-utils ]
     - wireshark-gtk
-    - hydra
     - nmap
-    - amap
-    - zaproxy
-    - burpsuite
-    - metasploit
-    - skipfish
-    - sqlmap
-    - tcpdump
-    - johnny
-    - sslstrip
-    - nasm
-    - geany
 
 # packages that apply specifically to laptops
 laptop_packages:

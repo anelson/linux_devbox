@@ -3,8 +3,8 @@
 - name: Add intel graphics modules to initramfs
   lineinfile:
     dest: /etc/mkinitcpio.conf
-    line: 'MODULES=(intel_agp i915 \1'
-    regexp: '^MODULES=\((?:intel_agp i915 )?(.*)$'
+    line: 'MODULES=(nvme i915 intel_agp \1'
+    regexp: '^MODULES=\((?:nvme i915 intel_agp)? (.*)$'
     backrefs: yes
     state: present
   notify: Rebuild initramfs
@@ -80,7 +80,10 @@
 - name: Install XPS packages
   aur:
     name: "{{ item }}"
+    use: yaourt
     skip_installed: yes
+  become: yes
+  become_user: "{{ aur_builder_user }}"
   with_items:
     - "i7z"      # i7 CPU counters (probably not that useful after all)
     - "i8kutils" # fan speed control

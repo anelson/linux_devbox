@@ -3,9 +3,18 @@
 pip2_packages:
   - sexpdata # for ensime vim
   - websocket-client # also for ensime vim
+  - neovim # also for ensime vim
 
 pip3_packages:
   - awscli
   - yubikey-manager
+
+  # neovim is built with Python 2.7, but it seems the ensime vim plugin
+  # uses the 'pip' command to test for packages, so to avoid an annoying
+  # error message (and in anticipation of someday neovim using python 3)
+  # install the packages in Python 3.x also
+  - sexpdata # for ensime vim
+  - websocket-client # also for ensime vim
+  - neovim # also for ensime vim
 
 

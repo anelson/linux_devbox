@@ -2,7 +2,13 @@
 - import_tasks: create-aur-builder-user.yml
 - import_tasks: configure-pacman.yml
 - import_tasks: install-yaourt.yml
-- import_tasks: configure-blackarch.yml
+- name: install some base packages that have PGP signature verification that needs to be skipped
+  shell: yaourt --m-arg --skippgpcheck -S --needed --noconfirm "{{ item }}"
+  become: yes
+  become_user: "{{ aur_builder_user }}"
+  with_items: 
+    - "{{ packages_with_annoying_pgp_problem }}"
+ 
 - name: install base system packages that don't require X
   aur: 
     name: "{{ item }}"
@@ -14,8 +20,8 @@
       - "{{ utility_packages }}"
       - "{{ console_font_packages }}"
       - "{{ dev_packages }}"
-      - "{{ pentest_packages }}"
       - "{{ laptop_packages }}"
+      - "{{ pentest_packages }}"
 
 - name: enable members of wheel to reboot without a password
   copy:
@@ -35,6 +41,5 @@
 - import_tasks: configure-docker.yml
 - import_tasks: configure-snapd.yml
 - import_tasks: configure-consolefonts.yml
-- import_tasks: configure-vboxusers.yml
 
 

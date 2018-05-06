@@ -40,7 +40,7 @@ gui_packages:
   - blueberry
   - qemu
   - virt-manager
-  - [ virtualbox-host-dkms, virtualbox, virtualbox-guest-iso, virtualbox-ext-oracle ]
+  - [ virtualbox-host-dkms, virtualbox, virtualbox-guest-iso ]
   - dunst
   - xss-lock
   - lxappearance
