@@ -188,6 +188,42 @@ Unfortunately there are some steps that it't not practical or possible to automa
   Dropbox
 * Installing the VirtualBox extensions is possible with an AUR package, but it breaks often and since this can be downloaded and upgraded from within VirtualBox, I have opted to use that flow.  So you need to install the extensions from withint he VirtualBox GUI after the initial setup
 
+# Setting up vWorkspace
+
+At Quest we use vWorkspace as a VDI client.  It has support for linux but not for arch, so some contortions are required
+to make it work.
+
+* Go to https://desktop.quest.com and download the Linux client, which will be a `.bin` file
+* `chmod +x ./vworkspace_linux_.....bin`
+* The `.bin` has an install shell script but it won't recognize Arch as a distro, so instead use the `tar` command line
+  option which will make it extract the contents:
+
+      $ ./vworkspace_linux....bin tar xvf .
+
+  The result is both 32- and 64-bit versions of both a deb and a rpm
+* Convert the `.deb` into an Arch package.  This is...dodgy, and doesn't work perfectly.  The instructions I used are at
+  https://www.ostechnix.com/convert-deb-packages-arch-linux-packages/  Stop when you get to the point where you have an
+  Arch package tarball; don't actually install yet
+* When you install this package, it will have a dependency on `libz`, which conflicts with `zlib`.  If you accept this
+  dependency, it will itself conflict with `libpng` and won't work properly.    Stop when you get to the point where you
+  have an Arch package tarball; don't actually install yet
+* When you install this package, it will have a dependency on `libz`, which conflicts with `zlib`.  If you accept this
+  dependency, it will itself conflict with `libpng` and won't work properly.  So make sure you have all dependencies
+  installed already (other than what ansible installs I just was missing `qt4`), then install with the `dd` switch to
+  force skipping of dependencies:
+
+      $ sudo pacman -Udd ./vworkspace....tar.gz
+
+* Once the package has installed successfully, it's still not ready for prime time.  the `vworkspace` command should
+  work and bring up a GUI, but you won't actually be able to start an RDP session.  Some aspect of the solution
+  hard-codes the assumption that it's installed to `/usr/local/lib/vworkspace` when in fact the libraries are in
+  `/usr/lib/vworkspace` on Arch.  So you need to symlink:
+
+      $ sudo ln -s /usr/lib/vworkspace /usr/local/lib/vworkspace
+
+* That should be enough to run vWorkspace and connect.  It is not at all HiDPI aware though so it won't be very useful
+  for day to day work.
+
 
 # Notes
 
