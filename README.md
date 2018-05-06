@@ -78,7 +78,7 @@ Some reminders about the setup process:
 
      Note the `device-UUID` is the UUID of the encrypted physical block device.  The command to get this is `blkid -s UUID -o value /dev/(partition)`.  A fun trick in `vi` when editing this file if you want to insert this UUID is to put the cursor where you want the ID inserted and run an Ex command `:r ! blkid -S ....` filling out the entire `blkid` command listed earlier.
      Note also the `/intel-ucode.img` use this only on Intel systems and only if the `intel_ucode` package is installed.
-    * For the XPS 13 add some options to configure the Intel graphics: `enable_guc_loading=-1 enable_guc_submission=-1`
+    * For the XPS 13 add some options to configure the Intel graphics: `i915 enable_guc_loading=-1 enable_guc_submission=-1`
     * NB: Based on [this patch](https://patchwork.freedesktop.org/patch/191386/) it appears use of `enable_rc6` is unwise so it's removed from the options listed abjove
   * Add `keyboard`, `encrypt`, and `lvm2` HOOKS to `/etc/mkinitcpio.conf`.  Be advised order is important.  NOTE:
     technically Ansible will do this for you as part of the setup process
