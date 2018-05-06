@@ -14,13 +14,15 @@ Some reminders about the setup process:
 * If this is a HiDPI system the console fonts are painfully small.  Run this command to temporarily fix: `setfont latarcyrheb-sun32 -m 8859-2`
 * Setting up wifi is not straightfoward:
   * `iw dev` to see the list of wireless devices.  This obviously assumes the LiveCD kernel includes support for your card.
+  * `ip link set (interface) up` to bring the wireless interface online
   * `iw dev (interface) scan | less` to scan for APs where `(interface)` is the device name from the previous step
   *  `wpa_supplicant -B -i interface -c <(wpa_passphrase MYSSID passphrase)` to connect to a WPA-secured AP.  Note the shell trickery used here, so weird characters in `passphrase` will need to be quoted or use herestrings.  There's a [wiki page about WPA](https://wiki.archlinux.org/index.php/WPA_supplicant#Connecting_with_wpa_passphrase) with more details.
   * Get a DHCP lease with `dhcpcd (interface)`.  Note that is D-H-C-P-C-D, I always mess it up and type D-H-C-P-D which won't work.
   * Sync the system clock with `timedatectl set-ntp true`
 * Pro-tip: You can use `Alt-RightArrow` to switch to another virtual TTY and use `elinks` to view this guide in a text-based web browser for easy reference as you switch back and forth between it and the install console.  Use `g` to go to a URL and vi navigation keys to move around.
 * Disk partitioning is tricky because we will use LUKS to encrypt the disk and LVM on top
-  * Use `gdisk` for partioning the GPT disk we always use.  Use `lsblk` to see the block devices available
+  * Use `gdisk` for partioning the GPT disk we always use.  Use `lsblk` to see the block devices available.  Create one
+    250MB EFI partition and one with the rest of the space for our data
   * In case you forget the approach we use is [LVM on LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS ) for the root partition.
   * Read that page for more details and the latest thinking, but in summary:
     * `cryptsetup luksFormat --type luks2 /dev/(block device)`
@@ -41,8 +43,10 @@ Some reminders about the setup process:
 * Once the disks are configured it's time to install packages
   * I don't usually bother editing the `/etc/pacman.d/mirrorlist` file it defaults to use all the mirrors in the world.  Maybe tweak it if you're in a place with weak internet
   * `pacstrap /mnt base` to install the base packages over the network.  I don't like to install other packages here, because there's an Ansible playbook for that which also tweaks the `mirrorlist`
-  *  `genfstab -U /mnt >> /mnt/etc/fstab` to generate an `/etc/fstab` file to preserve the current mount config.
+  *  `genfstab -U /mnt >> /mnt/etc/fstab` to generate an `/etc/fstab` file to preserve the current mount config.  Double
+     check that the path to the swap file doesn't have a `/mnt` prefix; I've seen that happen once
 * `arch-chroot /mnt` to chroot into the new system and begin setting it up
+  * `pacman -Sy vim` to get an editor installed right away
   * Set the time zone with `ln -sf /usr/share/zoneinfo/Region/City /etc/localtime`.  Eastern is usually `US/NewYork` or some such.
   * Set the system clock to UTC.  This is a Linux convention not Windows so be careful if you dual boot.  `hwclock --systohc`
   * Ensure the system clock is synchronized with `timedatectl set-ntp true`
@@ -74,7 +78,7 @@ Some reminders about the setup process:
 
      Note the `device-UUID` is the UUID of the encrypted physical block device.  The command to get this is `blkid -s UUID -o value /dev/(partition)`.  A fun trick in `vi` when editing this file if you want to insert this UUID is to put the cursor where you want the ID inserted and run an Ex command `:r ! blkid -S ....` filling out the entire `blkid` command listed earlier.
      Note also the `/intel-ucode.img` use this only on Intel systems and only if the `intel_ucode` package is installed.
-    * For the XPS 13 add some options to configure the Intel graphics: `modeset=1  enable_fbc=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=1`
+    * For the XPS 13 add some options to configure the Intel graphics: `enable_guc_loading=-1 enable_guc_submission=-1`
     * NB: Based on [this patch](https://patchwork.freedesktop.org/patch/191386/) it appears use of `enable_rc6` is unwise so it's removed from the options listed abjove
   * Add `keyboard`, `encrypt`, and `lvm2` hooks to `/etc/mkinitcpio.conf`.  Be advised order is important
   * For XPS systems: Add `intel_agp` followed by `i915` modules to `/etc/mkinitcpio.conf`
@@ -147,6 +151,10 @@ Once the system-wide setup is completed, there's another playbook that runs as t
 
     $ ansible-playbook -c local --inventory localhost,  devuser.yml
 
+    OR for XPS...
+    
+    $ ansible-playbook -c local --inventory localhost,  xps-devuser.yml
+
 As with the system setup, there's also an XPS variant `playbooks/xps-devuser.yml` that also configures some HiDPI settings that I can't figure out how to set at the system level.
 
 Both of those install IntelliJ.  If you haven't done an install lately, edit the `playbooks/roles/user-intellij/vars/main.yml` file and make sure the most recent version is downloaded.  If you want to upgrade IntelliJ later, you can also update var and re-run the `devuser.yml` playbook.
@@ -176,6 +184,7 @@ Unfortunately there are some steps that it't not practical or possible to automa
   * Install [ShutUp 10](https://www.oo-software.com/en/shutup10)
 * Create a symlink from `~/Dropbox/Documents/vimwiki` to `~/vimwiki` so the VimWiki data is always synchornized with
   Dropbox
+* Installing the VirtualBox extensions is possible with an AUR package, but it breaks often and since this can be downloaded and upgraded from within VirtualBox, I have opted to use that flow.  So you need to install the extensions from withint he VirtualBox GUI after the initial setup
 
 
 # Notes
