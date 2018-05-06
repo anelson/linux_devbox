@@ -5,25 +5,30 @@
   get_url:
     url: "https://www.archlinux.org/mirrorlist/?country=US&protocol=http&ip_version=4&ip_version=6&use_mirror_status=on"
     dest: "/etc/pacman.d/mirrorlist"
+
 - name: "uncomment `#Server` in pacman mirror list"
   replace:
     dest: "/etc/pacman.d/mirrorlist"
     regexp: '^#Server'
     replace: 'Server'
+
 - name: "add multilib"
-  lineinfile:
+  blockinfile:
     dest: "/etc/pacman.conf"
     state: "present"
-    line: "[multilib]"
-    regexp: "^\\[multilib\\]"
-    insertafter: "^#\\[multilib\\]"
-- name: "add multilib (cont)"
-  lineinfile:
-    dest: "/etc/pacman.conf"
-    state: "present"
-    line: "Include = /etc/pacman.d/mirrorlist"
-    insertafter: "^\\[multilib\\]"
-    regexp: "Include = /etc/pacman.d/mirrorlist"
+    insertafter: EOF
+    block: |
+      [multilib]
+      Include = /etc/pacman.d/mirrorlist
+  register: multilib_added
+
+#- name: add infinality repository keys
+  #shell: |
+    #pacman-key -r 962DDE58
+    #pacman-key --lsign-key 962DDE58
+  #when: infinality_added.changed
+
 - name: "sync the package repositories"
   pacman:
     update_cache: yes
+  when: multilib_added.changed
