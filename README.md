@@ -80,8 +80,10 @@ Some reminders about the setup process:
      Note also the `/intel-ucode.img` use this only on Intel systems and only if the `intel_ucode` package is installed.
     * For the XPS 13 add some options to configure the Intel graphics: `enable_guc_loading=-1 enable_guc_submission=-1`
     * NB: Based on [this patch](https://patchwork.freedesktop.org/patch/191386/) it appears use of `enable_rc6` is unwise so it's removed from the options listed abjove
-  * Add `keyboard`, `encrypt`, and `lvm2` hooks to `/etc/mkinitcpio.conf`.  Be advised order is important
-  * For XPS systems: Add `intel_agp` followed by `i915` modules to `/etc/mkinitcpio.conf`
+  * Add `keyboard`, `encrypt`, and `lvm2` HOOKS to `/etc/mkinitcpio.conf`.  Be advised order is important.  NOTE:
+    technically Ansible will do this for you as part of the setup process
+  * For XPS systems: Add `nvme i915 intel_agp` MODULES to `/etc/mkinitcpio.conf`.  NOTE: technically Ansible will do
+    this for you as part of the setup process
   * Regenerate the `initramfs` with `mkinitcpio -p linux`
   * `passwd` to set a root password
   * Create an unprivileged user that can use `sudo` with `useradd -m -G wheel -s /bin/zsh sumd00d`
