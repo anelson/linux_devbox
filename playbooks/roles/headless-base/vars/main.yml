@@ -64,6 +64,8 @@ dev_packages:
     - docker
     - swig
     - intel-opencl-runtime
+    - exa  #ls-like tool but better
+    - bat  #syntax and git-aware cat replacement
 
 pentest_packages:
     - aircrack-ng
