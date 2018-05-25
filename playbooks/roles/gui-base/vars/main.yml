@@ -51,7 +51,7 @@ gui_packages:
   - [ dropbox, dropbox-cli ]
   - nautilus
   - rdesktop 
-  - freerdp
+  - [ freerdp-git, remmina-git ]
   - [ intellij-idea-ultimate-edition, intellij-idea-ultimate-edition-jre ]
 
 theme_packages:
