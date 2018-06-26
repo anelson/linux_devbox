@@ -66,6 +66,7 @@ dev_packages:
     - intel-opencl-runtime
     - exa  #ls-like tool but better
     - bat  #syntax and git-aware cat replacement
+    - gdb
 
 pentest_packages:
     - aircrack-ng
