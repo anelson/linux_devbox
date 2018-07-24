@@ -229,6 +229,17 @@ to make it work.
 * That should be enough to run vWorkspace and connect.  It is not at all HiDPI aware though so it won't be very useful
   for day to day work.
 
+# Updating the firmware with `fwupdmgr`
+
+When doing Arch system updates the `/etc/fwupd/uefi.conf` file can get overwritten which means `fwupdmgr` seems to work
+but no firmware actually gets upgraded on reboot.  You must make the edit described in [this
+article](https://wiki.archlinux.org/index.php/Fwupd) at the bottom of the page.  This is what the line should look like:
+
+``` 
+# For fwupdate 10+ allow overriding 
+# the compiled EFI system partition path 
+OverrideESPMountPoint=/boot
+```
 
 # Notes
 
