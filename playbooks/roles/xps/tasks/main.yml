@@ -36,18 +36,6 @@
 - name: copy fwupdate firmware files to ESP
   command: cp --recursive --update /usr/lib/fwupdate/EFI /boot
 
-# Use pacman hooks to keep the fwupdate stuff up to date
-- name: ensure pacman hooks directory exists
-  file: 
-    path: /etc/pacman.d/hooks
-    state: directory
-
-- name: configure pacman hook for fwupdate
-  file:
-    src: /usr/share/doc/fwupdate/esp-as-boot.hook
-    dest: /etc/pacman.d/hooks/fwupdate-efi-copy.hook
-    state: link
-
 - name: configure fwupd so it will work properly when the ESP is mounted somewhere it doesn't expect
   lineinfile:
     dest: /etc/fwupd/uefi.conf
