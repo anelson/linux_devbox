@@ -15,6 +15,7 @@ xorg_packages:
   - imagemagick # used by feh to support SVG
   - arandr
   - scrot
+  - unclutter-xfixes-git
 
 wayland_packages:
   - wayland
@@ -51,7 +52,7 @@ gui_packages:
   - [ dropbox, dropbox-cli ]
   - nautilus
   - rdesktop 
-  - [ freerdp-git, remmina-git ]
+  - [ freerdp, remmina ]
   - [ intellij-idea-ultimate-edition, intellij-idea-ultimate-edition-jre ]
 
 theme_packages:
