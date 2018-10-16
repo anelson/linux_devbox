@@ -52,7 +52,8 @@ dev_packages:
     - python2-pip
     - python2-setuptools
     - jdk8-openjdk
-    - jdk9-openjdk
+    - jdk9
+    - jdk10
     - scala
     - sbt
     - ruby
