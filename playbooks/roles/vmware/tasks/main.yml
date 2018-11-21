@@ -1,14 +1,14 @@
 ---
 # tasks file for roles/vmware
 # the vmware packages don't install with aur because there are untrusted
-# PGP keys involved, so yaourt must be invoked manually with some specifial flags
+# PGP keys involved, so yay must be invoked manually with some specifial flags
 - name: install linux-headers
   pacman:
     name: linux-headers
     state: present
 
 - name: install VMWare-related packages
-  shell: " env LC_ALL=C yaourt --m-arg --skippgpcheck -S --noconfirm --needed {{ item }}"
+  shell: " env LC_ALL=C yay --m-arg --skippgpcheck -S --noconfirm --needed {{ item }}"
   become: yes
   become_user: "{{ aur_builder_user }}"
   with_items:

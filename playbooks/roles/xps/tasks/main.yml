@@ -68,7 +68,7 @@
 - name: Install XPS packages
   aur:
     name: "{{ item }}"
-    use: yaourt
+    use: yay
     skip_installed: yes
   become: yes
   become_user: "{{ aur_builder_user }}"
