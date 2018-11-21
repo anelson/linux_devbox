@@ -22,7 +22,7 @@ Some reminders about the setup process:
 * Pro-tip: You can use `Alt-RightArrow` to switch to another virtual TTY and use `elinks` to view this guide in a text-based web browser for easy reference as you switch back and forth between it and the install console.  Use `g` to go to a URL and vi navigation keys to move around.
 * Disk partitioning is tricky because we will use LUKS to encrypt the disk and LVM on top
   * Use `gdisk` for partioning the GPT disk we always use.  Use `lsblk` to see the block devices available.  Create one
-    250MB EFI partition and one with the rest of the space for our data
+    250MB EFI partition (type is `ef00`) and one with the rest of the space for our data (type is `8309` - Linux LUKS)
   * In case you forget the approach we use is [LVM on LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS ) for the root partition.
   * Read that page for more details and the latest thinking, but in summary:
     * `cryptsetup luksFormat --type luks2 /dev/(block device)`
@@ -33,9 +33,10 @@ Some reminders about the setup process:
     * NOTE: I don't create a swap partition.  Later on we'll create a swap file on the root partition which works fine and is more flexible.
     * `mkfs.ext4 /dev/mapper/MyVol-root` to format the root partition EXT4.  `btrfs` as the root volume isn't ready for prime time.
     * `mount /dev/mapper/MyVol-root /mnt` to mount.  If you made other partitions mount them under `mnt` as appropriate.
-    * If there isn't already a UEFI boot partition created and initialized you need to do that also.  Read the guide.  Assuming it already exists:
+    * If there isn't already a UEFI boot partition created and initialized you need to do that also.  Read the guide.  If it doesn't already exist, make sure you format it as FAT32:
+      * `mkfs.fat -F32 /dev/(whatever)`
+    * Once it already exists:
       * `mkdir /mnt/boot` && `mount /dev/(EFI partition) /mnt/boot`
-    * If it doesn't already exist, make sure you format it as FAT32 with `mkfs.fat -F32 /dev/(whatever)`
     * `fallocate -l 32G /mnt/swapfile` to allocate a swapfile on the root filesystem
     * `chmod 600 /mnt/swapfile` for security
     * `mkswap /mnt/swapfile` to initialize
@@ -81,7 +82,9 @@ Some reminders about the setup process:
     * For the XPS 13 add some options to configure the Intel graphics: `i915 enable_guc_loading=-1 enable_guc_submission=-1`
     * NB: Based on [this patch](https://patchwork.freedesktop.org/patch/191386/) it appears use of `enable_rc6` is unwise so it's removed from the options listed abjove
   * Add `keyboard`, `encrypt`, and `lvm2` HOOKS to `/etc/mkinitcpio.conf`.  Be advised order is important.  NOTE:
-    technically Ansible will do this for you as part of the setup process
+    technically Ansible will do this for you as part of the setup process, but you need to do `encrypt` and `lvm2` here
+    in order for the system to be able to boot, so you may as well do `keyboard` as well while you're in here, and if
+    you're on an XPS system see the line below for some additional modules you should add at the same time.
   * For XPS systems: Add `nvme i915 intel_agp` MODULES to `/etc/mkinitcpio.conf`.  NOTE: technically Ansible will do
     this for you as part of the setup process
   * Regenerate the `initramfs` with `mkinitcpio -p linux`
