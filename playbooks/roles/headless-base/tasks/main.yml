@@ -4,7 +4,7 @@
 - import_tasks: install-yay.yml    # yay is the replacement for yaourt
 - import_tasks: install-yaourt.yml # yaourt is not maintained anymore we should transition away then remove this
 - name: install some base packages that have PGP signature verification that needs to be skipped
-  shell: yay --m-arg --skippgpcheck -S --needed --noconfirm "{{ item }}"
+  shell: yay --mflags --skippgpcheck -S --needed --noconfirm "{{ item }}"
   become: yes
   become_user: "{{ aur_builder_user }}"
   with_items: 
