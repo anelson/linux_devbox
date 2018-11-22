@@ -20,6 +20,7 @@
   shell: |
     curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --default-toolchain stable -y
     source "{{ '~/.cargo/env' | expanduser }}"
-    rustup component add rust-src
+    # install various rust components that are useful
+    rustup component add rust-src rls-preview rust-analysis
   args:
     creates: "{{ '~/.cargo/env' | expanduser }}"
