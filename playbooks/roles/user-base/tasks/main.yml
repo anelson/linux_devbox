@@ -5,19 +5,21 @@
   #user:
     #name: "{{ lookup('env', 'USER') }}"
     #shell: /bin/zsh
-- file:
-    path: "{{ wallpapers_path }}"
-    state: directory
 
-- name: Copy the wallpapers I like
-  copy:
-    dest: "{{ wallpapers_path }}/"
-    src: files/wallpapers/
+# These have been moved to my dotfiles repo, if I like that after a while these can be removed
+#- file:
+    #path: "{{ wallpapers_path }}"
+    #state: directory
+
+#- name: Copy the wallpapers I like
+  #copy:
+    #dest: "{{ wallpapers_path }}/"
+    #src: files/wallpapers/
 
 - name: Ensure rust programming language tools are installed
   shell: |
     curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --default-toolchain stable -y
     source "{{ '~/.cargo/env' | expanduser }}"
     rustup component add rust-src
-
-  creates: "{{ '~/.cargo/env' | expanduser }}"
+  args:
+    creates: "{{ '~/.cargo/env' | expanduser }}"
