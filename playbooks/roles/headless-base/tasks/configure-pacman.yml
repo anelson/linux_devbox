@@ -3,7 +3,7 @@
 # add multilib and infinality (fonts) repositories
 - name: "download pacman mirror list"
   get_url:
-    url: "https://www.archlinux.org/mirrorlist/?country=UA&protocol=http&ip_version=4&ip_version=6&use_mirror_status=on"
+    url: "https://www.archlinux.org/mirrorlist/?country=DE&country=PL&country=UA&protocol=https&ip_version=4&use_mirror_status=on"
     dest: "/etc/pacman.d/mirrorlist"
 
 - name: "uncomment `#Server` in pacman mirror list"
