@@ -20,7 +20,7 @@ local_directory: "{{ '~/.local' | expanduser }}"
 # * The contents are in fact a gzip'd tarball
 # * The root directory inside the archive is some not useful  path like ideaIU-178.2323
 #   and thus is stripped when the archive is extracted
-idea_download_url: https://download.jetbrains.com/idea/ideaIU-2018.1.2.tar.gz
+idea_download_url: https://download.jetbrains.com/idea/ideaIU-2018.3.tar.gz
 idea_download_path: "{{ local_directory }}/share"
 idea_tarball_filename: "{{ idea_download_url | basename }}"
 idea_tarball_path: "{{ idea_download_path }}/{{ idea_tarball_filename }}"
