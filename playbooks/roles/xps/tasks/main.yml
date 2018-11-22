@@ -34,7 +34,7 @@
 # Sadly as of this writing ansible copy of remote-to-remote doesn't support recursion
 # Seems like a painfully glaring ommission to me
 - name: copy fwupdate firmware files to ESP
-  command: cp --recursive --update /usr/lib/fwupdate/EFI /boot
+  command: cp --recursive --update /usr/lib/fwupd/efi/* /boot/EFI
 
 - name: configure fwupd so it will work properly when the ESP is mounted somewhere it doesn't expect
   lineinfile:
