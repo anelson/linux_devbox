@@ -4,4 +4,4 @@
 #
 # $ ansible-galaxy install -r requirements.yml
 #
-- src: rvm_io.ruby
+- src: rvm.ruby

@@ -53,4 +53,4 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-  - { role: rvm_io.ruby, rvm1_rubies: ['ruby-2.5.0'], rvm1_user: "{{ lookup('env', 'USER') }}", rvm1_install_flags: '--user-install' }
+  - { role: rvm.ruby, rvm1_rubies: ['ruby-2.5.3'], rvm1_user: "{{ lookup('env', 'USER') }}", rvm1_install_flags: '--user-install' }
