@@ -8,7 +8,7 @@
     state: present
 
 - name: install VMWare-related packages
-  shell: " env LC_ALL=C yay --m-arg --skippgpcheck -S --noconfirm --needed {{ item }}"
+  shell: " env LC_ALL=C yay --mflags --skippgpcheck -S --noconfirm --needed {{ item }}"
   become: yes
   become_user: "{{ aur_builder_user }}"
   with_items:
