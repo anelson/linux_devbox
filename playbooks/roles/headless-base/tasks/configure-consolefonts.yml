@@ -16,4 +16,4 @@
 
 - name: Rebuild initramfs
   shell: "mkinitcpio -p linux"
-  when: "hook_added|changed"
+  when: "hook_added is changed"
