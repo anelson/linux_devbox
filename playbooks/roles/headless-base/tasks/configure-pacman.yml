@@ -5,6 +5,7 @@
   get_url:
     url: "https://www.archlinux.org/mirrorlist/?country=DE&country=PL&country=UA&protocol=https&ip_version=4&use_mirror_status=on"
     dest: "/etc/pacman.d/mirrorlist"
+    force: true
 
 - name: "uncomment `#Server` in pacman mirror list"
   replace:
