@@ -6,21 +6,14 @@
     #name: "{{ lookup('env', 'USER') }}"
     #shell: /bin/zsh
 
-# These have been moved to my dotfiles repo, if I like that after a while these can be removed
-#- file:
-    #path: "{{ wallpapers_path }}"
-    #state: directory
-
-#- name: Copy the wallpapers I like
-  #copy:
-    #dest: "{{ wallpapers_path }}/"
-    #src: files/wallpapers/
-
 - name: Ensure rust programming language tools are installed
   shell: |
     curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --default-toolchain stable -y
-    source "{{ '~/.cargo/env' | expanduser }}"
+    source "~/.cargo/env"
     # install various rust components that are useful
+    rustup install nightly
     rustup component add rust-src rls-preview rust-analysis
+    # this last step might fail if rls is broken in nightly
+    rustup component add --toolchain nightly rust-src rls-preview rust-analysis
   args:
-    creates: "{{ '~/.cargo/env' | expanduser }}"
+    creates: "~/.cargo/env"
