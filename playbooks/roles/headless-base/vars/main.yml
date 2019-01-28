@@ -36,6 +36,8 @@ utility_packages:
     - jq
     - fio
     - bc
+    - ldns # provides the dig successor drill
+    - bind-tools # provides dig and nslookup
 
 dev_packages:
     - neovim
@@ -53,7 +55,6 @@ dev_packages:
     - python2-setuptools
     - jdk8-openjdk
     - jdk9
-    - jdk10
     - scala
     - sbt
     - ruby
