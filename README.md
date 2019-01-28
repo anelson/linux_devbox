@@ -161,6 +161,11 @@ install.  Make sure you have at least these:
 
     $ sudo pacman -S python sudo
 
+If you're doing the user-specific setup also, you'll probably want to configure SSH certificate auth for that user.  If
+you're still using the Yubikey-based auth approach, you'll need to do this:
+
+    $ ssh-copy-id -f -i ~/Dropbox/Documents/gpg/yubikey_auth_cert_for_ssh.pub username@hostname
+
 ## User-specific setup
 
 Once the system-wide setup is completed, there's another playbook that runs as the non-privileged user you set up at install time, and configures that user's home directory the way I like.  That runs the same way:
@@ -180,12 +185,6 @@ Both of those install IntelliJ.  If you haven't done an install lately, edit the
 Unfortunately there are some steps that it't not practical or possible to automate, or that I haven't figured out yet.  They are recoreded here so I don't forget to do them:
 
 * The ansible scripts take care of installing `tmux` and pulling in the custom `.tmux.conf` I use, and `.tmux.conf` will automatically install `tpm`, the tmux plugin manager.  However it's not obvious how to make it install the missing plugins automatically.  To do that, start a `tmux` session and press `Ctrl-A` and then `I`.  That will force tpm to install the missing plugins.  
-* The vim plugin `YouCompleteMe` is a real pain in the ass.  Start `vim` once to download the plugin, you'll probably get some error about the server shutting down, quite vim and then:
-      
-      $ cd ~/.vim/plugged/YouCompleteMe
-      $ ./install.py --all
-  
-  This will configure YCM with all possible completion options, probably including some languages you don't need.  It's easier to pay this price once than to mess with it later.  Note you may have to repeat this if YCM is updated sometime in the future.  It's not ideal I know
 * Firefox and Chrome configs are not easily automated.  Log into them using the respective login accounts and they will automatically configure the appropriate extensions and settings.
 * The `devuser.yml` playbook will download and "install" IntelliJ but it still needs some manual configuration:
   * Obviously you have to connect the JetBrains account to establish license entitlement to use Ultimate
