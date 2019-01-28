@@ -150,6 +150,17 @@ Ansible normally assumes it can SSH into the target host using SSH keys.  If ins
 
 After running this the first time, reboot the system.  It should come up with GDM and prompt you to log in.  `i3` will be an option, and `sway` also.  For now I'm sticking to Xorg so the Wayland-based configs are not tested as of now.
 
+## Setting up a remote system
+
+If you're setting up a remote system over SSH, there are some changes to the command line:
+
+    $ ansible-playbook --inventory <remote host>, --user <probably root> headless-devbox.yml
+
+NOTE: Just because you're doing a remote setup doesn't mean you can ignore the pre-reqs that normally apply to a local
+install.  Make sure you have at least these:
+
+    $ sudo pacman -S python sudo
+
 ## User-specific setup
 
 Once the system-wide setup is completed, there's another playbook that runs as the non-privileged user you set up at install time, and configures that user's home directory the way I like.  That runs the same way:
