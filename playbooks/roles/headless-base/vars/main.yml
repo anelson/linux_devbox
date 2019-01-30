@@ -30,10 +30,10 @@ utility_packages:
     - pamixer
     - elinks
     - libnotify
-    - gtop
+    - [ gtop, htop, nmon ]
     - snapd
     - openssh
-    - [ libu2f-host, yubikey-personalization, libusb, pcsclite ] # related to working with yubikeys
+    - [ libu2f-host, yubikey-personalization, libusb, pcsclite, acssid ] # related to working with yubikeys
     - jq
     - fio
     - bc
