@@ -13,4 +13,6 @@ bin
 .envrc
 .ruby-version
 
+# Ignore Ansible's retry files
+*.retry
 

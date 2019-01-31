@@ -1,0 +1,10 @@
+# This is a different playbook, it's meant to be run as a user and does not sudo
+# but configures that user's home directory the way I like it
+---
+- hosts: all
+  become: false
+  roles:
+      - user-base
+      - dotfiles
+      - oh-my-zsh
+      - user-packages

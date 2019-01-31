@@ -13,6 +13,7 @@ utility_packages:
     - fd # like ripgrep but only for listing files not searching their contents
     - tmux
     - tmuxp
+    - mosh
     - [ zsh, zsh-syntax-highlighting, antigen-git ]
     - bash-completion
     - networkmanager
@@ -29,13 +30,15 @@ utility_packages:
     - pamixer
     - elinks
     - libnotify
-    - gtop
+    - [ gtop, htop, nmon ]
     - snapd
     - openssh
-    - [ libu2f-host, yubikey-personalization, libusb, pcsclite ] # related to working with yubikeys
+    - [ libu2f-host, yubikey-personalization, libusb, pcsclite, acssid ] # related to working with yubikeys
     - jq
     - fio
     - bc
+    - ldns # provides the dig successor drill
+    - bind-tools # provides dig and nslookup
 
 dev_packages:
     - neovim
@@ -53,7 +56,6 @@ dev_packages:
     - python2-setuptools
     - jdk8-openjdk
     - jdk9
-    - jdk10
     - scala
     - sbt
     - ruby
