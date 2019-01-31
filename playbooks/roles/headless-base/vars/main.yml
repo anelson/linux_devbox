@@ -39,6 +39,7 @@ utility_packages:
     - bc
     - ldns # provides the dig successor drill
     - bind-tools # provides dig and nslookup
+    - gnome-keyring # despite the name, not a GUI app; ensures the keyring is available even headless
 
 dev_packages:
     - neovim
