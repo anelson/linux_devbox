@@ -13,7 +13,7 @@ utility_packages:
     - fd # like ripgrep but only for listing files not searching their contents
     - tmux
     - tmuxp
-    - mosh
+    - mosh-git # until this PR in master gets released must use the master branch: https://github.com/mobile-shell/mosh/pull/939
     - [ zsh, zsh-syntax-highlighting, antigen-git ]
     - bash-completion
     - networkmanager
