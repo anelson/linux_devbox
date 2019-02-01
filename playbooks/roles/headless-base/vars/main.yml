@@ -39,6 +39,7 @@ utility_packages:
     - bc
     - ldns # provides the dig successor drill
     - bind-tools # provides dig and nslookup
+    - [ bcc, bcc-tools, python-bcc, python2-bcc ] #BCC eBPF profiling tools
 
 dev_packages:
     - neovim
