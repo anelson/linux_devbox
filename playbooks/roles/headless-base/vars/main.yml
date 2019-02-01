@@ -101,4 +101,5 @@ console_font_packages:
     - ttf-font-awesome-4
     - powerline-fonts
     - noto-fonts
+    - nerd-fonts-complete # installs a wide range of patched fonts
 

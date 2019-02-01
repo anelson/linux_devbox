@@ -51,7 +51,7 @@ gui_packages:
   - glxinfo
   - [ dropbox, dropbox-cli ]
   - nautilus
-  - rdesktop 
+  - rdesktop
   - [ freerdp, remmina ]
 
 theme_packages:
