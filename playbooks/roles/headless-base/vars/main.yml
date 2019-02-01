@@ -40,6 +40,7 @@ utility_packages:
     - ldns # provides the dig successor drill
     - bind-tools # provides dig and nslookup
     - gnome-keyring # despite the name, not a GUI app; ensures the keyring is available even headless
+    - [ bcc, bcc-tools, python-bcc, python2-bcc ] #BCC eBPF profiling tools
 
 dev_packages:
     - neovim
