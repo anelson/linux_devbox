@@ -12,8 +12,8 @@
     source "~/.cargo/env"
     # install various rust components that are useful
     rustup install nightly
-    rustup component add rust-src rls-preview rust-analysis
+    rustup component add rust-src rls rust-analysis
     # this last step might fail if rls is broken in nightly
-    rustup component add --toolchain nightly rust-src rls-preview rust-analysis
+    rustup component add --toolchain nightly rust-src rls rust-analysis
   args:
     creates: "~/.cargo/env"
