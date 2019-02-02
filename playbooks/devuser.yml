@@ -6,6 +6,5 @@
   roles:
       - user-base
       - dotfiles
-      - oh-my-zsh
       - user-packages
       - user-intellij
