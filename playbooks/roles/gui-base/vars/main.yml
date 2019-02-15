@@ -29,7 +29,7 @@ gui_packages:
   - google-chrome
   - chromium
   - terminator
-  - alacritty-git
+  - alacritty
   - w3m
   - dmenu
   - rofi
@@ -51,7 +51,7 @@ gui_packages:
   - glxinfo
   - [ dropbox, dropbox-cli ]
   - nautilus
-  - rdesktop 
+  - rdesktop
   - [ freerdp, remmina ]
 
 theme_packages:
