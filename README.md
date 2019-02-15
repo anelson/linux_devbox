@@ -255,7 +255,30 @@ article](https://wiki.archlinux.org/index.php/Fwupd) at the bottom of the page. 
 OverrideESPMountPoint=/boot
 ```
 
+# Storing Git Credentials Securely
+
+Currently my `dotfiles` repo has a Git config that uses the built-in `store` helper, which stores credentials on the
+filesystem unencrypted.  I use FDE so they're still encrypted before they hit the disk, but other user-land processes
+running under my account can read them.  That's not ideal.
+
+I tried very hard to switch to Gnome Keyring.  It works fine with GDM and i3, because GDM can unlock the keyring at the
+same time I login, using the same password.  However when SSH-ing into a remote box, this doesn't work at all.
+
+It's possible to make this work with SSH (the Arch wiki article on GnomeKeyring covers the details, although they say to
+edit `/etc/pam.d/login` but you should edit `/etc/pam.d/systemauth` if you want to enable this for both local and remote
+logins), however it only works if you enter your password to authenticate to SSH.  If like me you prefer to use SSH key
+authentication, there is no password to capture.  Gnome Keyring is designed very poorly, such that it's not possible to
+programmatically pass it a password to unlock a keyring; it can only be done at daemon startup with the `--login`
+argument.
+
+I could probably rig something up to script that and just remember to run that script before trying to do something with
+Git, but it's not worth it.  
+
+Maybe someday there will be an implementation of the XDG Secret Service API that doesn't suck this way, but until then
+I'll have to settle for the less secure alternative.
+
 # Notes
 
 In general, you should _never_ use `pip` or `gem` to install system packages.  Installing them as user packages into your home directory is fine, but if you ever find yourself typing `sudo pip...` or `sudo gem...`, slap yourself on the wrist and see if there's an Arch official or AUR package for what you're trying to install.  In almost all cases, you don't mean to install systemwide but for a specific user account or perhaps even a specific project.  Always prefer that.
+
 
