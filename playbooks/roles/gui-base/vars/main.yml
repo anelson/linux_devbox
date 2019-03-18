@@ -25,7 +25,7 @@ wayland_packages:
 gui_packages:
   - gdm
   - [ gnome-keyring, libsecret, seahorse ] # things like skype require this or they won't remember credentials
-  - [ firefox, firefox-extension-gnome-keyring ]
+  - firefox
   - google-chrome
   - chromium
   - terminator
