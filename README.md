@@ -60,7 +60,7 @@ Some reminders about the setup process:
 
             127.0.0.1	localhost
             ::1		localhost
-            127.0.1.1	myhostname.localdomain	myhostname
+            127.0.0.1	myhostname.localdomain	myhostname
 
   * You'll need the wireless utilities you used in the LiveCD when you reboot in order to get the new system on the network.  `pacman -S iw wpa_supplicant networkmanager dialog` at the least.  I don't have to manually install firmware but that will depend upon the system.
   * `pacman -S intel-ucode` to install the latest Intel microcode updates
