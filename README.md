@@ -64,6 +64,7 @@ Some reminders about the setup process:
 
   * You'll need the wireless utilities you used in the LiveCD when you reboot in order to get the new system on the network.  `pacman -S iw wpa_supplicant networkmanager dialog` at the least.  I don't have to manually install firmware but that will depend upon the system.
   * `pacman -S intel-ucode` to install the latest Intel microcode updates
+  * I also install `zsh` here with `pacman -S zsh` because I like my non-privileged user to run ZSH
   * Now it's time to configure the boot loader.  I use `systemd-boot`:
     * Assuming not dual-booting windows:
     * `bootctl --path=/boot install` installs the boot loader into the UEFI system partition
@@ -94,6 +95,8 @@ Some reminders about the setup process:
   * Set a password for that user with `passwd sumd00d`
   * Install the sudo package with `pacman -S sudo`
   * Run `visudo` and uncomment the line that allows all `sudo` commands for members of `wheel`
+  * I like to `su sumd00d` at this point to log into the unprivileged user shell to make sure it works.  Sometimes
+      I forget something (often `zsh`).
   * Exit the chroot with `exit` and then `reboot` to boot into the live system.
 
 ## Suspend/Hibernate for laptops
