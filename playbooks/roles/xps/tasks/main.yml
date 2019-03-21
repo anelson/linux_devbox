@@ -12,7 +12,7 @@
 # The 'keyboard' hook needs to come before the 'autodetect' hook
 # otherwise external keyboards and the thunderbolt dock may not
 # work when entering the boot password
-# 
+#
 # This according to the arch wiki
 - name: Ensure keyboard hook is not subject to autodetect
   lineinfile:
@@ -50,20 +50,10 @@
     src: files/handle-power-events.conf
     dest: /etc/systemd/logind.conf.d/handle-power-events.conf
 
-- name: Configure xorg power management for the screen
-  copy:
-    src: files/xorg-power-config.conf
-    dest: /etc/X11/xorg.conf.d/10-monitor.conf
-
 - name: Configure libinput to use sane defaults for the touch pad
   copy:
     src: files/xorg-touchpad.conf
     dest: /etc/X11/xorg.conf.d/30-touchpad.conf
-
-- name: Set system wide env vars for HiDPI support in GUI toolkits
-  copy:
-    src: files/gtk-hidpi-env-vars.sh
-    dest: /etc/profile.d/gtk-hidpi-env-vars.sh
 
 - name: Install XPS packages
   aur:

@@ -1,0 +1,9 @@
+---
+# Sets up a desktop devbox, which is assumed to be using a HiDPI monitor but does not require the laptop specific
+# power management and hardware support bits
+- hosts: all
+  become: True
+  roles:
+      - gui-base
+      - hidpi
+      - vmware

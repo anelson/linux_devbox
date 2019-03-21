@@ -1,0 +1,8 @@
+# This is a different playbook, it's meant to be run as a user and does not sudo
+# but configures that user's home directory the way I like it
+---
+- import_playbook: devuser.yml
+- hosts: all
+  become: false
+  roles:
+      - user-hidpi

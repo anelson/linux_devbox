@@ -10,5 +10,6 @@
   become: True
   roles:
       - gui-base
+      - hidpi
       - vmware
       - xps
