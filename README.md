@@ -189,7 +189,10 @@ Both of those install IntelliJ.  If you haven't done an install lately, edit the
 Unfortunately there are some steps that it't not practical or possible to automate, or that I haven't figured out yet.  They are recoreded here so I don't forget to do them:
 
 * The ansible scripts take care of installing `tmux` and pulling in the custom `.tmux.conf` I use, and `.tmux.conf` will automatically install `tpm`, the tmux plugin manager.  However it's not obvious how to make it install the missing plugins automatically.  To do that, start a `tmux` session and press `Ctrl-A` and then `I`.  That will force tpm to install the missing plugins.  
-* Firefox and Chrome configs are not easily automated.  Log into them using the respective login accounts and they will automatically configure the appropriate extensions and settings.
+* You need to manually pull the bitmaps from the dotfiles repo.  `homeshick cd dotfiles && git lfs pull` should do the trick
+* Firefox and Chrome configs are not easily automated.  Log into them using the respective login accounts and they will automatically configure the appropriate extensions and settings.  Then do this:
+    * Firefox won't work right with the GTK theme we use.  To to `about:config` and create a new setting `widget.content.gtk-theme-override` and set it to `Arc-Darker`.  This theme complements `Arc-Dark` nicely and renders the UI elements with a legible color combo
+    * Ensure Firefox is the default browser and prompts when it's not, and ensure the opposite with Chrome
 * The `devuser.yml` playbook will download and "install" IntelliJ but it still needs some manual configuration:
   * Obviously you have to connect the JetBrains account to establish license entitlement to use Ultimate
   * I have a github repo with IntelliJ settings, so first thing configure IntelliJ to use that repo.  The repo URL is `https://github.com/anelson/intellij-settings.git`
