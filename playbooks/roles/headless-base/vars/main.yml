@@ -58,9 +58,6 @@ dev_packages:
     - python2-setuptools
     - jdk8-openjdk
     - jdk9
-    - scala
-    - sbt
-    - ruby
     - flatbuffers
     - go
     - mono
