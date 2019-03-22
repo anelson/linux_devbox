@@ -53,6 +53,7 @@ gui_packages:
   - nautilus
   - rdesktop
   - [ freerdp, remmina ]
+  - mailspring
 
 theme_packages:
   - arc-gtk-theme
@@ -89,7 +90,7 @@ wine_packages:
   - winetricks
   - lib32-libxrandr
   - lib32-libxinerama
-  - lib32-xcomposite
+  - lib32-libxcomposite
   - samba
   - sane # office 2016 needs this
   - pygtk #technically this is a CrossOver dependency
