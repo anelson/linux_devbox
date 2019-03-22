@@ -21,7 +21,6 @@
       - "{{ utility_packages }}"
       - "{{ console_font_packages }}"
       - "{{ dev_packages }}"
-      - "{{ laptop_packages }}"
       - "{{ pentest_packages }}"
 
 - name: enable members of wheel to reboot without a password
