@@ -42,6 +42,7 @@ gui_packages:
   - qemu
   - virt-manager
   - [ virtualbox-host-dkms, virtualbox, virtualbox-guest-iso ]
+  - gnome-boxes
   - dunst
   - xss-lock
   - lxappearance
