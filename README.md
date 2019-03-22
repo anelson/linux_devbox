@@ -271,6 +271,12 @@ They are recoreded here so I don't forget to do them:
   - Install the Scala and Ruby plugins
   - Configure the fonts. The HiDPI screen might need bigger fonts, or JetBrains may have fixed HiDPI support as of the
     version you're running, you just don't know until you try.
+- There is an AUR package for CrossOver, the commercial version of Wine that can be used to make Office work, however
+    it's not consistently updated.  Instead it's better to install it manually using the latest binary installer from
+    the Crossover site.  My login for Crossover is in 1p.  Of course one must also install Office itself.  To do that go
+    to https://office.com, log in, and go to My Account and Subscriptions.  They won't even offer you download links
+    unless your User Agent is a Windows browser, so use User Agent Switcher to fake that out and snag the quick
+    installer.
 - Dropbox is installed by Ansible but it must be configured manually. Run `dropbox` to start the GUI. The Arch Wiki
   [Dropbox](https://wiki.archlinux.org/index.php/Dropbox) page has more details
 - VMWare Workstation is installed automatically but the Windows VM to use for work email and such is not. You'll have to

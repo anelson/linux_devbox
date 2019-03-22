@@ -89,7 +89,9 @@ wine_packages:
   - winetricks
   - lib32-libxrandr
   - lib32-libxinerama
+  - lib32-xcomposite
   - samba
+  - sane # office 2016 needs this
   - pygtk #technically this is a CrossOver dependency
 
 snapd_packages:
