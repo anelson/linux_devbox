@@ -33,6 +33,7 @@ utility_packages:
     - [ gtop, htop, nmon ]
     - snapd
     - openssh
+    - ufw
     - [ libu2f-host, yubikey-personalization, libusb, pcsclite, acsccid, ccid ] # related to working with yubikeys
     - jq
     - fio

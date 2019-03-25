@@ -1,0 +1,14 @@
+---
+# Configure a simple firewall that blocks everything except SSH
+- name: enable UFW service
+  systemd:
+    name: ufw.service
+    enabled: yes
+    state: started
+
+- name: Allow incoming SSH traffic with rate limiting
+  shell: "ufw limit ssh/tcp"
+
+- name: Enable UFW service
+  shell: "ufw enable"
+

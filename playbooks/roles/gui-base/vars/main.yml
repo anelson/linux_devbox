@@ -55,6 +55,7 @@ gui_packages:
   - rdesktop
   - [ freerdp, remmina ]
   - mailspring
+  - gufw
 
 theme_packages:
   - arc-gtk-theme
