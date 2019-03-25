@@ -73,7 +73,7 @@ dev_packages:
 
 pentest_packages:
     - aircrack-ng
-    - wireshark-gtk
+    - wireshark-qt
     - nmap
 
 console_font_packages:
