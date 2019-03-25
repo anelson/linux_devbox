@@ -11,5 +11,5 @@
   roles:
       - gui-base
       - hidpi
-      - vmware
+      # - vmware - I'm experimenting with life without vmware
       - xps
