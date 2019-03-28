@@ -1,5 +1,4 @@
 .vagrant
-Berksfile.lock
 *~
 *#
 .#*
@@ -8,17 +7,12 @@ Berksfile.lock
 *.un~
 .bundle
 .cache
-.kitchen
 bin
-.kitchen.local.yml
 .coverage
 .direnv/
 .envrc
 .ruby-version
 
-# Don't include the vendored cookbooks in source control
-cookbooks/*
-berks-cookbooks/*
-nodes/*
-
+# Ignore Ansible's retry files
+*.retry
 

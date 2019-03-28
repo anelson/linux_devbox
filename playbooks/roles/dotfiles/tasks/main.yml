@@ -1,0 +1,22 @@
+---
+# tasks file for roles/dotfiles
+#
+# Assume the role is being executed in a playbook that is already running
+# as the user into whose account we are deploying the dotfiles
+- name: Check out homeshick repo
+  git:
+    repo: "{{ dotfiles.homeshick_repo_url }}"
+    dest: "{{ ansible_env.HOME }}/.homesick/repos/homeshick"
+
+- name: Check out my personal dotfiles repo
+  git:
+    repo: "{{ dotfiles.dotfiles_repo_url }}"
+    dest: "{{ ansible_env.HOME }}/.homesick/repos/{{ dotfiles.dotfiles_castle_name }}"
+    update: no
+
+- name: Link dotfiles repo into home directory
+  shell: >
+    {{ ansible_env.HOME |quote }}/.homesick/repos/homeshick/bin/homeshick symlink dotfiles --force --verbose | awk '{ print $2 }' | sort | uniq
+  register: symlink_dotfiles_result
+  changed_when: "'identical' not in symlink_dotfiles_result.stdout"
+

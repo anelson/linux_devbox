@@ -1,0 +1,35 @@
+---
+# Download an up-to-date pacman mirror list for Ukraine
+# add multilib and infinality (fonts) repositories
+- name: "download pacman mirror list"
+  get_url:
+    url: "https://www.archlinux.org/mirrorlist/?country=DE&country=PL&country=UA&protocol=https&ip_version=4&use_mirror_status=on"
+    dest: "/etc/pacman.d/mirrorlist"
+    force: true
+
+- name: "uncomment `#Server` in pacman mirror list"
+  replace:
+    dest: "/etc/pacman.d/mirrorlist"
+    regexp: '^#Server'
+    replace: 'Server'
+
+- name: "add multilib"
+  blockinfile:
+    dest: "/etc/pacman.conf"
+    state: "present"
+    insertafter: EOF
+    block: |
+      [multilib]
+      Include = /etc/pacman.d/mirrorlist
+  register: multilib_added
+
+#- name: add infinality repository keys
+  #shell: |
+    #pacman-key -r 962DDE58
+    #pacman-key --lsign-key 962DDE58
+  #when: infinality_added.changed
+
+- name: "sync the package repositories"
+  pacman:
+    update_cache: yes
+  when: multilib_added.changed

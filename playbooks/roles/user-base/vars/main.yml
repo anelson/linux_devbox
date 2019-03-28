@@ -1,0 +1,5 @@
+---
+# vars file for roles/user-base
+wallpapers_path: "{{ '~/.wallpaper' | expanduser }}"
+
+

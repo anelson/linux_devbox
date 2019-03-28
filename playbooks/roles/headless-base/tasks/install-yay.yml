@@ -1,0 +1,20 @@
+---
+# yay is a pacman front-end: https://github.com/Jguer/yay
+# the 'aur' module doesn't work right unless the base-devel package is installed
+- name: Ensure base-devel is installed
+  pacman:
+      name: base-devel
+      state: present
+
+# Even base-devel isn't enough; also need package-query from AUR
+- name: Ensure package-query is installed
+  aur: name=package-query use=makepkg skip_installed=true
+  become: yes
+  become_user: "{{ aur_builder_user }}"
+
+# the 'aur' module has a simple internal implementation for building AUR packages
+# such as 'yaourt' to bootstrap
+- aur: name=yay use=makepkg skip_installed=true
+  become: yes
+  become_user: "{{ aur_builder_user }}"
+

@@ -1,0 +1,6 @@
+---
+# We use GDM as the display manager; it should load on startup
+- name: Enable GNOME display manager
+  systemd:
+    name: gdm.service
+    enabled: yes

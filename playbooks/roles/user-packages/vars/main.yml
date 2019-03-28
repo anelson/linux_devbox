@@ -1,0 +1,26 @@
+---
+# vars file for roles/user-packages
+pip2_packages:
+  - sexpdata # for ensime vim
+  - websocket-client # also for ensime vim
+  - neovim # also for ensime vim
+
+pip3_packages:
+  - awscli
+  - yubikey-manager
+
+  # neovim is built with Python 2.7, but it seems the ensime vim plugin
+  # uses the 'pip' command to test for packages, so to avoid an annoying
+  # error message (and in anticipation of someday neovim using python 3)
+  # install the packages in Python 3.x also
+  - sexpdata # for ensime vim
+  - websocket-client # also for ensime vim
+  - neovim # also for ensime vim
+
+rust_packages:
+  - { name: bat }
+
+  # Install a branch of exa that includes devicons support.  This is a shitty hack, hopefully
+  # the exa maintainer will accept this PR soon:
+  # https://github.com/ogham/exa/pull/368
+  - { name: exa, git_url: 'https://github.com/asoderman/exa.git', branch: glyphs}

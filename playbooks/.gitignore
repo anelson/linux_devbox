@@ -1,0 +1,3 @@
+# Skip retry files
+*.retry
+

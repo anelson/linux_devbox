@@ -1,0 +1,34 @@
+---
+# tasks file for roles/gui-base
+- name: install base system packages that require X or Wayland
+  aur:
+    name: "{{ item }}"
+    use: yay
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_builder_user }}"
+  with_items:
+      - "{{ xorg_packages }}"
+      - "{{ wayland_packages }}"
+      - "{{ gui_packages }}"
+      - "{{ theme_packages }}"
+      - "{{ wine_packages }}"
+
+- import_tasks: configure-gdm.yml
+- import_tasks: configure-wine.yml
+- import_tasks: configure-vboxusers.yml
+- import_tasks: configure-fontconfig.yml
+
+- name: Configure xorg power management for the screen
+  copy:
+    src: files/xorg-power-config.conf
+    dest: /etc/X11/xorg.conf.d/10-monitor.conf
+
+- name: install snap packages
+  command: snap install {{ item }} --classic
+  register: snap_output
+  changed_when:
+    - "'is already installed' not in snap_output.stderr"
+  with_items:
+    - "{{ snapd_packages }}"
+

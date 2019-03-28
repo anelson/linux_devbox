@@ -1,0 +1,4 @@
+---
+# handlers file for roles/xps
+- name: Rebuild initramfs
+  shell: "mkinitcpio -p linux"

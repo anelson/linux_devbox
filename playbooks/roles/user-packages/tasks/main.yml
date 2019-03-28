@@ -1,0 +1,22 @@
+---
+# tasks file for roles/user-packages
+- name: Installing user-level pip packages for Python 2
+  pip:
+    executable: pip2
+    extra_args: --user
+    name: "{{ pip2_packages }}"
+
+- name: Installing user-level pip packages for Python 3
+  pip:
+    executable: pip
+    extra_args: --user
+    name: "{{ pip3_packages }}"
+
+- name: Install Rust tools for the current user
+  shell: |
+    cargo install {{ item.name }} \
+      {{ '--git ' + item.git_url if item.git_url is defined else ''}} \
+      {{ '--branch ' + item.branch if item.branch is defined else ''}}
+  args:
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/{{ item.name }}"
+  with_items: "{{ rust_packages }}"

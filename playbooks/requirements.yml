@@ -1,0 +1,7 @@
+# Dependencies on external roles
+# 
+# To install these locally run:
+#
+# $ ansible-galaxy install -r requirements.yml
+#
+- src: rvm.ruby
