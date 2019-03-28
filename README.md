@@ -262,6 +262,10 @@ They are recoreded here so I don't forget to do them:
     `widget.content.gtk-theme-override` and set it to `Arc-Darker`. This theme complements `Arc-Dark` nicely and renders
     the UI elements with a legible color combo
   - Ensure Firefox is the default browser and prompts when it's not, and ensure the opposite with Chrome
+  - Configure Firefox's default search engine to be DDG, not Google.  Yes, that should be synchronized along with the
+      rest of the settings.  There's a [bug report](https://bugzilla.mozilla.org/show_bug.cgi?id=444284) to this effect
+      which is now 11 years old.  Mozilla is funded in large part by having Google search as the default search engine,
+      make of that what you will...
 - The `devuser.yml` playbook will download and "install" IntelliJ but it still needs some manual configuration:
   - Obviously you have to connect the JetBrains account to establish license entitlement to use Ultimate
   - I have a github repo with IntelliJ settings, so first thing configure IntelliJ to use that repo. The repo URL is
