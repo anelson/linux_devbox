@@ -6,4 +6,5 @@
   roles:
       - gui-base
       - hidpi
+      - desktop
       # - vmware - I'm experimenting with life without vmware

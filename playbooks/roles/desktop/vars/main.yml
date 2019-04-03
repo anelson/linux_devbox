@@ -1,0 +1,5 @@
+---
+# vars file for roles/desktop
+desktop_packages:
+  - ckb-next  # corsair LED keyboard manager
+

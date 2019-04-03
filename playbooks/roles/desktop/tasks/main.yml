@@ -1,0 +1,17 @@
+---
+# tasks file for roles/desktop
+- name: install desktop-specific packages
+  aur:
+    name: "{{ item }}"
+    use: yay
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_builder_user }}"
+  with_items:
+      - "{{ desktop_packages }}"
+
+- name: Enable Corsair Keyboard service
+  systemd:
+    name: ckb-next-daemon
+    enabled: yes
+    state: started
