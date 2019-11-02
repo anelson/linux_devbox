@@ -1,10 +1,6 @@
 ---
 # vars file for roles/headless-base
-packages_with_annoying_pgp_problem:
-    - ncurses5-compat-libs
-
 utility_packages:
-    - btrfs-progs
     - dosfstools
     - gnupg
     - the_silver_searcher
@@ -13,23 +9,18 @@ utility_packages:
     - fd # like ripgrep but only for listing files not searching their contents
     - tmux
     - tmuxp
-    - mosh-git # until this PR in master gets released must use the master branch: https://github.com/mobile-shell/mosh/pull/939
+    - mosh # until this PR in master gets released must use the master branch: https://github.com/mobile-shell/mosh/pull/939
     - [ zsh, zsh-syntax-highlighting, antigen-git ]
     - bash-completion
-    - networkmanager
     - wget
     - curl
     - p7zip
     - unzip
     - unrar
-    - pass
-    - bluez
-    - bluez-utils
     - pulseaudio
     - pulseaudio-bluetooth
     - pamixer
     - elinks
-    - libnotify
     - [ gtop, htop, nmon ]
     - snapd
     - openssh
@@ -41,32 +32,22 @@ utility_packages:
     - ldns # provides the dig successor drill
     - bind-tools # provides dig and nslookup
     - gnome-keyring # despite the name, not a GUI app; ensures the keyring is available even headless
-    - [ bcc, bcc-tools, python-bcc, python2-bcc ] #BCC eBPF profiling tools
+    - [ bcc, bcc-tools, python-bcc ] #BCC eBPF profiling tools
 
 dev_packages:
     - neovim
-    - python-neovim
-    - python2-neovim
+    - python3-neovim
     - ranger
-    - base-devel
+    - "@Development tools"
     - git
     - git-lfs
-    - python
-    - python-pip
-    - python-setuptools
-    - python2
-    - python2-pip
-    - python2-setuptools
-    - jdk8-openjdk
-    - jdk9
-    - flatbuffers
-    - go
-    - mono
+    - python3
+    - python3-pip
+    - python3-setuptools
       # dependencies for youcompleteme viM plugin
-    - [ boost, boost-libs, clang, mono, ncurses5-compat-libs, nodejs, rust, cargo, cmake, make, go, npm ]
+    - [ boost, boost-libs, clang, mono, ncurses5-compat-libs, nodejs, cmake, make, go, npm ]
     - docker
     - swig
-    - intel-opencl-runtime
     - exa  #ls-like tool but better
     - bat  #syntax and git-aware cat replacement
     - gdb
@@ -77,7 +58,6 @@ pentest_packages:
     - nmap
 
 console_font_packages:
-    - terminus-font
     - adobe-source-code-pro-fonts
     - adobe-source-sans-pro-fonts
     - system-san-francisco-font-git

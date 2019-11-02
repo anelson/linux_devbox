@@ -1,6 +1,0 @@
----
-- name: detect available sensors and configure the service automatically
-  command: sensors-detect --auto
-  args:
-    creates: /etc/conf.d/lm_sensors
-

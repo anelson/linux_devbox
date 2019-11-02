@@ -2,13 +2,18 @@
 
 Cookbook for setting up a Linux development box.
 
-Right now this assumes an arch linux system but my tastes change frequently.
+This branch is for Fedora Workstation (version 31 at the time of this writing).
 
 # Prerequisites
 
-Arch should be installed, and basics like disk encryption, boot loaders, network configs should be done. A
+Fedora should be installed with the normal install process, and basics like disk encryption, boot loaders, network configs should be done. A
 non-privileged user should be created with sudo privileges, and the running of the Ansible playbooks should be done by
-that user.
+that user.  The initial setup flow that creates the first user automatically enables sudo so this should be easy.
+
+After initial setup you're in GNOME.  Open a terminal and:
+
+    sudo dnf upgrade
+    sudo dnf install ansible
 
 Some reminders about the setup process:
 

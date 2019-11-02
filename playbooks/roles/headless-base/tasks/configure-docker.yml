@@ -11,7 +11,7 @@
   user:
     name: "{{ lookup('env', 'USER') }}"
     groups:
-      - docker 
+      - docker
     append: yes
   when: lookup('env', 'USER') != 'root'
 
@@ -20,18 +20,3 @@
 - name: install ansible's docker dependency
   pip:
     name: docker-py
-
-- name: pull some often-used docker images in advance
-  docker_image:
-    name: "{{ item }}"
-  with_items:
-    - archlinux/base
-    - ubuntu
-    - debian
-    - alpine
-    - nginx
-    - redis
-    - postgres
-    - openjdk
-    - ruby
-    - python
