@@ -15,6 +15,10 @@ After initial setup you're in GNOME.  Open a terminal and:
     sudo dnf upgrade
     sudo dnf install ansible
 
+As the non-priviledged user, make sure zsh is installed and the default shell:
+
+    sudo dnf install zsh util-linux-user
+    chsh -s /usr/bin/zsh
 Some reminders about the setup process:
 
 - Start with the [ install guide ](https://wiki.archlinux.org/index.php/Installation_guide) which covers things in some

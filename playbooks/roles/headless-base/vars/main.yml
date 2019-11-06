@@ -4,35 +4,30 @@ utility_packages:
     - dosfstools
     - gnupg
     - the_silver_searcher
-    - ripgrep # supposedly even faster than ag
     - fzf # file finder
-    - fd # like ripgrep but only for listing files not searching their contents
     - tmux
-    - tmuxp
     - mosh # until this PR in master gets released must use the master branch: https://github.com/mobile-shell/mosh/pull/939
-    - [ zsh, zsh-syntax-highlighting, antigen-git ]
+    # install antigen with a script in the user account - [ zsh, zsh-syntax-highlighting, antigen-git ]
+    - [ zsh, zsh-syntax-highlighting ]
     - bash-completion
     - wget
     - curl
     - p7zip
     - unzip
-    - unrar
     - pulseaudio
-    - pulseaudio-bluetooth
-    - pamixer
     - elinks
-    - [ gtop, htop, nmon ]
-    - snapd
+    - [ htop, nmon ]
+    - flatpak
     - openssh
     - ufw
-    - [ libu2f-host, yubikey-personalization, libusb, pcsclite, acsccid, ccid ] # related to working with yubikeys
+    - [ libu2f-host, yubikey-personalization-gui, yubikey-manager, ykpers, ykpers-devel, yubioath-desktop, ykclient-devel, libusb, pcsc-lite, pcsc-lite-devel, ccid ] # related to working with yubikeys
     - jq
     - fio
     - bc
     - ldns # provides the dig successor drill
-    - bind-tools # provides dig and nslookup
+    - bind-utils # provides dig and nslookup
     - gnome-keyring # despite the name, not a GUI app; ensures the keyring is available even headless
-    - [ bcc, bcc-tools, python-bcc ] #BCC eBPF profiling tools
+    - [ bcc, bcc-tools ] #BCC eBPF profiling tools
 
 dev_packages:
     - neovim
@@ -45,7 +40,7 @@ dev_packages:
     - python3-pip
     - python3-setuptools
       # dependencies for youcompleteme viM plugin
-    - [ boost, boost-libs, clang, mono, ncurses5-compat-libs, nodejs, cmake, make, go, npm ]
+    - [ boost, clang, nodejs, cmake, make, go, npm ]
     - docker
     - swig
     - exa  #ls-like tool but better
@@ -54,15 +49,13 @@ dev_packages:
 
 pentest_packages:
     - aircrack-ng
-    - wireshark-qt
+    - [wireshark, wireshark-devel]
     - nmap
 
 console_font_packages:
     - adobe-source-code-pro-fonts
     - adobe-source-sans-pro-fonts
-    - system-san-francisco-font-git
-    - ttf-font-awesome-4
+    - fontawesome-fonts
     - powerline-fonts
-    - noto-fonts
-    - nerd-fonts-complete # installs a wide range of patched fonts
+    # - # move to user install nerd-fonts-complete # installs a wide range of patched fonts
 

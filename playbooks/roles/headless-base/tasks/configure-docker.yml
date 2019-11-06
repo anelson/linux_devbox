@@ -1,12 +1,4 @@
 ---
-- name: start docker service
-  systemd:
-    state: started
-    enabled: True
-    name: "{{ item }}"
-  with_items:
-    - docker.service
-
 - name: add the current user to the docker group
   user:
     name: "{{ lookup('env', 'USER') }}"

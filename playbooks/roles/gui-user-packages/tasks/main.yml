@@ -1,0 +1,24 @@
+---
+# tasks file for roles/gui-user-packages
+- name: Create directory for Waybar source code
+  file:
+    path: "{{ ansible_env.HOME }}/source/waybar"
+    state: directory
+
+- name: Check out waybar code
+  git:
+    repo: https://github.com/Alexays/Waybar.git
+    dest: "{{ ansible_env.HOME }}/source/waybar"
+    update: yes
+  register: git_checkout
+
+- name: Build and install
+  shell: |
+    meson --prefix {{ ansible_env.HOME }}/.local build
+    ninja -C build
+    ninja -C build install
+  args:
+    chdir: "{{ ansible_env.HOME }}/source/waybar"
+  when: git_checkout.changed
+
+

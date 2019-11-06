@@ -1,35 +1,19 @@
 ---
 # vars file for roles/gui-base
-xorg_packages:
-  - xorg
-  - xorg-xrdb
-  - compton
-  - xf86-video-intel
-  - i3-gaps
-  - i3status
-  - i3blocks
-  - i3lock-fancy-git # variant that does blurring and font customization
-  - xclip
-  - xsel
-  - feh
-  - imagemagick # used by feh to support SVG
-  - arandr
-  - scrot
-  - unclutter-xfixes-git
-
 wayland_packages:
-  - wayland
-  - xorg-server-xwayland
+  # wayland and the wayland x server are installed as part of the base Fedora Workstation install
+  #- wayland
+  #- xorg-server-xwayland
   - sway
 
 gui_packages:
   - gdm
   - [ gnome-keyring, libsecret, seahorse ] # things like skype require this or they won't remember credentials
   - firefox
-  - google-chrome
+  # Fedora doesn't package Chrome because it's proprietary.  Google offers an RPM download but it's manual; not clear how to automate
+  #- google-chrome
   - chromium
   - terminator
-  - alacritty
   - w3m
   - dmenu
   - rofi
@@ -37,70 +21,69 @@ gui_packages:
   - playerctl
   - pavucontrol
   - network-manager-applet
-  - networkmanager-dmenu-git
+  #- networkmanager-dmenu-git
   - blueberry
   - qemu
-  - virt-manager
-  - [ virtualbox-host-dkms, virtualbox, virtualbox-guest-iso ]
   - gnome-boxes
   - dunst
   - xss-lock
-  - lxappearance
-  - [ redshift, gtk3, python-gobject, python-xdg ] # for some reason these dependencies are optional but they're required
-  - [ polybar, siji-git, ttf-unifont, libmpdclient, alsa-lib, i3ipc-glib-git, jsoncpp ] # polybar has several important but optional dependencies
+  - [ redshift, redshift-gtk ]
+  # waybar doesn't have a package yet but it does have a lot of dependencies
+  - [
+      meson,
+      ninja-build,
+      jsoncpp-devel,
+      libinput-devel,
+      libwayland-client,
+      wayland-devel,
+      wayland-protocols-devel,
+      gtkmm30-devel,
+      libdbusmenu-gtk3-devel,
+      libsigc++,
+      fmt-devel,
+      wlroots,
+      libdbusmenu-gtk3,
+      libmpdclient,
+      spdlog-devel,
+      libnl3,
+      libnl3-devel,
+      pulseaudio-libs-devel,
+      libudev-devel,
+      libmpd-devel
+    ]
   - tk # for i8kutils
   - glxinfo
-  - [ dropbox, dropbox-cli ]
+  #- [ dropbox, dropbox-cli ]
   - nautilus
   - rdesktop
   - [ freerdp, remmina ]
-  - mailspring
-  - gufw
-  - evince
-  - [ cups, system-config-printer, foomatic-db-engine, foomatic-db-ppds, foomatic-db-nonfree-ppds ]
+  - [ cups, system-config-printer, foomatic, foomatic-db, foomatic-db-ppds, foomatic-db-filesystem ]
 
 theme_packages:
-  - arc-gtk-theme
+  - arc-theme
   - adapta-gtk-theme
   - gnome-icon-theme
   - gnome-icon-theme-extras
   - moka-icon-theme
-  - arc-icon-theme
+  #- arc-icon-theme
 
 wine_packages:
   - wine
-  - wine_gecko
   - wine-mono
-  - lib32-mesa
-  - mesa
-  - lib32-libpulse
-  - libpulse
-  - lib32-openal
   - openal
-  - lib32-libxml2
   - libxml2
-  - lib32-mpg123
   - mpg123
-  - lib32-lcms2
   - lcms2
-  - lib32-giflib
   - giflib
-  - lib32-libpng
   - libpng
-  - lib32-gnutls
   - gnutls
-  - lib32-libcups
-  - libcups
+  - cups-libs
   - winetricks
-  - lib32-libxrandr
-  - lib32-libxinerama
-  - lib32-libxcomposite
   - samba
-  - sane # office 2016 needs this
-  - pygtk #technically this is a CrossOver dependency
+  - sane-backends # office 2016 needs this
+  - pygtk2 #technically this is a CrossOver dependency
 
-snapd_packages:
-    - skype
-    - spotify
-    - slack
-    - anbox-installer
+flatpak_packages:
+  - com.skype.Client
+  - com.slack.Slack
+  - com.spotify.Client

@@ -8,15 +8,26 @@
 
 - name: Installing user-level pip packages for Python 3
   pip:
-    executable: pip
+    executable: pip3
     extra_args: --user
     name: "{{ pip3_packages }}"
 
 - name: Install Rust tools for the current user
   shell: |
-    cargo install {{ item.name }} \
-      {{ '--git ' + item.git_url if item.git_url is defined else ''}} \
-      {{ '--branch ' + item.branch if item.branch is defined else ''}}
+    source "{{ lookup('env', 'HOME') }}/.cargo/env"
+    cargo install --force {{ item.name }}
   args:
-    creates: "{{ ansible_env.HOME }}/.cargo/bin/{{ item.name }}"
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/{{ item.executable }}"
   with_items: "{{ rust_packages }}"
+
+- name: Check out NerdFonts repo
+  git:
+    repo: 'https://github.com/ryanoasis/nerd-fonts.git'
+    dest: "{{ ansible_env.HOME }}/.nerdfonts"
+    version: "v2.0.0"
+  register: nerdfonts_checkout
+
+- name: Install NerdFonts
+  shell: |
+    {{ ansible_env.HOME }}/.nerdfonts/install.sh
+  when: "nerdfonts_checkout.changed"

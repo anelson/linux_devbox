@@ -1,14 +1,27 @@
 ---
 # tasks file for roles/gui-base
+- name: Enable alacritty Copr repo
+  # Info came from this: https://copr.fedorainfracloud.org/coprs/pschyska/alacritty/repo/fedora-31/pschyska-alacritty-fedora-31.repo
+  yum_repository:
+    name: alacritty
+    description: Copr repo for alacritty owned by pschyska
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/pschyska/alacritty/fedora-$releasever-$basearch/
+    skip_if_unavailable: yes
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/pschyska/alacritty/pubkey.gpg
+    repo_gpgcheck: no
+    enabled: yes
+
+- name: install alacritty from a custom repo
+  dnf:
+    name: alacritty
+    enablerepo: alacritty
+    state: present
 - name: install base system packages that require X or Wayland
-  aur:
-    name: "{{ item }}"
-    use: yay
-    skip_installed: yes
+  dnf:
+    name: "{{ lookup('flattened', item) }}"
+    state: present
   become: yes
-  become_user: "{{ aur_builder_user }}"
-  with_items:
-      - "{{ xorg_packages }}"
+  loop:
       - "{{ wayland_packages }}"
       - "{{ gui_packages }}"
       - "{{ theme_packages }}"
@@ -16,19 +29,18 @@
 
 - import_tasks: configure-gdm.yml
 - import_tasks: configure-wine.yml
-- import_tasks: configure-vboxusers.yml
-- import_tasks: configure-fontconfig.yml
+#Disabling this; I hope Fedora has a sensible default already.  If not, then revisit
+#- import_tasks: configure-fontconfig.yml
 
-- name: Configure xorg power management for the screen
-  copy:
-    src: files/xorg-power-config.conf
-    dest: /etc/X11/xorg.conf.d/10-monitor.conf
+- name: Enable the default flathub flatpak repo
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: system
 
-- name: install snap packages
-  command: snap install {{ item }} --classic
-  register: snap_output
-  changed_when:
-    - "'is already installed' not in snap_output.stderr"
-  with_items:
-    - "{{ snapd_packages }}"
+- name: install flatpak packages
+  flatpak:
+    name: "{{ item }}"
+  loop: "{{ flatpak_packages }}"
 

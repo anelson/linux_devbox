@@ -1,11 +1,10 @@
 ---
 - name: install base system packages that don't require X
   dnf:
-    name: "{{ item }}"
+    name: "{{ lookup('flattened', item) }}"
     state: present
   become: yes
-  become_user: "{{ aur_builder_user }}"
-  with_items:
+  loop:
       - "{{ utility_packages }}"
       - "{{ console_font_packages }}"
       - "{{ dev_packages }}"
@@ -17,7 +16,6 @@
     enabled: yes
     state: started
 
-- import_tasks: configure-tlp.yml
 - import_tasks: configure-docker.yml
 - import_tasks: configure-ufw-firewall.yml
 
