@@ -58,6 +58,7 @@ gui_packages:
   - rdesktop
   - [ freerdp, remmina ]
   - [ cups, system-config-printer, foomatic, foomatic-db, foomatic-db-ppds, foomatic-db-filesystem ]
+  - gnome-shell-extension-appindicator
 
 theme_packages:
   - arc-theme
