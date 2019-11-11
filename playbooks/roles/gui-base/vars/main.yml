@@ -1,5 +1,6 @@
 ---
 # vars file for roles/gui-base
+dropbox_rpm_url: https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2019.02.14-1.fedora.x86_64.rpm
 wayland_packages:
   # wayland and the wayland x server are installed as part of the base Fedora Workstation install
   #- wayland
@@ -53,7 +54,6 @@ gui_packages:
     ]
   - tk # for i8kutils
   - glxinfo
-  #- [ dropbox, dropbox-cli ]
   - nautilus
   - rdesktop
   - [ freerdp, remmina ]

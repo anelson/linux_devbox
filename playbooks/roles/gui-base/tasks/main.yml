@@ -44,3 +44,7 @@
     name: "{{ item }}"
   loop: "{{ flatpak_packages }}"
 
+- name: Install dropbox RPM
+  dnf:
+    name: "{{ dropbox_rpm_url }}"
+    state: present
