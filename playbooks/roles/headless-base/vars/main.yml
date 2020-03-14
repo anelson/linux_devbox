@@ -46,6 +46,10 @@ dev_packages:
     - exa  #ls-like tool but better
     - bat  #syntax and git-aware cat replacement
     - gdb
+    - libudev-devel
+    - llvm-devel
+    - libevent-devel
+    - openssl-devel
 
 pentest_packages:
     - aircrack-ng
