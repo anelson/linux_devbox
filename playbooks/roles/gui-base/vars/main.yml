@@ -59,6 +59,7 @@ gui_packages:
   - [ freerdp, remmina ]
   - [ cups, system-config-printer, foomatic, foomatic-db, foomatic-db-ppds, foomatic-db-filesystem ]
   - gnome-shell-extension-appindicator
+  - libatomic # This seems to be a dependency of dropbox
 
 theme_packages:
   - arc-theme

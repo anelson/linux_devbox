@@ -1,12 +1,10 @@
 ---
 # tasks file for roles/laptop-base
 - name: install laptop-specific packages
-  aur:
-    name: "{{ item }}"
-    use: yay
-    skip_installed: yes
+  dnf:
+    name: "{{ lookup('flattened', item) }}"
+    state: present
   become: yes
-  become_user: "{{ aur_builder_user }}"
   with_items:
       - "{{ laptop_packages }}"
 
