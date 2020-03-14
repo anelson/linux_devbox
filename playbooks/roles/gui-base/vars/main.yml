@@ -56,6 +56,8 @@ gui_packages:
   - [ freerdp, remmina ]
   - mailspring
   - gufw
+  - evince
+  - [ cups, system-config-printer, foomatic-db-engine, foomatic-db-ppds, foomatic-db-nonfree-ppds ]
 
 theme_packages:
   - arc-gtk-theme

@@ -261,7 +261,7 @@ They are recoreded here so I don't forget to do them:
   - Firefox won't work right with the GTK theme we use. To to `about:config` and create a new setting
     `widget.content.gtk-theme-override` and set it to `Arc-Darker`. This theme complements `Arc-Dark` nicely and renders
     the UI elements with a legible color combo
-  - Firefox also doesn't sync the setting to enable U2F.  Set `security.webauth.u2f` to `true`
+  - In `about:config` enable `security.webauth.u2f`
   - Ensure Firefox is the default browser and prompts when it's not, and ensure the opposite with Chrome
   - Configure Firefox's default search engine to be DDG, not Google.  Yes, that should be synchronized along with the
       rest of the settings.  There's a [bug report](https://bugzilla.mozilla.org/show_bug.cgi?id=444284) to this effect
