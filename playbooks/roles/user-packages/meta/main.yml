@@ -53,4 +53,3 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-  - { role: rvm.ruby, rvm1_rubies: ['ruby-2.5.3'], rvm1_user: "{{ ansible_user_id }}", rvm1_install_flags: '--user-install' }
