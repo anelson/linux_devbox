@@ -41,7 +41,6 @@ dev_packages:
     - python3-setuptools
       # dependencies for youcompleteme viM plugin
     - [ boost, clang, nodejs, cmake, make, go, npm ]
-    - docker
     - swig
     - exa  #ls-like tool but better
     - bat  #syntax and git-aware cat replacement

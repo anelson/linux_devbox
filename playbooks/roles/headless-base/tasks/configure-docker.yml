@@ -1,4 +1,8 @@
 ---
+- name: install docker
+  include_role:
+    name: geerlingguy.docker
+
 - name: add the current user to the docker group
   user:
     name: "{{ lookup('env', 'USER') }}"
