@@ -31,3 +31,12 @@
   shell: |
     {{ ansible_env.HOME }}/.nerdfonts/install.sh
   when: "nerdfonts_checkout.changed"
+
+- name: Install terraform
+  shell: |
+    cd /tmp
+    curl --silent https://releases.hashicorp.com/terraform/0.12.23/terraform_{{ terraform_version }}_linux_amd64.zip  -o terraform.zip
+    unzip terraform.zip
+    cp terraform {{ ansible_env.HOME}}/.local/bin
+  args:
+    creates: "{{ansible_env.HOME}}/.local/bin/terraform"
