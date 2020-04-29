@@ -1,17 +1,2 @@
 ---
-- name: Enable waybar Copr repo
-  # Info came from this: https://copr.fedorainfracloud.org/coprs/alebastr/waybar/repo/fedora-32/alebastr-waybar-fedora-32.repo
-  yum_repository:
-    name: waybar
-    description: Copr repo for waybar owned by alebastr
-    baseurl: https://download.copr.fedorainfracloud.org/results/alebastr/waybar/fedora-$releasever-$basearch/
-    skip_if_unavailable: yes
-    gpgkey: https://download.copr.fedorainfracloud.org/results/alebastr/waybar/pubkey.gpg
-    repo_gpgcheck: no
-    enabled: yes
-
-- name: install waybar from a custom repo
-  dnf:
-    name: waybar
-    enablerepo: waybar
-    state: present
+# As of now, nothing to do here
