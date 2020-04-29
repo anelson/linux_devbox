@@ -2,7 +2,7 @@
 
 Cookbook for setting up a Linux development box.
 
-This branch is for Fedora Workstation (version 31 at the time of this writing).
+This branch is for Fedora Workstation (version 32 at the time of this writing).
 
 # Prerequisites
 
@@ -83,7 +83,7 @@ needs to `sudo`.
 NOTE: Just because you're doing a remote setup doesn't mean you can ignore the pre-reqs that normally apply to a local
 install. Make sure you have at least these:
 
-    $ sudo pacman -S python sudo
+    $ sudo dnf install python sudo
 
 If you're doing the user-specific setup also, you'll probably want to configure SSH certificate auth for that user. If
 you're still using the Yubikey-based auth approach, you'll need to do this:
@@ -103,10 +103,6 @@ install time, and configures that user's home directory the way I like. That run
 
 As with the system setup, there are a few versions of the `devuser` script with the same prefixes we use for the system
 version.
-
-Most of those install IntelliJ. If you haven't done an install lately, edit the
-`playbooks/roles/user-intellij/vars/main.yml` file and make sure the most recent version is downloaded. If you want to
-upgrade IntelliJ later, you can also update var and re-run the `devuser.yml` playbook.
 
 # Manual Setup Steps
 
@@ -132,37 +128,10 @@ They are recoreded here so I don't forget to do them:
       rest of the settings.  There's a [bug report](https://bugzilla.mozilla.org/show_bug.cgi?id=444284) to this effect
       which is now 11 years old.  Mozilla is funded in large part by having Google search as the default search engine,
       make of that what you will...
-- The `devuser.yml` playbook will download and "install" IntelliJ but it still needs some manual configuration:
-  - Obviously you have to connect the JetBrains account to establish license entitlement to use Ultimate
-  - I have a github repo with IntelliJ settings, so first thing configure IntelliJ to use that repo. The repo URL is
-    `https://github.com/anelson/intellij-settings.git`
-  - Install the IdeaVim plugin. The config file is part of the `dotfiles` repo, you'll find it on your system at
-    `~/.ideavimrc`. Point the IdeaVim plugin there and restart.
-  - Install the Scala and Ruby plugins
-  - Configure the fonts. The HiDPI screen might need bigger fonts, or JetBrains may have fixed HiDPI support as of the
-    version you're running, you just don't know until you try.
-- There is an AUR package for CrossOver, the commercial version of Wine that can be used to make Office work, however
-    it's not consistently updated.  Instead it's better to install it manually using the latest binary installer from
-    the Crossover site.  My login for Crossover is in 1p.  Of course one must also install Office itself.  To do that go
-    to https://office.com, log in, and go to My Account and Subscriptions.  They won't even offer you download links
-    unless your User Agent is a Windows browser, so use User Agent Switcher to fake that out and snag the quick
-    installer.
 - Dropbox is installed by Ansible but it must be configured manually. Run `dropbox` to start the GUI. The Arch Wiki
   [Dropbox](https://wiki.archlinux.org/index.php/Dropbox) page has more details
-- VMWare Workstation is installed automatically but the Windows VM to use for work email and such is not. You'll have to
-  build that manually. I know it sucks. A few reminders:
-  - Install Office 2016
-  - Install [ShutUp 10](https://www.oo-software.com/en/shutup10)
 - Create a symlink from `~/Dropbox/Documents/vimwiki` to `~/vimwiki` so the VimWiki data is always synchornized with
   Dropbox
-- Installing the VirtualBox extensions is possible with an AUR package, but it breaks often and since this can be
-  downloaded and upgraded from within VirtualBox, I have opted to use that flow. So you need to install the extensions
-  from withint he VirtualBox GUI after the initial setup
-- I use Chromium (not Chrome) to connect to the web interface for Todoist and Evernote. For each of those I use the 'Add
-  to desktop' feature to make a desktop link and a separate browser state for each of those. It's not the same as native
-  but it's the best that's available. Each time you do this the window classes will be different, so the `i3/config`
-  file will need to be updated accoringly. Chromium generates some dynamic and strange window class so it is not
-  predicable.
 - If this is a new system, follow my guide in the `vimwiki` for setting up Yubikeys for SSH and GPG auth.   
 
 # Updating the firmware with `fwupdmgr` (applies to XPS systems specifically)
