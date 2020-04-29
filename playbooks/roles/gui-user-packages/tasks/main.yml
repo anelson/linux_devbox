@@ -1,24 +1,17 @@
 ---
-# tasks file for roles/gui-user-packages
-- name: Create directory for Waybar source code
-  file:
-    path: "{{ ansible_env.HOME }}/source/waybar"
-    state: directory
+- name: Enable waybar Copr repo
+  # Info came from this: https://copr.fedorainfracloud.org/coprs/alebastr/waybar/repo/fedora-32/alebastr-waybar-fedora-32.repo
+  yum_repository:
+    name: waybar
+    description: Copr repo for waybar owned by alebastr
+    baseurl: https://download.copr.fedorainfracloud.org/results/alebastr/waybar/fedora-$releasever-$basearch/
+    skip_if_unavailable: yes
+    gpgkey: https://download.copr.fedorainfracloud.org/results/alebastr/waybar/pubkey.gpg
+    repo_gpgcheck: no
+    enabled: yes
 
-- name: Check out waybar code
-  git:
-    repo: https://github.com/Alexays/Waybar.git
-    dest: "{{ ansible_env.HOME }}/source/waybar"
-    update: yes
-  register: git_checkout
-
-- name: Build and install
-  shell: |
-    meson --prefix {{ ansible_env.HOME }}/.local build
-    ninja -C build
-    ninja -C build install
-  args:
-    chdir: "{{ ansible_env.HOME }}/source/waybar"
-  when: git_checkout.changed
-
-
+- name: install waybar from a custom repo
+  dnf:
+    name: waybar
+    enablerepo: waybar
+    state: present
