@@ -77,6 +77,9 @@ If you're setting up a remote system over SSH, there are some changes to the com
 
     $ ansible-playbook --inventory <remote host>, --user <probably root> headless-devbox.yml
 
+If the user is not `root`, you'll probably need `--ask-become-pass` to make sure Ansible has the password for when it
+needs to `sudo`.
+
 NOTE: Just because you're doing a remote setup doesn't mean you can ignore the pre-reqs that normally apply to a local
 install. Make sure you have at least these:
 
