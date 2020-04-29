@@ -65,9 +65,7 @@ theme_packages:
   - arc-theme
   - adapta-gtk-theme
   - gnome-icon-theme
-  - gnome-icon-theme-extras
   - moka-icon-theme
-  #- arc-icon-theme
 
 wine_packages:
   - wine
