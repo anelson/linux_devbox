@@ -1,6 +1,8 @@
 ---
 # vars file for roles/gui-base
 dropbox_rpm_url: https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2019.02.14-1.fedora.x86_64.rpm
+zoom_rpm_url: https://zoom.us/client/latest/zoom_x86_64.rpm
+
 wayland_packages:
   # wayland and the wayland x server are installed as part of the base Fedora Workstation install
   #- wayland
