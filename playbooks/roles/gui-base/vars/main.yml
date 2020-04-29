@@ -8,6 +8,10 @@ wayland_packages:
   #- wayland
   #- xorg-server-xwayland
   - sway
+  - swayidle
+  - swaylock
+  - wofi
+  - light
 
 gui_packages:
   - gdm
