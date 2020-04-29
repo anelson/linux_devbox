@@ -16,7 +16,12 @@
     enabled: yes
     state: started
 
+# As of 2020-04-29 (1 day after the Fedora 32 release), the docker repos don't have packages for fedora 32.
+# In any case, I want to start using `podman` instead since it sucks less and is better integrated into the Fedora
+# ecosystem.
 - import_tasks: configure-docker.yml
+  when: ansible_distribution == "Fedora" and ansible_distribution_release|int >= 32
+
 - import_tasks: configure-ufw-firewall.yml
 
 
