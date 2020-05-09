@@ -1,2 +1,3 @@
 ---
-# As of now, nothing to do here
+# todo: install mako and makoctl by building from source
+# i want to wait a while and see if this is something that's worthwhile before I do the work of automating in ansible

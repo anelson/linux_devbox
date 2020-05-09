@@ -12,6 +12,7 @@ wayland_packages:
   - swaylock
   - wofi
   - light
+  - scdoc # Not actually required for wayland but required for building `mako`
 
 gui_packages:
   - gdm

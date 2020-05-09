@@ -1,2 +1,8 @@
 ---
 # vars file for roles/gui-user-packages
+mako_version: 1.4.1
+mako_source_tarball_url: "https://github.com/emersion/mako/releases/download/v{{ mako_version }}/mako-{{ mako_version }}.tar.gz"
+mako_binaries:
+  - mako
+  - makoctl
+
