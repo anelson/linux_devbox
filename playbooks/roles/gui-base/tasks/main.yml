@@ -40,6 +40,7 @@
     state: present
   become: yes
   loop:
+      - "{{ xorg_packages }}"
       - "{{ wayland_packages }}"
       - "{{ gui_packages }}"
       - "{{ theme_packages }}"

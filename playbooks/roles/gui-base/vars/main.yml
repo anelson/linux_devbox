@@ -3,6 +3,17 @@
 dropbox_rpm_url: https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2019.02.14-1.fedora.x86_64.rpm
 zoom_rpm_url: https://zoom.us/client/latest/zoom_x86_64.rpm
 
+xorg_packages:
+  - compton
+  - i3
+  - xbacklight
+  - i3status
+  - i3lock
+  - xclip
+  - xsel
+  - feh
+  - arandr
+
 wayland_packages:
   # wayland and the wayland x server are installed as part of the base Fedora Workstation install
   #- wayland
@@ -29,13 +40,14 @@ gui_packages:
   - playerctl
   - pavucontrol
   - network-manager-applet
-  #- networkmanager-dmenu-git
   - blueberry
   - qemu
   - gnome-boxes
   - dunst
   - xss-lock
   - [ redshift, redshift-gtk ]
+  - lxappearance
+  - [ polybar, libmpdclient, alsa-lib, jsoncpp ] # polybar has several important but optional dependencies
   # waybar doesn't have a package yet but it does have a lot of dependencies
   - [
       meson,
@@ -57,7 +69,7 @@ gui_packages:
       libnl3-devel,
       pulseaudio-libs-devel,
       libudev-devel,
-      libmpd-devel
+      libmpd-devel,
       libappindicator-devel,
       libappindicator-gtk3-devel
   ]
