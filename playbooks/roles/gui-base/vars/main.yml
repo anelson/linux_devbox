@@ -58,7 +58,9 @@ gui_packages:
       pulseaudio-libs-devel,
       libudev-devel,
       libmpd-devel
-    ]
+      libappindicator-devel,
+      libappindicator-gtk3-devel
+  ]
   - tk # for i8kutils
   - glxinfo
   - nautilus
