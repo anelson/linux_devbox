@@ -69,7 +69,8 @@ host, run it (as a non-privileged user with sudo permissions) as:
     $ ansible-playbook -c local --inventory localhost, --ask-become-pass xps-devbox.yml
 
 After running this the first time, reboot the system. It should come up with GDM and prompt you to log in. `i3` will be
-an option, and `sway` also. For now I'm sticking to Xorg so the Wayland-based configs are not tested as of now.
+an option, and `sway` also. As of this writing `i3` is what I'm using every day.  See below for issues with
+Sway/Wayland.
 
 ## Setting up a remote system
 
@@ -122,7 +123,7 @@ They are recoreded here so I don't forget to do them:
   - Firefox won't work right with the GTK theme we use. To to `about:config` and create a new setting
     `widget.content.gtk-theme-override` and set it to `Arc-Darker`. This theme complements `Arc-Dark` nicely and renders
     the UI elements with a legible color combo
-  - In `about:config` enable `security.webauth.u2f`
+  - In `about:config` enable `security.webauth.u2f` (this appears to be the default in the most recent Firefox)
   - Ensure Firefox is the default browser and prompts when it's not, and ensure the opposite with Chrome
   - Configure Firefox's default search engine to be DDG, not Google.  Yes, that should be synchronized along with the
       rest of the settings.  There's a [bug report](https://bugzilla.mozilla.org/show_bug.cgi?id=444284) to this effect
@@ -163,3 +164,30 @@ In general, you should _never_ use `pip` or `gem` to install system packages. In
 home directory is fine, but if you ever find yourself typing `sudo pip...` or `sudo gem...`, slap yourself on the wrist
 and see if there's an Arch official or AUR package for what you're trying to install. In almost all cases, you don't
 mean to install systemwide but for a specific user account or perhaps even a specific project. Always prefer that.
+
+## Sway and Wayland 
+
+In this most recent update, as part of the move from Arch to Fedora, I spent a lot of time setting up a Sway config that
+mirrored the capabilities I have in i3.  In the end I went back to running i3.  The following issues still need to be
+addressed:
+
+* sway uses the i3 config format, but almost none of the tools used with i3 work under wayland.  In particular, tray
+    support in Waybar is glitchy and unusable.  The notification daemon `mako` isn't even packaged yet, and must be
+    built from source.  
+* Wayland has a protocol for screen sharing, and the WebRTC implementation in the latest Firefox supports it.  However
+    Zoom does not.  Maybe if I made this transition before the entire world went on lockdown and life moved to Zoom,
+    I would not have considered this a deal-breaker, but now I use Zoom screenshare at least once per day.  Workarounds
+    like using the Zoom web interface are blocked by other bugs in either Firefox or Sway (people seem to disagree about
+    who is at fault), or setting up a virtual webcam that is actually the contents of one's screen are complex, brittle,
+    and generally unacceptable when a perfectly reliable alternative exists. 
+* No wifi network picker equivalent to `nm-applet`.
+* Firefox HiDPI is broken.  Firefox on Wayland appears to have absolutely no HiDPI awareness at all, in spite of
+    multiple breathless announcements declaring improved HiDPI support.  Maybe I'm doing something wrong or missing
+    something obvious, but I had to configure Firefox to zoom 200%, but all of the UI chrome was still tiny and
+    uncomfortable to read.  Chromium, Slack, Skype, all were fine. 
+
+Fedora has made GNOME on Wayland the default DM, and that particular combination, I must admit, is great.  Rock solid,
+Firefox is very fast and no tearing at all, even Zoom screenshare works.  But that's GNOME.  If GNOME was what I wanted
+for a WM, I never would have bothered with all of these contortions with i3 in the first place.
+
+It's a pity.  I feel like we're almost there, and the performance benefits of Firefox on Wayland are fantastic.
