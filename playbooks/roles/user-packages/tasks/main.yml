@@ -8,7 +8,7 @@
 
 - name: Install Rust tools for the current user
   shell: |
-    source "{{ lookup('env', 'HOME') }}/.cargo/env"
+    source "{{ ansible_env.HOME }}/.cargo/env"
     cargo install --force {{ item.name }}
   args:
     creates: "{{ ansible_env.HOME }}/.cargo/bin/{{ item.executable }}"

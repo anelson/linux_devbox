@@ -9,9 +9,9 @@
 - name: Ensure rust programming language tools are installed
   shell: |
     curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --default-toolchain stable -y
-    source "{{ lookup('env', 'HOME') }}/.cargo/env"
+    source "{{ ansible_env.HOME }}/.cargo/env"
     # install various rust components that are useful
     rustup component add rust-src rls rust-analysis
     rustup install nightly
   args:
-    creates: "{{ lookup('env', 'HOME') }}/cargo/env"
+    creates: "{{ ansible_env.HOME }}/cargo/env"
