@@ -19,5 +19,5 @@ rust_packages:
   - { name: exa, executable: exa }
   - { name: fd-find, executable: fd }
   - { name: ripgrep, executable: rg }
-
-terraform_version: 0.12.23
+  - { name: tealdeer, executable: tldr }
+  - { name: git-delta, executable: delta }
