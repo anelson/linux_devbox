@@ -21,3 +21,4 @@ rust_packages:
   - { name: ripgrep, executable: rg }
   - { name: tealdeer, executable: tldr }
   - { name: git-delta, executable: delta }
+  - { name: starship, executable: starship }
