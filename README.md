@@ -191,3 +191,17 @@ Firefox is very fast and no tearing at all, even Zoom screenshare works.  But th
 for a WM, I never would have bothered with all of these contortions with i3 in the first place.
 
 It's a pity.  I feel like we're almost there, and the performance benefits of Firefox on Wayland are fantastic.
+
+# macOS
+
+macOS is much less amenable to automated setup.  For now I'll just record the manual steps I use on a new mac setup.
+Maybe over time I'll automate them more:
+
+* Install Homebrew from https://brew.sh
+  * Don't forget to enable it in the terminal
+* Ensure the tmux-256color terminal type is recognized:
+  * `brew install ncurses && /opt/homebrew/opt/ncurses/bin/infocmp tmux-256color > ~/tmux-256color.info && tic -xe tmux-256color tmux-256color.info`
+  * Note the `/opt/homebrew` path assumes this command is running on an Apple Silicon mac.  Adjust the path if this is an Intel mac.
+* `brew install python` and `pip3 install ansible`
+* Make sure the necessary community collection is installed: `ansible-galaxy collection install community.general`
+* Deploy the `headless-mac.yml` playbook

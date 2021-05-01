@@ -1,0 +1,35 @@
+# This sets up a headless mac dev environment
+---
+- hosts: all
+  become: false
+
+  roles:
+      - user-base
+      - dotfiles
+
+  tasks:
+    - name: Install Rust tools for the current user
+      shell: |
+        source "{{ ansible_env.HOME }}/.cargo/env"
+        cargo install --force {{ item.name }}
+      args:
+        creates: "{{ ansible_env.HOME }}/.cargo/bin/{{ item.executable }}"
+      with_items:
+        - { name: bat, executable: bat }
+        - { name: exa, executable: exa }
+        - { name: fd-find, executable: fd }
+        - { name: ripgrep, executable: rg }
+        - { name: tealdeer, executable: tldr }
+        - { name: git-delta, executable: delta }
+        - { name: starship, executable: starship }
+
+    - name: Install Homebrew packages
+      community.general.homebrew:
+        name: "{{ item }}"
+      with_items:
+        - tmux
+        - wget
+        - fzf
+        - neovim
+        - git-lfs
+        - htop
