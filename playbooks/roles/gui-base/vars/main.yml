@@ -84,7 +84,6 @@ gui_packages:
 
 theme_packages:
   - arc-theme
-  - adapta-gtk-theme
   - gnome-icon-theme
   - moka-icon-theme
 
