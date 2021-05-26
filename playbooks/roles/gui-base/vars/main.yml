@@ -48,7 +48,7 @@ gui_packages:
   - [ redshift, redshift-gtk ]
   - lxappearance
   - [ polybar, libmpdclient, alsa-lib, jsoncpp ] # polybar has several important but optional dependencies
-  - [ pipewire-libpulse, pipewire-libjack, pipewire-alsa ] # use pipewire for pulseaudio, JACK, and ALSA APIs
+  - pipewire
   # waybar doesn't have a package yet but it does have a lot of dependencies
   - [
       meson,
