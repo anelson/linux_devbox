@@ -14,7 +14,6 @@ utility_packages:
     - curl
     - p7zip
     - unzip
-    - pulseaudio
     - elinks
     - [ htop, nmon ]
     - flatpak
