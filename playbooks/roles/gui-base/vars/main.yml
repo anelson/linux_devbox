@@ -28,10 +28,14 @@ wayland_packages:
 gui_packages:
   - gdm
   - [ gnome-keyring, libsecret, seahorse ] # things like skype require this or they won't remember credentials
-  - firefox
+  # Firefox's management has made clear they are traitors to the cause of Internet freedom upon which Mozilla was founded.  Disappointing
+  # but not surprising.  Vivaldi is taking the place of Firefox in my devbox config, but it is installed from a custom repo not here
+  # - firefox
   # Fedora doesn't package Chrome because it's proprietary.  Google offers an RPM download but it's manual; not clear how to automate
   #- google-chrome
-  - chromium
+  #
+  # Moving away from Chromium since it doesn't sync at all.  Now using Brave in place of Chromium
+  # - chromium
   - terminator
   - w3m
   - dmenu

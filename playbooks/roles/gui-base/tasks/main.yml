@@ -1,5 +1,10 @@
 ---
 # tasks file for roles/gui-base
+- name: Ensure dnf plugins are present
+  dnf:
+    name: dnf-plugins-core
+    state: present
+
 - name: Enable alacritty Copr repo
   # Info came from this: https://copr.fedorainfracloud.org/coprs/pschyska/alacritty/repo/fedora-31/pschyska-alacritty-fedora-31.repo
   yum_repository:
@@ -28,6 +33,22 @@
   dnf:
     name: vivaldi-stable
     enablerepo: vivaldi
+    state: present
+
+- name: Enable Brave repo
+  yum_repository:
+    name: brave
+    description: Brave browser repo
+    baseurl: https://brave-browser-rpm-release.s3.brave.com/x86_64/
+    skip_if_unavailable: yes
+    gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+    repo_gpgcheck: no
+    enabled: yes
+
+- name: install Brave from a custom repo
+  dnf:
+    name: brave-browser
+    enablerepo: brave
     state: present
 
 - name: Enable VS Code repo
