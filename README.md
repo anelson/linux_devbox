@@ -205,3 +205,4 @@ Maybe over time I'll automate them more:
 * `brew install python` and `pip3 install ansible`
 * Make sure the necessary community collection is installed: `ansible-galaxy collection install community.general`
 * Deploy the `headless-mac.yml` playbook
+* Go into the Keyboard settings, click Modifier Keys, and remap Caps Lock to Escape
