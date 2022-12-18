@@ -206,3 +206,5 @@ Maybe over time I'll automate them more:
 * Make sure the necessary community collection is installed: `ansible-galaxy collection install community.general`
 * Deploy the `headless-mac.yml` playbook
 * Go into the Keyboard settings, click Modifier Keys, and remap Caps Lock to Escape
+* Install [Rectangle](https://rectangleapp.com) for convenient shortcuts to resize windows.  It's not i3, not by a long shot, but it sucks less than having nothing at all.
+ 
