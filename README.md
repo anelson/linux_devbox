@@ -209,4 +209,5 @@ Maybe over time I'll automate them more:
   * NOTE: This needs to be done separately for each keyboard, so when using the Logitech wireless kbd and the Kinesis
     this must be done separately for each one.
 * Install [Rectangle](https://rectangleapp.com) for convenient shortcuts to resize windows.  It's not i3, not by a long shot, but it sucks less than having nothing at all.
- 
+* Finder settings:
+    * Under View, activate Show Path Bar
