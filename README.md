@@ -206,5 +206,7 @@ Maybe over time I'll automate them more:
 * Make sure the necessary community collection is installed: `ansible-galaxy collection install community.general`
 * Deploy the `headless-mac.yml` playbook
 * Go into the Keyboard settings, click Modifier Keys, and remap Caps Lock to Escape
+  * NOTE: This needs to be done separately for each keyboard, so when using the Logitech wireless kbd and the Kinesis
+    this must be done separately for each one.
 * Install [Rectangle](https://rectangleapp.com) for convenient shortcuts to resize windows.  It's not i3, not by a long shot, but it sucks less than having nothing at all.
  
