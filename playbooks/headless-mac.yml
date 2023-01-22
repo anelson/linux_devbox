@@ -8,6 +8,19 @@
       - dotfiles
 
   tasks:
+    - name: Install Homebrew packages
+      community.general.homebrew:
+        name: "{{ item }}"
+      with_items:
+        - tmux
+        - wget
+        - fzf
+        - neovim
+        - git-lfs
+        - htop
+        - cmake
+        - nodejs
+
     - name: Install Rust tools for the current user
       shell: |
         source "{{ ansible_env.HOME }}/.cargo/env"
@@ -23,13 +36,3 @@
         - { name: git-delta, executable: delta }
         - { name: starship, executable: starship }
 
-    - name: Install Homebrew packages
-      community.general.homebrew:
-        name: "{{ item }}"
-      with_items:
-        - tmux
-        - wget
-        - fzf
-        - neovim
-        - git-lfs
-        - htop
