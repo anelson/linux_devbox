@@ -43,7 +43,7 @@ dev_packages:
       # dependencies for youcompleteme viM plugin
     - [ boost, clang, nodejs, cmake, make, go, npm ]
     - swig
-    - exa  #ls-like tool but better
+    - eza  #ls-like tool but better
     - bat  #syntax and git-aware cat replacement
     - gdb
     - libudev-devel

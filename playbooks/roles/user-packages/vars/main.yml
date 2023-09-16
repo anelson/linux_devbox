@@ -15,8 +15,10 @@ pip_packages:
   - neovim # also for ensime vim
 
 rust_packages:
-  - { name: bat, executable: bat }
-  - { name: exa, executable: exa }
+  - { name: eza, executable: exa }
+  # bat is packaged with pretty much any Linux distro I run plus brew on mac.
+  # Given the choice, I prefer to use a maintained package since upgrades happen automatically
+  #- { name: bat, executable: bat }
   - { name: fd-find, executable: fd }
   - { name: ripgrep, executable: rg }
   - { name: tealdeer, executable: tldr }
