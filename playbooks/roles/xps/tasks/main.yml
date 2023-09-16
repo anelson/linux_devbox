@@ -5,7 +5,5 @@
     name: "{{ lookup('flattened', item) }}"
     state: present
   become: yes
-  with_items:
-    - "i8kutils" # fan speed control
-    - libva-intel-driver # video playback acceleration for Intel integrated GPUs
+  with_items: [] # TODO: if there are any XPS-specific packages anymore, add them here
 

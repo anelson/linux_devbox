@@ -116,6 +116,7 @@ They are recoreded here so I don't forget to do them:
   install the missing plugins.
 - By the same token you'll need to start `nvim` once to initialize all of the plugins.  Make sure you do this with a
     working internet connection.
+    - Also run `:CocInstall` to make sure all CoC plugins are installed
 - You need to manually pull the bitmaps from the dotfiles repo. `homeshick cd dotfiles && git lfs pull` should do the
   trick
 - Firefox and Chrome configs are not easily automated. Log into them using the respective login accounts and they will
@@ -191,3 +192,43 @@ Firefox is very fast and no tearing at all, even Zoom screenshare works.  But th
 for a WM, I never would have bothered with all of these contortions with i3 in the first place.
 
 It's a pity.  I feel like we're almost there, and the performance benefits of Firefox on Wayland are fantastic.
+
+# macOS
+
+macOS is much less amenable to automated setup.  For now I'll just record the manual steps I use on a new mac setup.
+Maybe over time I'll automate them more:
+
+* Install Homebrew from https://brew.sh
+  * Don't forget to enable it in the terminal with `eval "$(/opt/homebrew/bin/brew shellenv)"`
+* Ensure the tmux-256color terminal type is recognized:
+  * `brew install ncurses && /opt/homebrew/opt/ncurses/bin/infocmp tmux-256color > ~/tmux-256color.info && tic -xe tmux-256color tmux-256color.info`
+  * Note the `/opt/homebrew` path assumes this command is running on an Apple Silicon mac.  Adjust the path if this is an Intel mac.
+* `brew install python` and `brew install ansible`
+* Make sure the necessary community collection is installed: `ansible-galaxy collection install community.general`
+# `cd` into `playbooks` and run `ansible-galaxy install -r requirements.yml`
+* Deploy the `headless-mac.yml` playbook
+  * `ansible-playbook -c local --inventory localhost,  headless-mac.yml`
+* Download "Sauce Code Pro" nerd fonts
+  * `brew tap homebrew/cask-fonts && brew install --cask font-sauce-code-pro-nerd-font`
+* Install Dropbox
+* Wait approximately 100 years for shitty dropbox to sync up
+* Make `~/Dropbox/Documents/gpg` available offline
+* Add the SSH private key to the Apple Keychain:
+  * `ssh-add --apple-use-keychain ~/Dropbox/Documents/gpg/id_rsa`
+* Go into the Keyboard settings, click Modifier Keys, and remap Caps Lock to Escape
+  * NOTE: This needs to be done separately for each keyboard, so when using the Logitech wireless kbd and the Kinesis
+    this must be done separately for each one.
+* Install [Rectangle](https://rectangleapp.com) for convenient shortcuts to resize windows.  It's not i3, not by a long shot, but it sucks less than having nothing at all.
+* Finder settings:
+    * Under View, activate Show Path Bar
+* If using Sidecar to use the iPad as an extended display, make sure the iPad is trusted so that Sidecar will work over a cable.  It own't be obvious at first that you didn't do this, but Sidecar over wifi is glitchy as fuck and will often hang.  
+  
+  To establish trust, connect the iPad via the cable, so it appears in Finder.  Then do a backup of the iPad.  At some point this will trigger a trust prompt on the iPad and/or the mac itself.  Once that is done, Sidecar should work over the cable and suck a lot less!
+* Install the following manually:
+  * Vivaldi
+  * Brave
+  * Dropbox
+  * MS 365 Suite
+  * Alacritty
+  * Parallels
+* Perform the manual steps which apply to Mac, a subset of those listed in [Manual Setup Steps](#manual-setup-steps)

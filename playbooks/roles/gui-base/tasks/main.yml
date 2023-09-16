@@ -1,5 +1,10 @@
 ---
 # tasks file for roles/gui-base
+- name: Ensure dnf plugins are present
+  dnf:
+    name: dnf-plugins-core
+    state: present
+
 - name: Enable alacritty Copr repo
   # Info came from this: https://copr.fedorainfracloud.org/coprs/pschyska/alacritty/repo/fedora-31/pschyska-alacritty-fedora-31.repo
   yum_repository:
@@ -17,22 +22,83 @@
     enablerepo: alacritty
     state: present
 
-- name: Enable waybar Copr repo
-  # Info came from this: https://copr.fedorainfracloud.org/coprs/alebastr/waybar/repo/fedora-32/alebastr-waybar-fedora-32.repo
+- name: Enable vivaldi repo
+  command:
+    cmd: dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
+    warn: false
+  args:
+    creates: /etc/yum.repos.d/vivaldi-fedora.repo
+
+- name: install Vivaldi from a custom repo
+  dnf:
+    name: vivaldi-stable
+    enablerepo: vivaldi
+    state: present
+
+- name: Enable Brave repo
   yum_repository:
-    name: waybar
-    description: Copr repo for waybar owned by alebastr
-    baseurl: https://download.copr.fedorainfracloud.org/results/alebastr/waybar/fedora-$releasever-$basearch/
+    name: brave
+    description: Brave browser repo
+    baseurl: https://brave-browser-rpm-release.s3.brave.com/x86_64/
     skip_if_unavailable: yes
-    gpgkey: https://download.copr.fedorainfracloud.org/results/alebastr/waybar/pubkey.gpg
+    gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
     repo_gpgcheck: no
     enabled: yes
 
-- name: install waybar from a custom repo
+- name: install Brave from a custom repo
   dnf:
-    name: waybar
-    enablerepo: waybar
+    name: brave-browser
+    enablerepo: brave
     state: present
+
+- name: Enable VS Code repo
+  yum_repository:
+    name: code
+    description: Visual Studio Code repo
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    skip_if_unavailable: yes
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    repo_gpgcheck: no
+    enabled: yes
+
+- name: install VS Code from custom repo
+  dnf:
+    name: code
+    enablerepo: code
+    state: present
+
+- name: Enable 1Password repo
+  yum_repository:
+    name: 1password
+    description: 1Password Stable Channel
+    baseurl: https://downloads.1password.com/linux/rpm/stable/$basearch
+    skip_if_unavailable: yes
+    gpgkey: https://downloads.1password.com/linux/keys/1password.asc
+    repo_gpgcheck: no
+    enabled: yes
+
+- name: install 1Password from repo
+  dnf:
+    name: 1password
+    enablerepo: 1password
+    state: present
+
+#- name: Enable waybar Copr repo
+#  # Info came from this: https://copr.fedorainfracloud.org/coprs/alebastr/waybar/repo/fedora-32/alebastr-waybar-fedora-32.repo
+#  yum_repository:
+#    name: waybar
+#    description: Copr repo for waybar owned by alebastr
+#    baseurl: https://download.copr.fedorainfracloud.org/results/alebastr/waybar/fedora-$releasever-$basearch/
+#    skip_if_unavailable: yes
+#    gpgkey: https://download.copr.fedorainfracloud.org/results/alebastr/waybar/pubkey.gpg
+#    repo_gpgcheck: no
+#    enabled: yes
+#
+#- name: install waybar from a custom repo
+#  dnf:
+#    name: waybar
+#    enablerepo: waybar
+#    state: present
 
 - name: install base system packages that require X or Wayland
   dnf:
@@ -67,8 +133,10 @@
   dnf:
     name: "{{ dropbox_rpm_url }}"
     state: present
+    disable_gpg_check: yes
 
 - name: Install zoom RPM
   dnf:
     name: "{{ zoom_rpm_url }}"
     state: present
+    disable_gpg_check: yes
