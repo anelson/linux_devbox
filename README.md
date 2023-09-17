@@ -212,12 +212,28 @@ Maybe over time I'll automate them more:
   * `brew tap homebrew/cask-fonts && brew install --cask font-sauce-code-pro-nerd-font`
 * Install Dropbox
 * Wait approximately 100 years for shitty dropbox to sync up
-* Make `~/Dropbox/Documents/gpg` available offline
-* Add the SSH private key to the Apple Keychain:
-  * `ssh-add --apple-use-keychain ~/Dropbox/Documents/gpg/id_rsa`
+* New SSH key management:
+  * Now using 1Password for key management.  Unfortunately right now this is now something I can commit to `dotfiles`
+  because it requires hard-coding a mac-specific path into the SSH config.  So when setting up a new mac this will need
+  to be done manually until I find a solution for having platform-specific SSH configs:
+  * ```
+    Host *
+      # SHIT: this is macOS specific, because on Linux hosts I have SSH'd into them from a mac with this identity agent.
+      # How can this co-exist with Linux systems that share this same .ssh/config file?  FML.
+      IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    ```
+
+    The exact path to set to `IdentityAgent` might be different on different installs, I'm not sure.  Anyway you can
+    find it in the "Developer" section of 1Password settings when checking the check box to enable the SSH agent.
+* Old, shitty SSH key management which should no longer be needed:
+  * Make `~/Dropbox/Documents/gpg` available offline
+  * Add the SSH private key to the Apple Keychain:
+    * `ssh-add --apple-use-keychain ~/Dropbox/Documents/gpg/id_rsa`
 * Go into the Keyboard settings, click Modifier Keys, and remap Caps Lock to Escape
   * NOTE: This needs to be done separately for each keyboard, so when using the Logitech wireless kbd and the Kinesis
     this must be done separately for each one.
+  * NOTE 2: It's possible on the Kinesis to remap CapsLock to Esc in hardware, but I haven't done that recently.
+  Keeping this here since it's necessary to do for any newly connected computer anyway.
 * Install [Rectangle](https://rectangleapp.com) for convenient shortcuts to resize windows.  It's not i3, not by a long shot, but it sucks less than having nothing at all.
 * Finder settings:
     * Under View, activate Show Path Bar
