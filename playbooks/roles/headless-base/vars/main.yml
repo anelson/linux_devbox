@@ -19,7 +19,7 @@ utility_packages:
     - flatpak
     - openssh
     - ufw
-    - [ libu2f-host, yubikey-personalization-gui, yubikey-manager, ykpers, ykpers-devel, yubioath-desktop, ykclient-devel, libusb, pcsc-lite, pcsc-lite-devel, ccid ] # related to working with yubikeys
+    - [ libu2f-host, yubikey-manager, ykpers, ykpers-devel, ykclient-devel, libusb, pcsc-lite, pcsc-lite-devel, ccid ] # related to working with yubikeys
     - jq
     - fio
     - bc
@@ -40,7 +40,7 @@ dev_packages:
     - python3-pip
     - python3-setuptools
       # dependencies for youcompleteme viM plugin
-    - [ boost, clang, nodejs, cmake, make, go, npm ]
+    - [ boost, clang, mold, nodejs, cmake, make, go, npm ]
     - swig
     - eza  #ls-like tool but better
     - bat  #syntax and git-aware cat replacement
