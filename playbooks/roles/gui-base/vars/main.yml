@@ -1,10 +1,9 @@
 ---
 # vars file for roles/gui-base
-dropbox_rpm_url: https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2020.03.04-1.fedora.x86_64.rpm
+dropbox_rpm_url: https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2024.01.22-1.fc39.x86_64.rpm
 zoom_rpm_url: https://zoom.us/client/latest/zoom_x86_64.rpm
 
 xorg_packages:
-  - compton
   - i3
   - xbacklight
   - i3status
@@ -44,7 +43,6 @@ gui_packages:
   - playerctl
   - pavucontrol
   - network-manager-applet
-  - blueberry
   - qemu
   - gnome-boxes
   - dunst

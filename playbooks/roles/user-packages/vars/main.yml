@@ -16,3 +16,9 @@ rust_packages:
   - { name: tealdeer, executable: tldr }
   - { name: git-delta, executable: delta }
   - { name: starship, executable: starship }
+
+  # Useful to creating UF2 images for the RP2040 USB Bootloader
+  - { name: elf2uf2-rs, executable: elf2uf2 }
+
+# Useful for flashing over the SWD pins using a supported JTAG probe
+  - { name: probe-rs, features: [cli], executable: probe-rs }

@@ -5,27 +5,14 @@
     name: dnf-plugins-core
     state: present
 
-- name: Enable alacritty Copr repo
-  # Info came from this: https://copr.fedorainfracloud.org/coprs/pschyska/alacritty/repo/fedora-31/pschyska-alacritty-fedora-31.repo
-  yum_repository:
-    name: alacritty
-    description: Copr repo for alacritty owned by pschyska
-    baseurl: https://copr-be.cloud.fedoraproject.org/results/pschyska/alacritty/fedora-$releasever-$basearch/
-    skip_if_unavailable: yes
-    gpgkey: https://copr-be.cloud.fedoraproject.org/results/pschyska/alacritty/pubkey.gpg
-    repo_gpgcheck: no
-    enabled: yes
-
-- name: install alacritty from a custom repo
+- name: install alacritty
   dnf:
     name: alacritty
-    enablerepo: alacritty
     state: present
 
 - name: Enable vivaldi repo
   command:
     cmd: dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
-    warn: false
   args:
     creates: /etc/yum.repos.d/vivaldi-fedora.repo
 
@@ -133,6 +120,7 @@
   dnf:
     name: "{{ dropbox_rpm_url }}"
     state: present
+    use_backend: dnf5
     disable_gpg_check: yes
 
 - name: Install zoom RPM
