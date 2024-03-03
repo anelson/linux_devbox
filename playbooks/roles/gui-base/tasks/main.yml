@@ -143,3 +143,22 @@
     name: "{{ zoom_rpm_url }}"
     state: present
     disable_gpg_check: yes
+
+- name: Ensure dconf directory exists for machine-wide Gnome settings
+  ansible.builtin.file:
+    path: /etc/dconf/db/local.d
+    state: directory
+    mode: '0755'
+
+- name: Set Caps Lock to act as Escape in Gnome
+  ansible.builtin.copy:
+    dest: /etc/dconf/db/local.d/00-keyboard-remap
+    content: |
+      [org/gnome/desktop/input-sources]
+      xkb-options=['caps:escape']
+    mode: '0644'
+
+- name: Compile Gnome dconf settings
+  ansible.builtin.shell: dconf update
+  args:
+    executable: /bin/bash

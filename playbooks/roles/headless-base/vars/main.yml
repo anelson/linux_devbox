@@ -42,6 +42,8 @@ dev_packages:
       # dependencies for youcompleteme viM plugin
     - [ boost, clang, mold, nodejs, cmake, make, go, npm ]
     - ruby-devel # Is the system Ruby package finally mature enough to not hassle w/ RVM? I hope so
+      # stuff for cross-compiling to the Pi Pico (and probably anything else RP2040 or similar)
+    - [arm-none-eabi-binutils-cs, arm-none-eabi-gcc-cs, arm-none-eabi-gcc-cs-c++, arm-none-eabi-newlib, minicom]
     - swig
     - eza  #ls-like tool but better
     - bat  #syntax and git-aware cat replacement

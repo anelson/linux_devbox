@@ -16,6 +16,16 @@
     enabled: yes
     state: started
 
+- name: configure minicom meta key to be usable inside tmux
+  ansible.builtin.lineinfile:
+    path: /etc/minirc.dfl
+    regexp: '^pu escape-key\s+'
+    # Minicom by default uses Ctrl-A which is extremely inconvenient with how I have my tmux config set up, where
+    # Ctrl-A is the meta key for tmux, and Ctrl-A a is mapped to the popup window switcher.  I don't have an easy way
+    # to send Ctrl-A to the inner session
+    line: 'pu escape-key       ^B'
+    state: present
+
 # As of 2020-04-29 (1 day after the Fedora 32 release), the docker repos don't have packages for fedora 32.
 # In any case, I want to start using `podman` instead since it sucks less and is better integrated into the Fedora
 # ecosystem.
