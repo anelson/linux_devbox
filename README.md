@@ -241,10 +241,16 @@ Maybe over time I'll automate them more:
   
   To establish trust, connect the iPad via the cable, so it appears in Finder.  Then do a backup of the iPad.  At some point this will trigger a trust prompt on the iPad and/or the mac itself.  Once that is done, Sidecar should work over the cable and suck a lot less!
 * Install the following manually:
-  * Vivaldi
-  * Brave
+  * Vivaldi (See note about 1Password below)
+  * Brave (See note about 1Password below)
   * Dropbox
   * MS 365 Suite
   * Alacritty
   * Parallels
+* Configure 1Password to trust Vivaldi and Brave
+  * By default, 1P trusts Chrome, Edge, Safari, maybe Firefox.  It won't let the 1P extension in Brave or Vivaldi talk
+  to the 1P desktop app, which results in a shit experience.  Open the 1P desktop app, go to Settings, Browsers, there's
+  an UI option to add a trusted browser.  Navigate to the Vivaldi and Brave executables.  You can verify this works by
+  opening 1P extension in the browser and going to settings; the option to integrate w/ the desktop version should be
+  enabled and the status light should go from amber to green confirming it works.
 * Perform the manual steps which apply to Mac, a subset of those listed in [Manual Setup Steps](#manual-setup-steps)

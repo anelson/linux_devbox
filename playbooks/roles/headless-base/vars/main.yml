@@ -41,6 +41,7 @@ dev_packages:
     - python3-setuptools
       # dependencies for youcompleteme viM plugin
     - [ boost, clang, mold, nodejs, cmake, make, go, npm ]
+    - ruby-devel # Is the system Ruby package finally mature enough to not hassle w/ RVM? I hope so
     - swig
     - eza  #ls-like tool but better
     - bat  #syntax and git-aware cat replacement

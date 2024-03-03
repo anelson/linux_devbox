@@ -14,7 +14,7 @@
   command:
     cmd: dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
   args:
-    creates: /etc/yum.repos.d/vivaldi-fedora.repo
+    creates: /etc/yum.repos.d/vivaldi.repo
 
 - name: install Vivaldi from a custom repo
   dnf:
@@ -69,6 +69,21 @@
     name: 1password
     enablerepo: 1password
     state: present
+
+- name: Ensure Vivaldi is trusted by 1P so the extension will work there.
+  ansible.builtin.lineinfile:
+    path: /etc/1password/custom_allowed_browsers
+    line: "{{ item }}"
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    # I'm not sure which of these lines actually makes Vivaldi work.  I have both on my system where I did
+    # this manually.  The docs are ambiguous.  Anyway this definitely works.
+    - vivaldi-bin
+    - /opt/vivaldi/vivaldi-bin
 
 #- name: Enable waybar Copr repo
 #  # Info came from this: https://copr.fedorainfracloud.org/coprs/alebastr/waybar/repo/fedora-32/alebastr-waybar-fedora-32.repo
