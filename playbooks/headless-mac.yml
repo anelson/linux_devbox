@@ -29,7 +29,7 @@
         creates: "{{ ansible_env.HOME }}/.cargo/bin/{{ item.executable }}"
       with_items:
         - { name: bat, executable: bat }
-        - { name: exa, executable: exa }
+        - { name: eza, executable: eza }
         - { name: fd-find, executable: fd }
         - { name: ripgrep, executable: rg }
         - { name: tealdeer, executable: tldr }

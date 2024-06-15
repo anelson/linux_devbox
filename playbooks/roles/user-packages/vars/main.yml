@@ -7,7 +7,7 @@ pip_packages:
   - neovim # also for ensime vim
 
 rust_packages:
-  - { name: eza, executable: exa }
+  - { name: eza, executable: eza }
   # bat is packaged with pretty much any Linux distro I run plus brew on mac.
   # Given the choice, I prefer to use a maintained package since upgrades happen automatically
   #- { name: bat, executable: bat }
