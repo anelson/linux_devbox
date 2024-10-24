@@ -20,6 +20,7 @@
         - htop
         - cmake
         - nodejs
+        - font-jetbrains-mono-nerd-font
 
     - name: Install Rust tools for the current user
       shell: |
