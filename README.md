@@ -135,6 +135,10 @@ They are recoreded here so I don't forget to do them:
 - Create a symlink from `~/Dropbox/Documents/vimwiki` to `~/vimwiki` so the VimWiki data is always synchornized with
   Dropbox
 - If this is a new system, follow my guide in the `vimwiki` for setting up Yubikeys for SSH and GPG auth.   
+- VS Code settings are stored in different places depending upon the platform.  They are not well suited to using `homeshick`.  So instead
+  I use the built-in settings sync feature, using my Github login.  So when setting up a new devbox, install VS Code and enable settings sync
+  to get the latest settings.  As of this writing, the most important one is a `keybindings.json` setting that ensures that Alt-c works in 
+  VS Code terminals to actually sent Alt-c and thus invoke fzf directory autocomplete.
 
 # Updating the firmware with `fwupdmgr` (applies to XPS systems specifically)
 
@@ -237,15 +241,12 @@ Maybe over time I'll automate them more:
 * Install [Rectangle](https://rectangleapp.com) for convenient shortcuts to resize windows.  It's not i3, not by a long shot, but it sucks less than having nothing at all.
 * Finder settings:
     * Under View, activate Show Path Bar
-* If using Sidecar to use the iPad as an extended display, make sure the iPad is trusted so that Sidecar will work over a cable.  It own't be obvious at first that you didn't do this, but Sidecar over wifi is glitchy as fuck and will often hang.  
-  
-  To establish trust, connect the iPad via the cable, so it appears in Finder.  Then do a backup of the iPad.  At some point this will trigger a trust prompt on the iPad and/or the mac itself.  Once that is done, Sidecar should work over the cable and suck a lot less!
 * Install the following manually:
   * Vivaldi (See note about 1Password below)
   * Brave (See note about 1Password below)
   * Dropbox
   * MS 365 Suite
-  * Alacritty
+  * WezTerm
   * Parallels
 * Configure 1Password to trust Vivaldi and Brave
   * By default, 1P trusts Chrome, Edge, Safari, maybe Firefox.  It won't let the 1P extension in Brave or Vivaldi talk
