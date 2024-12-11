@@ -4,8 +4,8 @@
   become: false
 
   roles:
-      - user-base
-      - dotfiles
+    - user-base
+    - dotfiles
 
   tasks:
     - name: Install Homebrew packages
@@ -22,6 +22,12 @@
         - nodejs
         - font-jetbrains-mono-nerd-font
 
+    - name: Install Homebrew casks
+      community.general.homebrew_cask:
+        name: "{{ item }}"
+      with_items:
+        - wezterm
+
     - name: Install Rust tools for the current user
       shell: |
         source "{{ ansible_env.HOME }}/.cargo/env"
@@ -36,4 +42,4 @@
         - { name: tealdeer, executable: tldr }
         - { name: git-delta, executable: delta }
         - { name: starship, executable: starship }
-
+        - { name: yazi-cli, executable: yazi }

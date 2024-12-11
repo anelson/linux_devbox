@@ -1,67 +1,83 @@
 ---
 # vars file for roles/headless-base
 utility_packages:
-    - dosfstools
-    - gnupg
-    - the_silver_searcher
-    - fzf # file finder
-    - tmux
-    - mosh # until this PR in master gets released must use the master branch: https://github.com/mobile-shell/mosh/pull/939
-    # install antigen with a script in the user account - [ zsh, zsh-syntax-highlighting, antigen-git ]
-    - [ zsh, zsh-syntax-highlighting ]
-    - bash-completion
-    - wget
-    - curl
-    - p7zip
-    - unzip
-    - elinks
-    - [ htop, nmon ]
-    - flatpak
-    - openssh
-    - ufw
-    - [ libu2f-host, yubikey-manager, ykpers, ykpers-devel, ykclient-devel, libusb, pcsc-lite, pcsc-lite-devel, ccid ] # related to working with yubikeys
-    - jq
-    - fio
-    - bc
-    - ldns # provides the dig successor drill
-    - bind-utils # provides dig and nslookup
-    - gnome-keyring # despite the name, not a GUI app; ensures the keyring is available even headless
-    - [ bcc, bcc-tools ] #BCC eBPF profiling tools
+  - dosfstools
+  - gnupg
+  - the_silver_searcher
+  - fzf # file finder
+  - tmux
+  - mosh # until this PR in master gets released must use the master branch: https://github.com/mobile-shell/mosh/pull/939
+  # install antigen with a script in the user account - [ zsh, zsh-syntax-highlighting, antigen-git ]
+  - [zsh, zsh-syntax-highlighting]
+  - bash-completion
+  - wget
+  - curl
+  - p7zip
+  - unzip
+  - elinks
+  - [htop, nmon]
+  - flatpak
+  - openssh
+  - ufw
+  - [
+      libu2f-host,
+      yubikey-manager,
+      ykpers,
+      ykpers-devel,
+      ykclient-devel,
+      libusb,
+      pcsc-lite,
+      pcsc-lite-devel,
+      ccid,
+    ] # related to working with yubikeys
+  - jq
+  - fio
+  - bc
+  - ldns # provides the dig successor drill
+  - bind-utils # provides dig and nslookup
+  - gnome-keyring # despite the name, not a GUI app; ensures the keyring is available even headless
+  - [bcc, bcc-tools] #BCC eBPF profiling tools
 
 dev_packages:
-    - neovim
-    - python3-neovim
-    - ranger
-    - "@Development tools"
-    - git
-    - git-lfs
-    - git-delta
-    - python3
-    - python3-pip
-    - python3-setuptools
-      # dependencies for youcompleteme viM plugin
-    - [ boost, clang, mold, nodejs, cmake, make, go, npm ]
-    - ruby-devel # Is the system Ruby package finally mature enough to not hassle w/ RVM? I hope so
-      # stuff for cross-compiling to the Pi Pico (and probably anything else RP2040 or similar)
-    - [arm-none-eabi-binutils-cs, arm-none-eabi-gcc-cs, arm-none-eabi-gcc-cs-c++, arm-none-eabi-newlib, minicom, openocd]
-    - swig
-    - eza  #ls-like tool but better
-    - bat  #syntax and git-aware cat replacement
-    - gdb
-    - libudev-devel
-    - llvm-devel
-    - libevent-devel
-    - openssl-devel
+  - neovim
+  - python3-neovim
+  - ranger
+  - "@Development tools"
+  - git
+  - git-lfs
+  - git-delta
+  - python3
+  - python3-pip
+  - python3-setuptools
+    # dependencies for youcompleteme viM plugin
+  - [boost, clang, mold, nodejs, cmake, make, go, npm]
+  - ruby-devel # Is the system Ruby package finally mature enough to not hassle w/ RVM? I hope so
+    # stuff for cross-compiling to the Pi Pico (and probably anything else RP2040 or similar)
+  - [
+      arm-none-eabi-binutils-cs,
+      arm-none-eabi-gcc-cs,
+      arm-none-eabi-gcc-cs-c++,
+      arm-none-eabi-newlib,
+      minicom,
+      openocd,
+    ]
+  - swig
+  - eza #ls-like tool but better
+  - bat #syntax and git-aware cat replacement
+  - gdb
+  - libudev-devel
+  - llvm-devel
+  - libevent-devel
+  - openssl-devel
 
 pentest_packages:
-    - aircrack-ng
-    - [wireshark, wireshark-devel]
-    - nmap
+  - aircrack-ng
+  - [wireshark, wireshark-devel]
+  - nmap
 
 console_font_packages:
-    - adobe-source-code-pro-fonts
-    - adobe-source-sans-pro-fonts
-    - fontawesome-fonts
-    - powerline-fonts
-    # - # move to user install nerd-fonts-complete # installs a wide range of patched fonts
-
+  - adobe-source-code-pro-fonts
+  - adobe-source-sans-pro-fonts
+  - fontawesome-fonts
+  - powerline-fonts
+  # - # move to user install nerd-fonts-complete # installs a wide range of patched fonts

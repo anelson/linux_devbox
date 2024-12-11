@@ -1,10 +1,11 @@
 ---
 # vars file for roles/user-packages
 pip_packages:
-  - awscli
+  - boto3
   - yubikey-manager
   - tmuxp
   - neovim # also for ensime vim
+  - hererocks # lazy.vim needs this to be able to install lua rocks for lua plugins
 
 rust_packages:
   - { name: eza, executable: eza }
