@@ -9,7 +9,7 @@
 - name: Install Rust tools for the current user
   shell: |
     source "{{ ansible_env.HOME }}/.cargo/env"
-    cargo install --force {{ item.name }}
+    cargo install --force {{ item.name }} --locked
   args:
     creates: "{{ ansible_env.HOME }}/.cargo/bin/{{ item.executable }}"
   with_items: "{{ rust_packages }}"
@@ -19,7 +19,7 @@
 
 - name: Check out NerdFonts repo
   git:
-    repo: 'https://github.com/ryanoasis/nerd-fonts.git'
+    repo: "https://github.com/ryanoasis/nerd-fonts.git"
     dest: "{{ ansible_env.HOME }}/.nerdfonts"
     version: "v2.0.0"
   register: nerdfonts_checkout
