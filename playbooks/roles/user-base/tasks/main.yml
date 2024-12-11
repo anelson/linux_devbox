@@ -2,16 +2,16 @@
 # This seems not to work without a password so it'll have to be
 # a manual step for now
 #- name: Use zsh as the login shell
-  #user:
-    #name: "{{ lookup('env', 'USER') }}"
-    #shell: /bin/zsh
+#user:
+#name: "{{ lookup('env', 'USER') }}"
+#shell: /bin/zsh
 
 - name: Ensure rust programming language tools are installed
   shell: |
     curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path --default-toolchain stable -y
-    source "{{ ansible_env.HOME }}/.cargo/env"
+    . "{{ ansible_env.HOME }}/.cargo/env"
     # install various rust components that are useful
     rustup component add rust-src
     rustup install nightly
   args:
-    creates: "{{ ansible_env.HOME }}/cargo/env"
+    creates: "{{ ansible_env.HOME }}/.cargo/env"
