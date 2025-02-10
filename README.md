@@ -203,8 +203,12 @@ It's a pity. I feel like we're almost there, and the performance benefits of Fir
 macOS is much less amenable to automated setup. For now I'll just record the manual steps I use on a new mac setup.
 Maybe over time I'll automate them more:
 
-- Install Homebrew from https://brew.sh
+- Install Dropbox
+
+* Install 1Password (there is a 1P 7 on the App Store but it's old; download it from 1password.com instead)
+* Install Homebrew from https://brew.sh
   - Don't forget to enable it in the terminal with `eval "$(/opt/homebrew/bin/brew shellenv)"`
+
 - Ensure the tmux-256color terminal type is recognized:
   - `brew install ncurses && /opt/homebrew/opt/ncurses/bin/infocmp tmux-256color > ~/tmux-256color.info && tic -xe tmux-256color ~/tmux-256color.info`
   - Note the `/opt/homebrew` path assumes this command is running on an Apple Silicon mac. Adjust the path if this is an Intel mac.
@@ -212,55 +216,73 @@ Maybe over time I'll automate them more:
     I've not verified this yet, but this step might not be needed anymore. If you think it isn't, make sure that underlines, undercurls, and colored underlines work in neovim.
 - `brew install python` and `brew install ansible`
 - Make sure the necessary community collection is installed: `ansible-galaxy collection install community.general`
-
-# `cd` into `playbooks` and run `ansible-galaxy install -r requirements.yml`
-
+- `cd` into `playbooks` and run `ansible-galaxy install -r requirements.yml`
+- Go to System Settings > Privacy & Security > App Management and make sure that the terminal you're running (which is presumably Terminal since the other terminals aren't installed yet) has App Management permissions.
 - Deploy the `headless-mac.yml` playbook
   - `ansible-playbook -c local --inventory localhost,  headless-mac.yml`
 - Download "Sauce Code Pro" nerd fonts
-  - `brew tap homebrew/cask-fonts && brew install --cask font-sauce-code-pro-nerd-font`
-- Install Dropbox
-- Wait approximately 100 years for shitty dropbox to sync up
-- New SSH key management:
+  - `brew install font-sauce-code-pro-nerd-font`
+- Go to System Settings > Privacy & Security > App Management and add or enable Wezterm and Ghostty so that they can install Homebrew Casks
 
-  - Now using 1Password for key management. Unfortunately right now this is now something I can commit to `dotfiles`
-    because it requires hard-coding a mac-specific path into the SSH config. So when setting up a new mac this will need
-    to be done manually until I find a solution for having platform-specific SSH configs:
-  - ```
-    Host *
-      # SHIT: this is macOS specific, because on Linux hosts I have SSH'd into them from a mac with this identity agent.
-      # How can this co-exist with Linux systems that share this same .ssh/config file?  FML.
-      IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-    ```
+* New SSH key management:
+  - Now using 1Password for key management. I have this in the dotfiles that is conditional on the file `~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock` existing.
+    I've done two separate fresh Mac installs with 1P and both times that path was the same, but the "2BUA..." seems like it might be a random string that changes, so double-check
+    each time you set up a new Mac. You have to go into the Developer section of 1P settings, enable the SSH agent, and then it'll show you the "Host \*" entry that it
+    wants you to put in your `~/.ssh/config` file. Don't do that, but do check that the `IdentityAgent` path is specifies matches what's already in the SSH config file.
 
-    The exact path to set to `IdentityAgent` might be different on different installs, I'm not sure. Anyway you can
-    find it in the "Developer" section of 1Password settings when checking the check box to enable the SSH agent.
-
-- Old, shitty SSH key management which should no longer be needed:
-  - Make `~/Dropbox/Documents/gpg` available offline
-  - Add the SSH private key to the Apple Keychain:
-    - `ssh-add --apple-use-keychain ~/Dropbox/Documents/gpg/id_rsa`
-- Go into the Keyboard settings, click Modifier Keys, and remap Caps Lock to Escape
+- Go into the Keyboard settings, click Keyboard Shortcuts, then click Modifier Keys, and remap Caps Lock to Escape
 
   - NOTE: This needs to be done separately for each keyboard, so when using the Logitech wireless kbd and the Kinesis
     this must be done separately for each one.
   - NOTE 2: It's possible on the Kinesis to remap CapsLock to Esc in hardware, but I haven't done that recently.
     Keeping this here since it's necessary to do for any newly connected computer anyway.
 
-- Install [Rectangle](https://rectangleapp.com) for convenient shortcuts to resize windows. It's not i3, not by a long shot, but it sucks less than having nothing at all.
+- Whilst in Keyboard settings, add Russian and Ukrainian keyboard layouts.
+
 - Finder settings:
   - Under View, activate Show Path Bar
 - Install the following manually:
+  - Alfred (There is an old App Store version but download the latest from alfredapp.com)
+    - Find the "Control Center" settings and set "Spotlight" to "Don't show in menu bar"
+    - Go to Keyboard settings, Keyboard Shortcuts, Spotlight, and disable both shortcuts there (because they conflict with Alfred shortcuts)
+    - The Alfred settings are synced using Dropbox in the `~/Dropbox/OSX/` directory. In the Advanced settings, under "Syncing" click "Set preferences folder" and point it to `~/Dropbox/OSX`.  
+      Obviously that folder needs to have been selected for sync when you set up Dropbox. While you're at it, make sure the `Alrefed.alfredpreferences` file in that directory is set for "Keep available offline".
+    - If for some reason the sync doesn't work right, set the Alfred hotkey to Command-Space.
   - Vivaldi (See note about 1Password below)
   - Brave (See note about 1Password below)
-  - Dropbox
-  - MS 365 Suite
-  - WezTerm
+  - MS 365 Suite (App Store)
   - Parallels
+  - [Rectangle](https://rectangleapp.com) for convenient shortcuts to resize windows. It's not i3, not by a long shot, but it sucks less than having nothing at all.
+    - Set the shortcut `Cmd-Opt-Ctrl-Enter` to Maximize
+  - Claude
+  - Perplexity
+  - ChatGPT
+  - Cursor
+  - DeepL
+  - DBeaver
+  - VS Code
+  - XCode (App Store)
+  - Plex and Plex Media Server
+  - Spotify
+  - FileZilla
+  - Zoom
+  - Slack (App Store)
+  - Telegram (App Store)
+  - Viber
+  - NextDNS (App Store)
+    - Enable it, which will require permission to install a VPN profile.
+    - By default it doesn't use a paid account or features; in preferences set "Custom Configuration" and set the configuration ID to the endpoint ID from 1p. Also enable "Send Device Name".
+  - TunnelBear
+    - Try once to connect to the VPN, that will make sure the login is stored and that the VPN permission is granted.
+  - TailScale (App Store)
+  - AWS CLI
+  - Steam
 - Configure 1Password to trust Vivaldi and Brave
   - By default, 1P trusts Chrome, Edge, Safari, maybe Firefox. It won't let the 1P extension in Brave or Vivaldi talk
     to the 1P desktop app, which results in a shit experience. Open the 1P desktop app, go to Settings, Browsers, there's
     an UI option to add a trusted browser. Navigate to the Vivaldi and Brave executables. You can verify this works by
     opening 1P extension in the browser and going to settings; the option to integrate w/ the desktop version should be
     enabled and the status light should go from amber to green confirming it works.
+- Configure the default search engine in Vivaldi, Brave, and Safari to be Kagi.
+- Setup `aws-sso` to automate SSO auth
 - Perform the manual steps which apply to Mac, a subset of those listed in [Manual Setup Steps](#manual-setup-steps)

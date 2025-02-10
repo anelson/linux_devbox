@@ -13,20 +13,49 @@
         name: "{{ item }}"
       with_items:
         - tmux
+        - tmuxp
         - wget
         - fzf
         - neovim
+        - git
         - git-lfs
+        - gh
+        - go
+        - python
         - htop
+        - btop
         - cmake
         - nodejs
         - font-jetbrains-mono-nerd-font
+        - font-sauce-code-pro-nerd-font
+        - tree
+        - orbstack
+        - p7zip
+        - ranger
+        - qemu
+        - terraform
+        - uv
+        - jq
+        - yq
+        - zstd
+        - zola
+        - pkgconf
+        - openjdk
+        - imagemagick
+        - llvm
+        - gcc
+        - ffmpeg
+        - yt-dlp
+        - ddrescue
+        - exiftool
+        - oxipng
 
     - name: Install Homebrew casks
       community.general.homebrew_cask:
         name: "{{ item }}"
       with_items:
         - wezterm
+        - ghostty
 
     - name: Install Rust tools for the current user
       shell: |
